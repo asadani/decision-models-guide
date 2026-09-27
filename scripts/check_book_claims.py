@@ -58,10 +58,14 @@ SOURCES = {
 CLAIMS = []
 
 
-def claim(cid, ch, statement, source, locator, verify, src=(), book=(), expr=None):
+def claim(cid, ch, statement, source, locator, verify, src=(), book=(), expr=None, planned=False):
+    """planned=True: bound to its source now, not yet in the book (no book_needles).
+
+    Used for claims a later chapter will make, so they are verified before they
+    are written, not after."""
     CLAIMS.append(dict(id=cid, ch=ch, statement=statement, source=source,
                        locator=locator, verify=verify, src_needles=list(src),
-                       book_needles=list(book), expr=expr))
+                       book_needles=list(book), expr=expr, planned=planned))
 
 
 # ---- Chapter 1 -----------------------------------------------------------
@@ -234,7 +238,7 @@ claim("c06-05", 6, "Forwarded-subset bookkeeping: Jev ~66% vs Qwen ~57% on the 1
       "derived", "arithmetic from reported figures", "derived",
       book=["about 66 percent", "127", "4.12 points"],
       expr="(lambda N,kept,kw: (lambda jc: abs((jc-(kept-kw))/(N-kept)*100-65.6)<0.2 and abs(127/N*100-4.12)<0.01 and 84-211==-127)(round(0.811*N)))(3080,1516,44)")
-claim("c06-06", 6, "LangChain: Stagehand 0.7 threshold falls back to LLM; median act() latency 1.97 s -> 0.46 s (4.3x)",
+claim("c06-06", 6, "LangChain reports that Browserbase rebuilt Stagehand's act() so Jev picks the action, with anything below a 0.7 confidence threshold falling back to an LLM; in early testing median act() latency fell from 1.97 s to 0.46 s (about 4.3x). Latency only; no accuracy figure.",
       "langchain", "Browser automation", "text",
       src=["0.7 confidence threshold", "1.97 seconds to 0.46 seconds", "4.3x"],
       book=["0.7 confidence threshold", "1.97 seconds to 0.46", "4.3 times"])
@@ -338,6 +342,22 @@ claim("c10-06", 10, "PDF table I: hide/short/long/full; allow/ask/deny; sensitiv
 claim("c11-01", 11, "Archestra: ~90 of 100 routine, ~10 dangerous; original benchmark was bad", "archestra", "What Error Analysis Actually Taught Us", "text",
       src=["Around 90 were routine", "only 10 covered the dangerous edge cases", "our original benchmark was bad"],
       book=["around 90 of 100", "\"bad.\""])
+
+
+# ---- Planned: for the ecosystem chapter, bound to sources before they are written ----
+claim("p-01", 7, "Decision 1.0 (post dated September 22, 2026) says it uses the upstream System One request format: state, model, and named questions",
+      "decision1", "Bring your System One workflow", "text",
+      src=["Decision uses the upstream System One request format: state, model, and named questions", "September 22, 2026"],
+      planned=True)
+claim("p-02", 7, "TypeSafe's launch post is dated September 15, 2026",
+      "launch", "post header", "text", src=["Sep 15, 2026"], planned=True)
+claim("p-03", 7, "Seven days between the launch (Sep 15) and the Decision 1.0 post (Sep 22); my arithmetic, so 'a week after launch', not 'within a week'",
+      "derived", "arithmetic", "derived", expr="22 - 15 == 7", planned=True)
+claim("p-04", 7, "LangChain, describing a shift it attributes to Jaya Gupta, quotes 'frontier by default and optimize later' giving way to 'cheap by default, frontier on exception'; the framing is Gupta's as quoted by LangChain, not LangChain's own",
+      "langchain", "This is the great unbundling of intelligence", "text",
+      src=['Jaya Gupta calls what comes next "the Great Unbundling of Intelligence"',
+           'That\'s the shift Gupta describes from "frontier by default and optimize later" to "cheap by default, frontier on exception."'],
+      planned=True)
 
 
 def norm(s):
