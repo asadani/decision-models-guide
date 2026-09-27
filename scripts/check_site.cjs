@@ -20,7 +20,7 @@ const { pathToFileURL } = require('node:url');
       const page = await browser.newPage({ viewport: { width: vp.width, height: vp.height } });
       const errors = [];
       page.on('pageerror', e => errors.push(String(e)));
-      await page.goto(pathToFileURL(path.join(root, 'docs/index.html')).href);
+      await page.goto(process.env.SITE_URL || pathToFileURL(path.join(root, 'docs/index.html')).href);
       await page.waitForLoadState('load');
       await page.waitForTimeout(1500);
 
