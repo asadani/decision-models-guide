@@ -69,7 +69,11 @@ Hoang's own advice is to add a fallback only if testing shows it improves the un
 
 Knowing a case is hard for one model does not tell you another model can solve it.
 
+::: {.center}
+
 ![](../../assets/diagrams/generated/map-ch07.png){alt="Mindmap. Center: The cascade. Branches: The case for it (Cheap model first, big model for the rest); The test (Measure on the forwarded subset); The result (Fixed 84 mistakes, broke 211); Random routing (Did at least as well as the gate); Cost and latency (The forwarded case pays for both calls); Other fallbacks (A lookup, a question, a person)."}
+
+:::
 
 [^ch7-1]: Nhu Hoang, "Jev vs. LLMs: When AI Moves from Generation to Decision-Making," Towards Data Science, September 25, 2026, <https://towardsdatascience.com/jev-vs-llms-when-ai-moves-from-generation-to-decision-making/>, sections 8.3 and 8.4 (supplied copy, pages 20 to 23). The table, the 97 percent and 57 percent figures, the 84 and 211 counts, and the closing lesson are from these pages. The article's own summary advises adding a fallback only if it improves the uncertain cases.
 

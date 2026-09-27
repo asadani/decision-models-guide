@@ -8,23 +8,23 @@
 \begin{tikzpicture}[
   font=\footnotesize\sffamily,
   hub/.style={draw=red!55!black, line width=1pt, rounded corners=7pt, fill=red!8, align=center,
-              text width=3.2cm, inner sep=7pt, font=\bfseries\small\sffamily},
+              text width=3cm, inner sep=7pt, font=\bfseries\small\sffamily},
   br/.style={draw=black!60, rounded corners=3pt, fill=black!3, align=center,
-             text width=3.05cm, inner sep=4pt},
-  edge/.style={draw=black!50, line width=0.8pt}
+             text width=3.05cm, inner sep=4pt, minimum height=1.05cm},
+  edge/.style={draw=black!45, line width=0.8pt}
 ]
-\draw[edge] (0,0) -- (0.00,2.70);
-\draw[edge] (0,0) -- (3.55,1.35);
-\draw[edge] (0,0) -- (3.55,-1.35);
-\draw[edge] (0,0) -- (0.00,-2.70);
-\draw[edge] (0,0) -- (-3.55,-1.35);
-\draw[edge] (0,0) -- (-3.55,1.35);
-\node[hub] at (0,0) {What a decision model is};
-\node[br] at (0.00,2.70) {\textbf{State}\\[1pt]{\scriptsize The evidence you send}};
-\node[br] at (3.55,1.35) {\textbf{Question}\\[1pt]{\scriptsize Typed, literal, one thing}};
-\node[br] at (3.55,-1.35) {\textbf{Three primitives}\\[1pt]{\scriptsize Choice, Noul and Score}};
-\node[br] at (0.00,-2.70) {\textbf{The schema buys}\\[1pt]{\scriptsize No parsing, no stray text}};
-\node[br] at (-3.55,-1.35) {\textbf{Jagged edges}\\[1pt]{\scriptsize Literal, no arithmetic, no hostile-input defense}};
-\node[br] at (-3.55,1.35) {\textbf{Not known}\\[1pt]{\scriptsize Size, data and architecture}};
+\node[hub] (hub) at (0,0) {What a decision model is};
+\node[br] (b0) at (-4.35,1.90) {\textbf{State}\\[1pt]{\scriptsize The evidence you send}};
+\draw[edge] (hub) -- (b0);
+\node[br] (b1) at (4.35,1.90) {\textbf{Question}\\[1pt]{\scriptsize Typed, literal, one thing}};
+\draw[edge] (hub) -- (b1);
+\node[br] (b2) at (-4.35,0.00) {\textbf{Three primitives}\\[1pt]{\scriptsize Choice, Noul and Score}};
+\draw[edge] (hub) -- (b2);
+\node[br] (b3) at (4.35,0.00) {\textbf{The schema buys}\\[1pt]{\scriptsize No parsing, no stray text}};
+\draw[edge] (hub) -- (b3);
+\node[br] (b4) at (-4.35,-1.90) {\textbf{Jagged edges}\\[1pt]{\scriptsize Literal, no arithmetic, no hostile-input defense}};
+\draw[edge] (hub) -- (b4);
+\node[br] (b5) at (4.35,-1.90) {\textbf{Not known}\\[1pt]{\scriptsize Size, data and architecture}};
+\draw[edge] (hub) -- (b5);
 \end{tikzpicture}
 \end{document}

@@ -141,7 +141,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 <div class="split">
 <nav id="TOC" class="rail" aria-label="Chapters"><div class="rail-title">In this book</div><ul>
-<li><a href="#copyright-permissions-and-how-this-was-made" id="toc-copyright-permissions-and-how-this-was-made">Copyright, permissions, and how this was made</a></li>
 <li><a href="#chapter-1.-the-ticket-that-isnt-one-question" id="toc-chapter-1.-the-ticket-that-isnt-one-question">Chapter 1.<br />
 The Ticket That Isn’t One Question</a></li>
 <li><a href="#chapter-2.-the-idea-in-plain-language" id="toc-chapter-2.-the-idea-in-plain-language">Chapter 2.<br />
@@ -176,21 +175,9 @@ Glossary</a></li>
 Sources</a></li>
 <li><a href="#appendix-d.-reference-tables" id="toc-appendix-d.-reference-tables">Appendix D.<br />
 Reference Tables</a></li>
+<li><a href="#copyright-permissions-and-how-this-was-made" id="toc-copyright-permissions-and-how-this-was-made">Copyright, permissions, and how this was made</a></li>
 </ul></nav>
 <main id="main" tabindex="-1">
-<section id="copyright-permissions-and-how-this-was-made" class="level1 unnumbered">
-<h1 class="unnumbered">Copyright, permissions, and how this was made</h1>
-<p><em>Decision Models: From a Typed Prediction to an Accountable Action</em></p>
-<p>Copyright © 2026 Anuj Sadani. All rights reserved. Quote it in a review or a piece of criticism with attribution; anything further, please ask.</p>
-<p>An independent work. It is not affiliated with or endorsed by TypeSafe AI, Convai Innovations, Fastino, the vLLM Semantic Router project, Nokia Applied Research, Archestra, LangChain, or the authors of the articles it discusses. Product names are trademarks of their owners, used to identify the systems discussed. The diagrams and mindmaps are original; other people’s articles are cited, not reproduced.</p>
-<!-- narrate-from -->
-<p><strong>A note on how this book was made</strong></p>
-<p>An AI system drafted this book from the sources I gave it: five articles and papers, four web links and two files of notes. I set the question, chose what to keep, argued with the drafts and put my name on the result. The errors are mine.</p>
-<p>The objection worth taking seriously is not that a machine wrote it. It is that nobody checked it. So the numbers are checked. Each comes from a named source, each one taken from a scanned page was compared with the page image, and Appendix A lists what was verified and what was not. I did not run Jev myself. No live call was made, and every measurement here belongs to whoever ran it.</p>
-<p>Two more things you should know. Some chapters open with a composite scene, a pattern distilled into one moment. If an opening has no footnote, read it as a parable. And the ideas in the accountability chapter come from notes that describe risks a decision system could have. They allege nothing about any named provider, and neither does this book.</p>
-<p>A.S.</p>
-<p>First edition, September 2026.</p>
-</section>
 <section id="chapter-1.-the-ticket-that-isnt-one-question" class="level1">
 <h1>Chapter 1.<br />
 The Ticket That Isn’t One Question</h1>
@@ -202,7 +189,9 @@ The Ticket That Isn’t One Question</h1>
 <section id="the-whole-book-on-one-page" class="level2">
 <h2>The whole book on one page</h2>
 <p>The map below is the book in six branches. Each chapter ends with a smaller one of its own, so you can check what you kept before moving on. Chapter 2 explains the idea in plain language and needs no background.</p>
+<div class="center">
 <p><img src="assets/diagrams/generated/map-book.png" alt="Mindmap. Center: A typed answer and a probability. Branches: What it is (Plain-language idea, the contract, one real call); Is it right? (Measure on your own cases, not the launch numbers); Does the number mean it? (Calibration, checked on your population); May anyone act? (A written policy and a record between prediction and action); What it changes (The layer it adds, and the alternatives around it); What to build (One reversible decision first, then widen)." /></p>
+</div>
 </section>
 <section id="what-a-decision-model-is" class="level2">
 <h2>What a decision model is</h2>
@@ -289,7 +278,9 @@ The Ticket That Isn’t One Question</h1>
 <section id="remember-this" class="level2">
 <h2>Remember this</h2>
 <p>One message hides three questions, and only the first two are for the model.</p>
+<div class="center">
 <p><img src="assets/diagrams/generated/map-ch01.png" alt="Mindmap. Center: The ticket. Branches: Which queue? (A classification); What does it ask? (A reading of intent); May anyone act? (Not in the text: records and policy); Sort the work (Code, then model, then policy); Valid is not correct (A rate to measure, not a defect to fix); Keep baselines (A rules answer and a constrained LLM)." /></p>
+</div>
 </section>
 </section>
 <section id="chapter-2.-the-idea-in-plain-language" class="level1">
@@ -447,7 +438,9 @@ The Idea in Plain Language</h1>
 <section id="remember-this-1" class="level2">
 <h2>Remember this</h2>
 <p>The model does not write an answer. It scores your options, and you decide what to do with the scores.</p>
+<div class="center">
 <p><img src="assets/diagrams/generated/map-ch02.png" alt="Mindmap. Center: The idea in plain language. Branches: Decide, don&#39;t write (One pass over your options); A spread of odds (Every option gets a probability); Confidence (How peaked the spread is); Calibration (Right as often as it says, over groups); Accuracy and coverage (A threshold trades one for the other); How it is trained (Claimed, and not published)." /></p>
+</div>
 </section>
 </section>
 <section id="chapter-3.-what-a-decision-model-is-and-isnt" class="level1">
@@ -549,7 +542,9 @@ What a Decision Model Is, and Isn’t</h1>
 <section id="remember-this-2" class="level2">
 <h2>Remember this</h2>
 <p>A contract of state, question and permitted answers. It guarantees the shape, not the truth.</p>
+<div class="center">
 <p><img src="assets/diagrams/generated/map-ch03.png" alt="Mindmap. Center: What a decision model is. Branches: State (The evidence you send); Question (Typed, literal, one thing); Three primitives (Choice, Noul and Score); The schema buys (No parsing, no stray text); Jagged edges (Literal, no arithmetic, no hostile-input defense); Not known (Size, data and architecture)." /></p>
+</div>
 </section>
 </section>
 <section id="chapter-4.-reading-the-numbers" class="level1">
@@ -631,7 +626,9 @@ Reading the Numbers</h1>
 <section id="remember-this-3" class="level2">
 <h2>Remember this</h2>
 <p>A probability is not a promise about one answer. It is a claim about a group of answers.</p>
+<div class="center">
 <p><img src="assets/diagrams/generated/map-ch04.png" alt="Mindmap. Center: Reading the numbers. Branches: Probability (Weight on each option); Confidence (One number, defined differently by each system); Calibration (Judged over groups, never one answer); Training labels (RLHF, RLVR and RLCD are different goals); Rescaling (Possible from probabilities alone); Thresholds (Do not carry over between systems)." /></p>
+</div>
 </section>
 </section>
 <section id="chapter-5.-one-real-call" class="level1">
@@ -749,7 +746,9 @@ One Real Call</h1>
 <section id="remember-this-4" class="level2">
 <h2>Remember this</h2>
 <p>You cannot reproduce a decision unless you wrote down what made it.</p>
+<div class="center">
 <p><img src="assets/diagrams/generated/map-ch05.png" alt="Mindmap. Center: One real call. Branches: Pin the model (Aliases move under you); Literal questions (Boundary cases in the criteria); Facts in the state (Account status is data, not a guess); Ask together (Related questions in one call); Record it all (Versions, schema, full distributions); Fail closed (A timeout executes nothing)." /></p>
+</div>
 </section>
 </section>
 <section id="chapter-6.-a-measured-case" class="level1">
@@ -861,7 +860,9 @@ A Measured Case</h1>
 <section id="remember-this-5" class="level2">
 <h2>Remember this</h2>
 <p>Good on average and overconfident in the middle. A high number is not knowledge.</p>
+<div class="center">
 <p><img src="assets/diagrams/generated/map-ch06.png" alt="Mindmap. Center: A measured case. Branches: Accuracy (Ahead of Qwen on this task, one setup); Confidence bins (The middle of the range is the worst); Exactly 1.00 (Still wrong 44 times in 1,516); No option fits (It answers anyway, confidently); The constant baseline (Always saying benign scored 79 percent); Labels and odds (Labels stable, probabilities float)." /></p>
+</div>
 </section>
 </section>
 <section id="chapter-7.-the-cascade-that-made-things-worse" class="level1">
@@ -949,7 +950,9 @@ C = C_{\text{primary}} + q\,C_{\text{fallback}} + C_{\text{retrieval}} + C_{\tex
 <section id="remember-this-6" class="level2">
 <h2>Remember this</h2>
 <p>Knowing a case is hard for one model does not tell you another model can solve it.</p>
+<div class="center">
 <p><img src="assets/diagrams/generated/map-ch07.png" alt="Mindmap. Center: The cascade. Branches: The case for it (Cheap model first, big model for the rest); The test (Measure on the forwarded subset); The result (Fixed 84 mistakes, broke 211); Random routing (Did at least as well as the gate); Cost and latency (The forwarded case pays for both calls); Other fallbacks (A lookup, a question, a person)." /></p>
+</div>
 </section>
 </section>
 <section id="chapter-8.-the-alternatives" class="level1">
@@ -1086,7 +1089,9 @@ The Alternatives</h1>
 <section id="remember-this-7" class="level2">
 <h2>Remember this</h2>
 <p>The request shape is shared. The behavior, limits and numbers are not.</p>
+<div class="center">
 <p><img src="assets/diagrams/generated/map-ch08.png" alt="Mindmap. Center: The alternatives. Branches: Laya (Open encoder, honest about its limits); GLiNER (Small, schema-driven, its own benchmark); Decision 1.0 (Six open models, one request format); AnyJev (Reads and debiases an existing model); SemIf (Open reproduction of the interface); Numbers (Not interchangeable between setups)." /></p>
+</div>
 </section>
 </section>
 <section id="chapter-9.-what-changes-around-it" class="level1">
@@ -1144,7 +1149,9 @@ What Changes Around It</h1>
 <section id="remember-this-8" class="level2">
 <h2>Remember this</h2>
 <p>A cheap decision layer changes how work is routed, and the shared interface may outlast any one model.</p>
+<div class="center">
 <p><img src="assets/diagrams/generated/map-ch09.png" alt="Mindmap. Center: What changes around it. Branches: A new layer (Between plain code and the large model); Routing (Cheap by default, large on exception); A shared interface (Open projects reuse the request shape); Cost and speed (Vendor claims, not yet independent); Tooling (Evaluation and tracing catch up); New risks (Correlated errors, and re-measuring on a swap)." /></p>
+</div>
 </section>
 </section>
 <section id="chapter-10.-between-prediction-and-action" class="level1">
@@ -1266,7 +1273,9 @@ Between Prediction and Action</h1>
 <section id="remember-this-9" class="level2">
 <h2>Remember this</h2>
 <p>A probability is evidence. Permission comes from policy, written and versioned.</p>
+<div class="center">
 <p><img src="assets/diagrams/generated/map-ch10.png" alt="Mindmap. Center: Between prediction and action. Branches: Validate (Is the prediction well formed); Evidence (Does the record exist); Authority (May this run without a person); Confidence (Only then, and never alone); Beyond the score (Prohibitions and failure paths); A receipt (A fingerprint is not an audit log)." /></p>
+</div>
 </section>
 </section>
 <section id="chapter-11.-the-accountability-argument" class="level1">
@@ -1368,7 +1377,9 @@ The Accountability Argument</h1>
 <section id="remember-this-10" class="level2">
 <h2>Remember this</h2>
 <p>A neutral-looking probability can carry an objective nobody declared.</p>
+<div class="center">
 <p><img src="assets/diagrams/generated/map-ch11.png" alt="Mindmap. Center: The accountability argument. Branches: Incentive laundering (A preference turned into a probability); Calibrated for whom? (Which objective, outcome and population); Six controls (Receipts, provenance, tests, judges, audits); Failure modes (Threshold drift, appeal blindness); Outcomes (Watch consequences, not just outputs); A proposal (No source shows it working yet)." /></p>
+</div>
 </section>
 </section>
 <section id="chapter-12.-extending-the-pattern-to-coding-agents" class="level1">
@@ -1517,7 +1528,9 @@ Extending the Pattern to Coding Agents</h1>
 <section id="remember-this-11" class="level2">
 <h2>Remember this</h2>
 <p>Keep the loop, the safety and the arithmetic in code. Use the model for the narrow judgment.</p>
+<div class="center">
 <p><img src="assets/diagrams/generated/map-ch12.png" alt="Mindmap. Center: Coding agents. Branches: A layer beside (Not the model that writes code); Routing costs (Price by context rebuild, not per token); Where tokens go (Reading and searching dominate); Advice, not authority (A score never authorizes); Tool choice (Choosing a tool is not choosing its arguments); Test it (On your own sessions)." /></p>
+</div>
 </section>
 </section>
 <section id="chapter-13.-what-to-build-first" class="level1">
@@ -1629,7 +1642,9 @@ What to Build First</h1>
 <section id="remember-this-12" class="level2">
 <h2>Remember this</h2>
 <p>The deliverable is a measured operating boundary, including what people keep.</p>
+<div class="center">
 <p><img src="assets/diagrams/generated/map-ch13.png" alt="Mindmap. Center: What to build first. Branches: One reversible decision (Routing before refunds); An evaluation set (Ordinary, ambiguous, costly, stress); Baselines (A rules answer plus two candidates); Tune and freeze (On a separate split, then test once); Shadow mode (Compare, do not execute); Widen slowly (Limited routing, receipts, review)." /></p>
+</div>
 </section>
 </section>
 <section id="appendix-a.-what-was-and-was-not-validated" class="level1">
@@ -1945,13 +1960,26 @@ Reference Tables</h1>
 <p><em>Reported by Archestra. Other models tested scored between 48 and 83 percent zero-shot.</em></p>
 </section>
 </section>
+<section id="copyright-permissions-and-how-this-was-made" class="level1 unnumbered">
+<h1 class="unnumbered">Copyright, permissions, and how this was made</h1>
+<p><em>Decision Models: From a Typed Prediction to an Accountable Action</em></p>
+<p>Copyright © 2026 Anuj Sadani. All rights reserved. Quote it in a review or a piece of criticism with attribution; anything further, please ask.</p>
+<p>An independent work. It is not affiliated with or endorsed by TypeSafe AI, Convai Innovations, Fastino, the vLLM Semantic Router project, Nokia Applied Research, Archestra, LangChain, or the authors of the articles it discusses. Product names are trademarks of their owners, used to identify the systems discussed. The diagrams and mindmaps are original; other people’s articles are cited, not reproduced.</p>
+<!-- narrate-from -->
+<p><strong>A note on how this book was made</strong></p>
+<p>An AI system drafted this book from the sources I gave it: five articles and papers, four web links and two files of notes. I set the question, chose what to keep, argued with the drafts and put my name on the result. The errors are mine.</p>
+<p>The objection worth taking seriously is not that a machine wrote it. It is that nobody checked it. So the numbers are checked. Each comes from a named source, each one taken from a scanned page was compared with the page image, and Appendix A lists what was verified and what was not. I did not run Jev myself. No live call was made, and every measurement here belongs to whoever ran it.</p>
+<p>Two more things you should know. Some chapters open with a composite scene, a pattern distilled into one moment. If an opening has no footnote, read it as a parable. And the ideas in the accountability chapter come from notes that describe risks a decision system could have. They allege nothing about any named provider, and neither does this book.</p>
+<p>A.S.</p>
+<p>First edition, September 2026.</p>
+</section>
 </main>
 </div>
 <footer>Decision models · &copy; 2026 Anuj Sadani · An independent work, not affiliated with TypeSafe AI or any project discussed in it. The diagrams are original. The narration is synthetic. <a href="https://ko-fi.com/s/9e3a539eb0" target="_blank" rel="noopener">Get the typeset PDF on Ko-fi</a>.</footer>
 </div>
 <script>
 /* AUDIO-MANIFEST:BEGIN */
-var AUDIO = {"voice": "bm_george+bm_fable", "credit": "Synthetic voice, Kokoro-82M", "dir": "audio/", "tracks": {"ch00": {"f": "00-card.mp3", "d": 77.8, "t": "Copyright, permissions, and how this was made", "sec": "copyright-permissions-and-how-this-was-made"}, "ch01": {"f": "01-chapter-01.mp3", "d": 412.2, "t": "Chapter 1. The Ticket That Isn't One Question", "sec": "chapter-1.-the-ticket-that-isnt-one-question"}, "ch02": {"f": "02-chapter-02.mp3", "d": 440.8, "t": "Chapter 2. The Idea in Plain Language", "sec": "chapter-2.-the-idea-in-plain-language"}, "ch03": {"f": "03-chapter-03.mp3", "d": 381.2, "t": "Chapter 3. What a Decision Model Is, and Isn't", "sec": "chapter-3.-what-a-decision-model-is-and-isnt"}, "ch04": {"f": "04-chapter-04.mp3", "d": 429.5, "t": "Chapter 4. Reading the Numbers", "sec": "chapter-4.-reading-the-numbers"}, "ch05": {"f": "05-chapter-05.mp3", "d": 401.4, "t": "Chapter 5. One Real Call", "sec": "chapter-5.-one-real-call"}, "ch06": {"f": "06-chapter-06.mp3", "d": 665.5, "t": "Chapter 6. A Measured Case", "sec": "chapter-6.-a-measured-case"}, "ch07": {"f": "07-chapter-07.mp3", "d": 533.9, "t": "Chapter 7. The Cascade That Made Things Worse", "sec": "chapter-7.-the-cascade-that-made-things-worse"}, "ch08": {"f": "08-chapter-08.mp3", "d": 659.5, "t": "Chapter 8. The Alternatives", "sec": "chapter-8.-the-alternatives"}, "ch09": {"f": "09-chapter-09.mp3", "d": 353.9, "t": "Chapter 9. What Changes Around It", "sec": "chapter-9.-what-changes-around-it"}, "ch10": {"f": "10-chapter-10.mp3", "d": 511.0, "t": "Chapter 10. Between Prediction and Action", "sec": "chapter-10.-between-prediction-and-action"}, "ch11": {"f": "11-chapter-11.mp3", "d": 634.8, "t": "Chapter 11. The Accountability Argument", "sec": "chapter-11.-the-accountability-argument"}, "ch12": {"f": "12-chapter-12.mp3", "d": 552.8, "t": "Chapter 12. Extending the Pattern to Coding Agents", "sec": "chapter-12.-extending-the-pattern-to-coding-agents"}, "ch13": {"f": "13-chapter-13.mp3", "d": 399.9, "t": "Chapter 13. What to Build First", "sec": "chapter-13.-what-to-build-first"}, "ch14": {"f": "14-appendix-a.mp3", "d": 412.3, "t": "Appendix A. What Was and Was Not Validated", "sec": "appendix-a.-what-was-and-was-not-validated"}}};
+var AUDIO = {"voice": "bm_george+bm_fable", "credit": "Synthetic voice, Kokoro-82M", "dir": "audio/", "tracks": {"ch00": {"f": "00-card.mp3", "d": 77.8, "t": "Copyright, permissions, and how this was made", "sec": "copyright-permissions-and-how-this-was-made"}, "ch01": {"f": "01-chapter-01.mp3", "d": 412.3, "t": "Chapter 1. The Ticket That Isn't One Question", "sec": "chapter-1.-the-ticket-that-isnt-one-question"}, "ch02": {"f": "02-chapter-02.mp3", "d": 440.8, "t": "Chapter 2. The Idea in Plain Language", "sec": "chapter-2.-the-idea-in-plain-language"}, "ch03": {"f": "03-chapter-03.mp3", "d": 381.2, "t": "Chapter 3. What a Decision Model Is, and Isn't", "sec": "chapter-3.-what-a-decision-model-is-and-isnt"}, "ch04": {"f": "04-chapter-04.mp3", "d": 435.7, "t": "Chapter 4. Reading the Numbers", "sec": "chapter-4.-reading-the-numbers"}, "ch05": {"f": "05-chapter-05.mp3", "d": 401.4, "t": "Chapter 5. One Real Call", "sec": "chapter-5.-one-real-call"}, "ch06": {"f": "06-chapter-06.mp3", "d": 665.5, "t": "Chapter 6. A Measured Case", "sec": "chapter-6.-a-measured-case"}, "ch07": {"f": "07-chapter-07.mp3", "d": 533.9, "t": "Chapter 7. The Cascade That Made Things Worse", "sec": "chapter-7.-the-cascade-that-made-things-worse"}, "ch08": {"f": "08-chapter-08.mp3", "d": 659.5, "t": "Chapter 8. The Alternatives", "sec": "chapter-8.-the-alternatives"}, "ch09": {"f": "09-chapter-09.mp3", "d": 353.9, "t": "Chapter 9. What Changes Around It", "sec": "chapter-9.-what-changes-around-it"}, "ch10": {"f": "10-chapter-10.mp3", "d": 511.0, "t": "Chapter 10. Between Prediction and Action", "sec": "chapter-10.-between-prediction-and-action"}, "ch11": {"f": "11-chapter-11.mp3", "d": 634.8, "t": "Chapter 11. The Accountability Argument", "sec": "chapter-11.-the-accountability-argument"}, "ch12": {"f": "12-chapter-12.mp3", "d": 552.8, "t": "Chapter 12. Extending the Pattern to Coding Agents", "sec": "chapter-12.-extending-the-pattern-to-coding-agents"}, "ch13": {"f": "13-chapter-13.mp3", "d": 399.9, "t": "Chapter 13. What to Build First", "sec": "chapter-13.-what-to-build-first"}, "ch14": {"f": "14-appendix-a.mp3", "d": 441.1, "t": "Appendix A. What Was and Was Not Validated", "sec": "appendix-a.-what-was-and-was-not-validated"}}};
 /* AUDIO-MANIFEST:END */
 </script>
 <script src="player.js"></script>

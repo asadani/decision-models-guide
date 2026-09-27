@@ -68,7 +68,11 @@ For a fair application comparison, fix the cases and the labeling policy first. 
 
 The request shape is shared. The behavior, limits and numbers are not.
 
+::: {.center}
+
 ![](../../assets/diagrams/generated/map-ch08.png){alt="Mindmap. Center: The alternatives. Branches: Laya (Open encoder, honest about its limits); GLiNER (Small, schema-driven, its own benchmark); Decision 1.0 (Six open models, one request format); AnyJev (Reads and debiases an existing model); SemIf (Open reproduction of the interface); Numbers (Not interchangeable between setups)."}
+
+:::
 
 [^ch8-1]: Christian Graham, "Laya: a free, local alternative to Jev — and it can even play Doom(ish)," Medium, September 19, 2026 (supplied copy; the original web address was not preserved). The article says Claude "wrote basically all the code," and that finding the way out is the part that "still doesn't work."
 

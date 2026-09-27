@@ -64,4 +64,4 @@ Remember this.
 
 The deliverable is a measured operating boundary, including what people keep.
 
-The map has What to build first at the centre, with 6 branches. One reversible decision, routing before refunds. An evaluation set, ordinary, ambiguous, costly, stress. Baselines, a rules answer plus two candidates. Tune and freeze, on a separate split, then test once. Shadow mode, compare, do not execute. Widen slowly, limited routing, receipts, review.
+The map has What to build first at the center, with six branches. One reversible decision, routing before refunds. An evaluation set, ordinary, ambiguous, costly, stress. Baselines, a rules answer plus two candidates. Tune and freeze, on a separate split, then test once. Shadow mode, compare, do not execute. Widen slowly, limited routing, receipts, review.

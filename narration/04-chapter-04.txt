@@ -26,7 +26,7 @@ Finite groups are noisy. Of 100 predictions near 0.8, seeing 78 or 83 correct te
 
 Where the numbers come from.
 
-Chapter 2 named three ways a model can be taught. R L H F trains it toward answers people prefer, and Instruct G P T is the standard research example. R L V R rewards outputs that can be checked automatically, such as a math result, and is associated with reasoning-model work like DeepSeek R one. R L C D is TypeSafe's name for training toward decisions and probabilities that come true at the stated rate.
+Chapter 2 named three ways a model can be taught. R L H F trains it toward answers people prefer, and Instruct G P T is the standard research example. R L V R rewards outputs that can be checked automatically, such as a math result, and is associated with reasoning-model work like DeepSeek R one, whose abstract reports strong performance "on verifiable tasks such as mathematics, coding competitions, and STEM fields." R L C D is TypeSafe's name for training toward decisions and probabilities that come true at the stated rate.
 
 TypeSafe argues that R L H F can reward sycophancy and confident-sounding hallucinations, and that an output can be compelling to a person without being reliable enough for unattended automation. That is a claim about a training objective. The recipe for R L C D has not been published, and I did not find anything independent that reproduces it.
 
@@ -58,4 +58,4 @@ Remember this.
 
 A probability is not a promise about one answer. It is a claim about a group of answers.
 
-The map has Reading the numbers at the centre, with 6 branches. Probability, weight on each option. Confidence, one number, defined differently by each system. Calibration, judged over groups, never one answer. Training labels, rLHF, R L V R and R L C D are different goals. Rescaling, possible from probabilities alone. Thresholds, do not carry over between systems.
+The map has Reading the numbers at the center, with six branches. Probability, weight on each option. Confidence, one number, defined differently by each system. Calibration, judged over groups, never one answer. Training labels, rLHF, R L V R and R L C D are different goals. Rescaling, possible from probabilities alone. Thresholds, do not carry over between systems.

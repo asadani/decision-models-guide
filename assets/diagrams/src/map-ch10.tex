@@ -8,23 +8,23 @@
 \begin{tikzpicture}[
   font=\footnotesize\sffamily,
   hub/.style={draw=red!55!black, line width=1pt, rounded corners=7pt, fill=red!8, align=center,
-              text width=3.2cm, inner sep=7pt, font=\bfseries\small\sffamily},
+              text width=3cm, inner sep=7pt, font=\bfseries\small\sffamily},
   br/.style={draw=black!60, rounded corners=3pt, fill=black!3, align=center,
-             text width=3.05cm, inner sep=4pt},
-  edge/.style={draw=black!50, line width=0.8pt}
+             text width=3.05cm, inner sep=4pt, minimum height=1.05cm},
+  edge/.style={draw=black!45, line width=0.8pt}
 ]
-\draw[edge] (0,0) -- (0.00,2.70);
-\draw[edge] (0,0) -- (3.55,1.35);
-\draw[edge] (0,0) -- (3.55,-1.35);
-\draw[edge] (0,0) -- (0.00,-2.70);
-\draw[edge] (0,0) -- (-3.55,-1.35);
-\draw[edge] (0,0) -- (-3.55,1.35);
-\node[hub] at (0,0) {Between prediction and action};
-\node[br] at (0.00,2.70) {\textbf{Validate}\\[1pt]{\scriptsize Is the prediction well formed}};
-\node[br] at (3.55,1.35) {\textbf{Evidence}\\[1pt]{\scriptsize Does the record exist}};
-\node[br] at (3.55,-1.35) {\textbf{Authority}\\[1pt]{\scriptsize May this run without a person}};
-\node[br] at (0.00,-2.70) {\textbf{Confidence}\\[1pt]{\scriptsize Only then, and never alone}};
-\node[br] at (-3.55,-1.35) {\textbf{Beyond the score}\\[1pt]{\scriptsize Prohibitions and failure paths}};
-\node[br] at (-3.55,1.35) {\textbf{A receipt}\\[1pt]{\scriptsize A fingerprint is not an audit log}};
+\node[hub] (hub) at (0,0) {Between prediction and action};
+\node[br] (b0) at (-4.35,1.90) {\textbf{Validate}\\[1pt]{\scriptsize Is the prediction well formed}};
+\draw[edge] (hub) -- (b0);
+\node[br] (b1) at (4.35,1.90) {\textbf{Evidence}\\[1pt]{\scriptsize Does the record exist}};
+\draw[edge] (hub) -- (b1);
+\node[br] (b2) at (-4.35,0.00) {\textbf{Authority}\\[1pt]{\scriptsize May this run without a person}};
+\draw[edge] (hub) -- (b2);
+\node[br] (b3) at (4.35,0.00) {\textbf{Confidence}\\[1pt]{\scriptsize Only then, and never alone}};
+\draw[edge] (hub) -- (b3);
+\node[br] (b4) at (-4.35,-1.90) {\textbf{Beyond the score}\\[1pt]{\scriptsize Prohibitions and failure paths}};
+\draw[edge] (hub) -- (b4);
+\node[br] (b5) at (4.35,-1.90) {\textbf{A receipt}\\[1pt]{\scriptsize A fingerprint is not an audit log}};
+\draw[edge] (hub) -- (b5);
 \end{tikzpicture}
 \end{document}

@@ -222,7 +222,7 @@ def convert(path: Path, prefix, intro, outro):
             i += 1
             say("figure")
             continue
-        if line.startswith(("<!--", "\\")):                  # comments and raw LaTeX lines
+        if line.startswith(("<!--", "\\", ":::")):            # comments, raw LaTeX, and center divs
             i += 1
             continue
         if line.startswith("#"):

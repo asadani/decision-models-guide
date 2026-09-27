@@ -8,23 +8,23 @@
 \begin{tikzpicture}[
   font=\footnotesize\sffamily,
   hub/.style={draw=red!55!black, line width=1pt, rounded corners=7pt, fill=red!8, align=center,
-              text width=3.2cm, inner sep=7pt, font=\bfseries\small\sffamily},
+              text width=3cm, inner sep=7pt, font=\bfseries\small\sffamily},
   br/.style={draw=black!60, rounded corners=3pt, fill=black!3, align=center,
-             text width=3.05cm, inner sep=4pt},
-  edge/.style={draw=black!50, line width=0.8pt}
+             text width=3.05cm, inner sep=4pt, minimum height=1.05cm},
+  edge/.style={draw=black!45, line width=0.8pt}
 ]
-\draw[edge] (0,0) -- (0.00,2.70);
-\draw[edge] (0,0) -- (3.55,1.35);
-\draw[edge] (0,0) -- (3.55,-1.35);
-\draw[edge] (0,0) -- (0.00,-2.70);
-\draw[edge] (0,0) -- (-3.55,-1.35);
-\draw[edge] (0,0) -- (-3.55,1.35);
-\node[hub] at (0,0) {One real call};
-\node[br] at (0.00,2.70) {\textbf{Pin the model}\\[1pt]{\scriptsize Aliases move under you}};
-\node[br] at (3.55,1.35) {\textbf{Literal questions}\\[1pt]{\scriptsize Boundary cases in the criteria}};
-\node[br] at (3.55,-1.35) {\textbf{Facts in the state}\\[1pt]{\scriptsize Account status is data, not a guess}};
-\node[br] at (0.00,-2.70) {\textbf{Ask together}\\[1pt]{\scriptsize Related questions in one call}};
-\node[br] at (-3.55,-1.35) {\textbf{Record it all}\\[1pt]{\scriptsize Versions, schema, full distributions}};
-\node[br] at (-3.55,1.35) {\textbf{Fail closed}\\[1pt]{\scriptsize A timeout executes nothing}};
+\node[hub] (hub) at (0,0) {One real call};
+\node[br] (b0) at (-4.35,1.90) {\textbf{Pin the model}\\[1pt]{\scriptsize Aliases move under you}};
+\draw[edge] (hub) -- (b0);
+\node[br] (b1) at (4.35,1.90) {\textbf{Literal questions}\\[1pt]{\scriptsize Boundary cases in the criteria}};
+\draw[edge] (hub) -- (b1);
+\node[br] (b2) at (-4.35,0.00) {\textbf{Facts in the state}\\[1pt]{\scriptsize Account status is data, not a guess}};
+\draw[edge] (hub) -- (b2);
+\node[br] (b3) at (4.35,0.00) {\textbf{Ask together}\\[1pt]{\scriptsize Related questions in one call}};
+\draw[edge] (hub) -- (b3);
+\node[br] (b4) at (-4.35,-1.90) {\textbf{Record it all}\\[1pt]{\scriptsize Versions, schema, full distributions}};
+\draw[edge] (hub) -- (b4);
+\node[br] (b5) at (4.35,-1.90) {\textbf{Fail closed}\\[1pt]{\scriptsize A timeout executes nothing}};
+\draw[edge] (hub) -- (b5);
 \end{tikzpicture}
 \end{document}

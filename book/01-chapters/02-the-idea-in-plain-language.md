@@ -79,7 +79,11 @@ Jev's size, training data and architecture are not public. Everything in this ch
 
 The model does not write an answer. It scores your options, and you decide what to do with the scores.
 
+::: {.center}
+
 ![](../../assets/diagrams/generated/map-ch02.png){alt="Mindmap. Center: The idea in plain language. Branches: Decide, don't write (One pass over your options); A spread of odds (Every option gets a probability); Confidence (How peaked the spread is); Calibration (Right as often as it says, over groups); Accuracy and coverage (A threshold trades one for the other); How it is trained (Claimed, and not published)."}
+
+:::
 
 [^ch2-1]: Nhu Hoang, "Jev vs. LLMs: When AI Moves from Generation to Decision-Making," Towards Data Science, September 25, 2026, <https://towardsdatascience.com/jev-vs-llms-when-ai-moves-from-generation-to-decision-making/>, section 4 (supplied copy, page 7). The article says an LLM "predicts one token at a time" and that Jev, "according to TypeSafe, does not generate an answer this way. It scores the available choices in a single pass and returns their probabilities together."
 

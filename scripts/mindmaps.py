@@ -178,9 +178,13 @@ def alt(key: str) -> str:
 
 
 def tikz(key: str) -> str:
+    """A hub with three rows of two branches, left and right: a plain grid, not a
+
+    circle, so the boxes line up and the sheet reads top to bottom like a page."""
     center, takeaway, branches = MAPS[key]
-    n = len(branches)
-    rx, ry = 4.1, 2.7
+    assert len(branches) == 6
+    col_x, row_y = 4.35, 1.9
+    pts = [(-col_x, row_y), (col_x, row_y), (-col_x, 0), (col_x, 0), (-col_x, -row_y), (col_x, -row_y)]
     lines = [
         r"\documentclass[border=6pt]{standalone}",
         r"\usepackage[T1]{fontenc}",
@@ -192,22 +196,18 @@ def tikz(key: str) -> str:
         r"\begin{tikzpicture}[",
         r"  font=\footnotesize\sffamily,",
         r"  hub/.style={draw=red!55!black, line width=1pt, rounded corners=7pt, fill=red!8, align=center,",
-        r"              text width=3.2cm, inner sep=7pt, font=\bfseries\small\sffamily},",
+        r"              text width=3cm, inner sep=7pt, font=\bfseries\small\sffamily},",
         r"  br/.style={draw=black!60, rounded corners=3pt, fill=black!3, align=center,",
-        r"             text width=3.05cm, inner sep=4pt},",
-        r"  edge/.style={draw=black!50, line width=0.8pt}",
+        r"             text width=3.05cm, inner sep=4pt, minimum height=1.05cm},",
+        r"  edge/.style={draw=black!45, line width=0.8pt}",
         r"]",
     ]
-    pts = []
-    for i in range(n):
-        ang = math.radians(90 - i * 360.0 / n)
-        pts.append((rx * math.cos(ang), ry * math.sin(ang)))
-    for x, y in pts:                                   # edges first, so nodes sit on top
-        lines.append(r"\draw[edge] (0,0) -- (%.2f,%.2f);" % (x, y))
-    lines.append(r"\node[hub] at (0,0) {%s};" % esc(center))
-    for (x, y), (label, detail) in zip(pts, branches):
-        lines.append(r"\node[br] at (%.2f,%.2f) {\textbf{%s}\\[1pt]{\scriptsize %s}};"
-                     % (x, y, esc(label), esc(detail)))
+    lines.append(r"\node[hub] (hub) at (0,0) {%s};" % esc(center))
+    for i, ((x, y), (label, detail)) in enumerate(zip(pts, branches)):
+        name = "b%d" % i
+        lines.append(r"\node[br] (%s) at (%.2f,%.2f) {\textbf{%s}\\[1pt]{\scriptsize %s}};"
+                     % (name, x, y, esc(label), esc(detail)))
+        lines.append(r"\draw[edge] (hub) -- (%s);" % name)   # TikZ clips to each node's border
     lines += [r"\end{tikzpicture}", r"\end{document}", ""]
     return "\n".join(lines)
 

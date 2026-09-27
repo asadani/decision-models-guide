@@ -70,4 +70,4 @@ Remember this.
 
 Knowing a case is hard for one model does not tell you another model can solve it.
 
-The map has The cascade at the centre, with 6 branches. The case for it, cheap model first, big model for the rest. The test, measure on the forwarded subset. The result, fixed 84 mistakes, broke 211. Random routing, did at least as well as the gate. Cost and latency, the forwarded case pays for both calls. Other fallbacks, a lookup, a question, a person.
+The map has The cascade at the center, with six branches. The case for it, cheap model first, big model for the rest. The test, measure on the forwarded subset. The result, fixed 84 mistakes, broke 211. Random routing, did at least as well as the gate. Cost and latency, the forwarded case pays for both calls. Other fallbacks, a lookup, a question, a person.

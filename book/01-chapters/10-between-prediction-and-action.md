@@ -96,7 +96,11 @@ Chapter 11 says what a production receipt should hold.
 
 A probability is evidence. Permission comes from policy, written and versioned.
 
+::: {.center}
+
 ![](../../assets/diagrams/generated/map-ch10.png){alt="Mindmap. Center: Between prediction and action. Branches: Validate (Is the prediction well formed); Evidence (Does the record exist); Authority (May this run without a person); Confidence (Only then, and never alone); Beyond the score (Prohibitions and failure paths); A receipt (A fingerprint is not an audit log)."}
+
+:::
 
 [^ch10-1]: TypeSafe AI, "Confidence," documentation, <https://docs.typesafe.ai/confidence.md>, section "Thresholds scale with risk." The page notes that "the correct threshold values depend on your domain and the performance of the model for your use case."
 

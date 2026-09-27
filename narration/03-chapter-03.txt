@@ -58,4 +58,4 @@ Remember this.
 
 A contract of state, question and permitted answers. It guarantees the shape, not the truth.
 
-The map has What a decision model is at the centre, with 6 branches. State, the evidence you send. Question, typed, literal, one thing. Three primitives, choice, Noul and Score. The schema buys, no parsing, no stray text. Jagged edges, literal, no arithmetic, no hostile-input defense. Not known, size, data and architecture.
+The map has What a decision model is at the center, with six branches. State, the evidence you send. Question, typed, literal, one thing. Three primitives, choice, Noul and Score. The schema buys, no parsing, no stray text. Jagged edges, literal, no arithmetic, no hostile-input defense. Not known, size, data and architecture.

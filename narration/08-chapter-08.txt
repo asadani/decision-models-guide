@@ -66,4 +66,4 @@ Remember this.
 
 The request shape is shared. The behavior, limits and numbers are not.
 
-The map has The alternatives at the centre, with 6 branches. Laya, open encoder, honest about its limits. Glee-ner, small, schema-driven, its own benchmark. Decision 1.0, six open models, one request format. Any Jev, reads and debiases an existing model. Sem If, open reproduction of the interface. Numbers, not interchangeable between setups.
+The map has The alternatives at the center, with six branches. Laya, open encoder, honest about its limits. Glee-ner, small, schema-driven, its own benchmark. Decision 1.0, six open models, one request format. Any Jev, reads and debiases an existing model. Sem If, open reproduction of the interface. Numbers, not interchangeable between setups.

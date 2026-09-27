@@ -66,4 +66,4 @@ Remember this.
 
 You cannot reproduce a decision unless you wrote down what made it.
 
-The map has One real call at the centre, with 6 branches. Pin the model, aliases move under you. Literal questions, boundary cases in the criteria. Facts in the state, account status is data, not a guess. Ask together, related questions in one call. Record it all, versions, schema, full distributions. Fail closed, a timeout executes nothing.
+The map has One real call at the center, with six branches. Pin the model, aliases move under you. Literal questions, boundary cases in the criteria. Facts in the state, account status is data, not a guess. Ask together, related questions in one call. Record it all, versions, schema, full distributions. Fail closed, a timeout executes nothing.

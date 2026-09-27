@@ -82,4 +82,4 @@ Remember this.
 
 Good on average and overconfident in the middle. A high number is not knowledge.
 
-The map has A measured case at the centre, with 6 branches. Accuracy, ahead of Kwen on this task, one setup. Confidence bins, the middle of the range is the worst. Exactly 1 point zero zero, still wrong 44 times in 1516. No option fits, it answers anyway, confidently. The constant baseline, always saying benign scored 79 percent. Labels and odds, labels stable, probabilities float.
+The map has A measured case at the center, with six branches. Accuracy, ahead of Kwen on this task, one setup. Confidence bins, the middle of the range is the worst. Exactly 1 point zero zero, still wrong 44 times in 1516. No option fits, it answers anyway, confidently. The constant baseline, always saying benign scored 79 percent. Labels and odds, labels stable, probabilities float.

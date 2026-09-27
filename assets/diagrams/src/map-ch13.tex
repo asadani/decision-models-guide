@@ -8,23 +8,23 @@
 \begin{tikzpicture}[
   font=\footnotesize\sffamily,
   hub/.style={draw=red!55!black, line width=1pt, rounded corners=7pt, fill=red!8, align=center,
-              text width=3.2cm, inner sep=7pt, font=\bfseries\small\sffamily},
+              text width=3cm, inner sep=7pt, font=\bfseries\small\sffamily},
   br/.style={draw=black!60, rounded corners=3pt, fill=black!3, align=center,
-             text width=3.05cm, inner sep=4pt},
-  edge/.style={draw=black!50, line width=0.8pt}
+             text width=3.05cm, inner sep=4pt, minimum height=1.05cm},
+  edge/.style={draw=black!45, line width=0.8pt}
 ]
-\draw[edge] (0,0) -- (0.00,2.70);
-\draw[edge] (0,0) -- (3.55,1.35);
-\draw[edge] (0,0) -- (3.55,-1.35);
-\draw[edge] (0,0) -- (0.00,-2.70);
-\draw[edge] (0,0) -- (-3.55,-1.35);
-\draw[edge] (0,0) -- (-3.55,1.35);
-\node[hub] at (0,0) {What to build first};
-\node[br] at (0.00,2.70) {\textbf{One reversible decision}\\[1pt]{\scriptsize Routing before refunds}};
-\node[br] at (3.55,1.35) {\textbf{An evaluation set}\\[1pt]{\scriptsize Ordinary, ambiguous, costly, stress}};
-\node[br] at (3.55,-1.35) {\textbf{Baselines}\\[1pt]{\scriptsize A rules answer plus two candidates}};
-\node[br] at (0.00,-2.70) {\textbf{Tune and freeze}\\[1pt]{\scriptsize On a separate split, then test once}};
-\node[br] at (-3.55,-1.35) {\textbf{Shadow mode}\\[1pt]{\scriptsize Compare, do not execute}};
-\node[br] at (-3.55,1.35) {\textbf{Widen slowly}\\[1pt]{\scriptsize Limited routing, receipts, review}};
+\node[hub] (hub) at (0,0) {What to build first};
+\node[br] (b0) at (-4.35,1.90) {\textbf{One reversible decision}\\[1pt]{\scriptsize Routing before refunds}};
+\draw[edge] (hub) -- (b0);
+\node[br] (b1) at (4.35,1.90) {\textbf{An evaluation set}\\[1pt]{\scriptsize Ordinary, ambiguous, costly, stress}};
+\draw[edge] (hub) -- (b1);
+\node[br] (b2) at (-4.35,0.00) {\textbf{Baselines}\\[1pt]{\scriptsize A rules answer plus two candidates}};
+\draw[edge] (hub) -- (b2);
+\node[br] (b3) at (4.35,0.00) {\textbf{Tune and freeze}\\[1pt]{\scriptsize On a separate split, then test once}};
+\draw[edge] (hub) -- (b3);
+\node[br] (b4) at (-4.35,-1.90) {\textbf{Shadow mode}\\[1pt]{\scriptsize Compare, do not execute}};
+\draw[edge] (hub) -- (b4);
+\node[br] (b5) at (4.35,-1.90) {\textbf{Widen slowly}\\[1pt]{\scriptsize Limited routing, receipts, review}};
+\draw[edge] (hub) -- (b5);
 \end{tikzpicture}
 \end{document}

@@ -82,6 +82,18 @@ def main():
     else:
         print("player: no audio manifest found; building a reading copy without narration")
 
+    # The card reads like copyright and legal boilerplate, so on the page (not
+    # in the print book, where it stays up front) it moves to the end, after
+    # the sanity checks above run against the document's original order.
+    card_id = "copyright-permissions-and-how-this-was-made"
+    section_re = re.compile(r'<section id="%s"[^>]*class="level1[^"]*">.*?</section>\n' % card_id, re.S)
+    li_re = re.compile(r'<li><a href="#%s"[^>]*>.*?</a></li>\n' % card_id, re.S)
+    section_m, li_m = section_re.search(html), li_re.search(html)
+    if not section_m or not li_m:
+        sys.exit("could not find the card section or its TOC entry to move")
+    html = section_re.sub("", html, count=1).replace("</main>", section_m.group(0) + "</main>", 1)
+    html = li_re.sub("", html, count=1).replace("</ul></nav>", li_m.group(0) + "</ul></nav>", 1)
+
     html_path.write_text(html, encoding="utf-8", newline="\n")
 
     # Stylesheet, script and assets.

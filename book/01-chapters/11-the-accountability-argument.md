@@ -78,7 +78,11 @@ The others are decision monoculture, objective drift and context poisoning. The 
 
 A neutral-looking probability can carry an objective nobody declared.
 
+::: {.center}
+
 ![](../../assets/diagrams/generated/map-ch11.png){alt="Mindmap. Center: The accountability argument. Branches: Incentive laundering (A preference turned into a probability); Calibrated for whom? (Which objective, outcome and population); Six controls (Receipts, provenance, tests, judges, audits); Failure modes (Threshold drift, appeal blindness); Outcomes (Watch consequences, not just outputs); A proposal (No source shows it working yet)."}
+
+:::
 
 [^ch11-1]: Supplied notes, `jev.txt`, a document of analysis and product ideas about Jev and accountability (no web address; it was provided as a text file). The travel example, "incentive laundering," "Generative AI can pollute content. Decision AI can silently alter outcomes," the calibration questions, the six capabilities, the risk formula and the list of failure modes are all from it. They are proposals and hypotheses; the notes do not present evidence about any named provider.
 

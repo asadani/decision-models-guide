@@ -14,7 +14,7 @@ The whole book on one page.
 
 The map below is the book in six branches. Each chapter ends with a smaller one of its own, so you can check what you kept before moving on. Chapter 2 explains the idea in plain language and needs no background.
 
-The map has A typed answer and a probability at the centre, with 6 branches. What it is, plain-language idea, the contract, one real call. Is it right?, measure on your own cases, not the launch numbers. Does the number mean it?, calibration, checked on your population. May anyone act?, a written policy and a record between prediction and action. What it changes, the layer it adds, and the alternatives around it. What to build, one reversible decision first, then widen.
+The map has A typed answer and a probability at the center, with six branches. What it is, plain-language idea, the contract, one real call. Is it right?, measure on your own cases, not the launch numbers. Does the number mean it?, calibration, checked on your population. May anyone act?, a written policy and a record between prediction and action. What it changes, the layer it adds, and the alternatives around it. What to build, one reversible decision first, then widen.
 
 What a decision model is.
 
@@ -58,4 +58,4 @@ Remember this.
 
 One message hides three questions, and only the first two are for the model.
 
-The map has The ticket at the centre, with 6 branches. Which queue?, a classification. What does it ask?, a reading of intent. May anyone act?, not in the text: records and policy. Sort the work, code, then model, then policy. Valid is not correct, a rate to measure, not a defect to fix. Keep baselines, a rules answer and a constrained L L M.
+The map has The ticket at the center, with six branches. Which queue?, a classification. What does it ask?, a reading of intent. May anyone act?, not in the text: records and policy. Sort the work, code, then model, then policy. Valid is not correct, a rate to measure, not a defect to fix. Keep baselines, a rules answer and a constrained L L M.

@@ -28,6 +28,8 @@ The coding-agent document's routing totals reproduce (4 point one five and 6 poi
 
 Wahng's overall accuracy, kept-set accuracy and 84/211 counts agree with one another to within one answer.
 
+The ten-ticket tray in Chapter 2 is invented for teaching. Its arithmetic (7 of 10 right, 50 percent coverage at a 0 point nine zero threshold, 80 percent accuracy on the covered tickets) is recomputed by the build.
+
 Documentation. The TypeSafe documentation pages, the Laya, Any Jev and Sem If READMEs, the Decision 1.0 and Glee-ner release posts, the model card, the Archestra and LangChain articles, and the NIST excerpt were captured on September 26, 2026. Statements in the book about what they say were checked against those captures. Repository pages on a main branch and documentation for a current model change over time.
 
 Links. Every URL in the book is checked by the build (make verify), which fails on a 4xx or 5xx response.
@@ -42,7 +44,9 @@ No local model was run, and no model weights were downloaded.
 
 Other pages of the supplied P D Fs were read through O C R text. Figures that do not appear in the book were not checked against images.
 
-Vendor claims about latency, price and speed are reported as documented at capture time. I did not measure them.
+Vendor claims about latency, price and speed are reported as documented at capture time. I did not measure them. That includes the LangChain speed figures and TypeSafe's price comparison in Chapter 9.
+
+The "my reading" section of Chapter 9 is my inference from the reported facts, and it is labeled that way. No source says it.
 
 The proposals in Chapters 11 and 12 are proposals. I found no source showing them working, and I did not build them.
 

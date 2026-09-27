@@ -8,23 +8,23 @@
 \begin{tikzpicture}[
   font=\footnotesize\sffamily,
   hub/.style={draw=red!55!black, line width=1pt, rounded corners=7pt, fill=red!8, align=center,
-              text width=3.2cm, inner sep=7pt, font=\bfseries\small\sffamily},
+              text width=3cm, inner sep=7pt, font=\bfseries\small\sffamily},
   br/.style={draw=black!60, rounded corners=3pt, fill=black!3, align=center,
-             text width=3.05cm, inner sep=4pt},
-  edge/.style={draw=black!50, line width=0.8pt}
+             text width=3.05cm, inner sep=4pt, minimum height=1.05cm},
+  edge/.style={draw=black!45, line width=0.8pt}
 ]
-\draw[edge] (0,0) -- (0.00,2.70);
-\draw[edge] (0,0) -- (3.55,1.35);
-\draw[edge] (0,0) -- (3.55,-1.35);
-\draw[edge] (0,0) -- (0.00,-2.70);
-\draw[edge] (0,0) -- (-3.55,-1.35);
-\draw[edge] (0,0) -- (-3.55,1.35);
-\node[hub] at (0,0) {A typed answer and a probability};
-\node[br] at (0.00,2.70) {\textbf{What it is}\\[1pt]{\scriptsize Plain-language idea, the contract, one real call}};
-\node[br] at (3.55,1.35) {\textbf{Is it right?}\\[1pt]{\scriptsize Measure on your own cases, not the launch numbers}};
-\node[br] at (3.55,-1.35) {\textbf{Does the number mean it?}\\[1pt]{\scriptsize Calibration, checked on your population}};
-\node[br] at (0.00,-2.70) {\textbf{May anyone act?}\\[1pt]{\scriptsize A written policy and a record between prediction and action}};
-\node[br] at (-3.55,-1.35) {\textbf{What it changes}\\[1pt]{\scriptsize The layer it adds, and the alternatives around it}};
-\node[br] at (-3.55,1.35) {\textbf{What to build}\\[1pt]{\scriptsize One reversible decision first, then widen}};
+\node[hub] (hub) at (0,0) {A typed answer and a probability};
+\node[br] (b0) at (-4.35,1.90) {\textbf{What it is}\\[1pt]{\scriptsize Plain-language idea, the contract, one real call}};
+\draw[edge] (hub) -- (b0);
+\node[br] (b1) at (4.35,1.90) {\textbf{Is it right?}\\[1pt]{\scriptsize Measure on your own cases, not the launch numbers}};
+\draw[edge] (hub) -- (b1);
+\node[br] (b2) at (-4.35,0.00) {\textbf{Does the number mean it?}\\[1pt]{\scriptsize Calibration, checked on your population}};
+\draw[edge] (hub) -- (b2);
+\node[br] (b3) at (4.35,0.00) {\textbf{May anyone act?}\\[1pt]{\scriptsize A written policy and a record between prediction and action}};
+\draw[edge] (hub) -- (b3);
+\node[br] (b4) at (-4.35,-1.90) {\textbf{What it changes}\\[1pt]{\scriptsize The layer it adds, and the alternatives around it}};
+\draw[edge] (hub) -- (b4);
+\node[br] (b5) at (4.35,-1.90) {\textbf{What to build}\\[1pt]{\scriptsize One reversible decision first, then widen}};
+\draw[edge] (hub) -- (b5);
 \end{tikzpicture}
 \end{document}

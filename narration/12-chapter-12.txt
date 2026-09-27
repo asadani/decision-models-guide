@@ -66,4 +66,4 @@ Remember this.
 
 Keep the loop, the safety and the arithmetic in code. Use the model for the narrow judgment.
 
-The map has Coding agents at the centre, with 6 branches. A layer beside, not the model that writes code. Routing costs, price by context rebuild, not per token. Where tokens go, reading and searching dominate. Advice, not authority, a score never authorizes. Tool choice, choosing a tool is not choosing its arguments. Test it, on your own sessions.
+The map has Coding agents at the center, with six branches. A layer beside, not the model that writes code. Routing costs, price by context rebuild, not per token. Where tokens go, reading and searching dominate. Advice, not authority, a score never authorizes. Tool choice, choosing a tool is not choosing its arguments. Test it, on your own sessions.

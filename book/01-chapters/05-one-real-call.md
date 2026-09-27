@@ -92,7 +92,11 @@ It does not retry a wrong answer, because a wrong answer is not an error. It doe
 
 You cannot reproduce a decision unless you wrote down what made it.
 
+::: {.center}
+
 ![](../../assets/diagrams/generated/map-ch05.png){alt="Mindmap. Center: One real call. Branches: Pin the model (Aliases move under you); Literal questions (Boundary cases in the criteria); Facts in the state (Account status is data, not a guess); Ask together (Related questions in one call); Record it all (Versions, schema, full distributions); Fail closed (A timeout executes nothing)."}
+
+:::
 
 [^ch5-1]: TypeSafe AI, "Quickstart," documentation, <https://docs.typesafe.ai/introduction/quickstart.md>, which documents `POST https://api.typesafe.ai/v1/systemone`. The SDK method and client options are documented at <https://docs.typesafe.ai/sdk/python/api/clients/sync.md>. The example in this chapter is `examples/jev_triage.py` in the project; it was syntax-checked and compared against the documented API, and no live request was made.
 

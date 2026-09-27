@@ -5,6 +5,8 @@ main figure{margin:28px 0;text-align:center}
 main figure img{max-width:min(100%,520px);height:auto;background:#fff;border:1px solid var(--rule);padding:10px}
 main figcaption{font-family:var(--mono);font-size:12px;line-height:1.65;color:var(--ink-2);margin:12px auto 0;max-width:62ch;text-align:left}
 main img{max-width:100%;height:auto}
+main .center{margin:28px 0;text-align:center}
+main .center img{max-width:min(100%,520px)}
 .mast-grid{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:44px;align-items:start}
 .mast-cover{width:250px;height:auto;display:block;border:1px solid var(--rule);box-shadow:0 8px 24px rgba(20,28,26,.16);margin-top:6px}
 .title{font-size:clamp(36px,4.6vw,66px)}

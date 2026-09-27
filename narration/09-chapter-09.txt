@@ -44,4 +44,4 @@ Remember this.
 
 A cheap decision layer changes how work is routed, and the shared interface may outlast any one model.
 
-The map has What changes around it at the centre, with 6 branches. A new layer, between plain code and the large model. Routing, cheap by default, large on exception. A shared interface, open projects reuse the request shape. Cost and speed, vendor claims, not yet independent. Tooling, evaluation and tracing catch up. New risks, correlated errors, and re-measuring on a swap.
+The map has What changes around it at the center, with six branches. A new layer, between plain code and the large model. Routing, cheap by default, large on exception. A shared interface, open projects reuse the request shape. Cost and speed, vendor claims, not yet independent. Tooling, evaluation and tracing catch up. New risks, correlated errors, and re-measuring on a swap.

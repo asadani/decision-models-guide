@@ -14,7 +14,11 @@ This book is for people who write or review software that acts on a model's outp
 
 The map below is the book in six branches. Each chapter ends with a smaller one of its own, so you can check what you kept before moving on. Chapter 2 explains the idea in plain language and needs no background.
 
+::: {.center}
+
 ![](../../assets/diagrams/generated/map-book.png){alt="Mindmap. Center: A typed answer and a probability. Branches: What it is (Plain-language idea, the contract, one real call); Is it right? (Measure on your own cases, not the launch numbers); Does the number mean it? (Calibration, checked on your population); May anyone act? (A written policy and a record between prediction and action); What it changes (The layer it adds, and the alternatives around it); What to build (One reversible decision first, then widen)."}
+
+:::
 
 ## What a decision model is
 
@@ -67,7 +71,11 @@ Hold on to the distinction, because the rest of the book leans on it. A model th
 
 One message hides three questions, and only the first two are for the model.
 
+::: {.center}
+
 ![](../../assets/diagrams/generated/map-ch01.png){alt="Mindmap. Center: The ticket. Branches: Which queue? (A classification); What does it ask? (A reading of intent); May anyone act? (Not in the text: records and policy); Sort the work (Code, then model, then policy); Valid is not correct (A rate to measure, not a defect to fix); Keep baselines (A rules answer and a constrained LLM)."}
+
+:::
 
 [^ch1-1]: TypeSafe AI, "Jev 1.13 jaggedness," documentation, reviewed September 17, 2026, <https://docs.typesafe.ai/model-jaggedness/jev-1.13.md>. The page recommends keeping arithmetic in code, extracting date components and comparing them in code, and filtering state so it holds only what the question needs.
 

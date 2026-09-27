@@ -8,23 +8,23 @@
 \begin{tikzpicture}[
   font=\footnotesize\sffamily,
   hub/.style={draw=red!55!black, line width=1pt, rounded corners=7pt, fill=red!8, align=center,
-              text width=3.2cm, inner sep=7pt, font=\bfseries\small\sffamily},
+              text width=3cm, inner sep=7pt, font=\bfseries\small\sffamily},
   br/.style={draw=black!60, rounded corners=3pt, fill=black!3, align=center,
-             text width=3.05cm, inner sep=4pt},
-  edge/.style={draw=black!50, line width=0.8pt}
+             text width=3.05cm, inner sep=4pt, minimum height=1.05cm},
+  edge/.style={draw=black!45, line width=0.8pt}
 ]
-\draw[edge] (0,0) -- (0.00,2.70);
-\draw[edge] (0,0) -- (3.55,1.35);
-\draw[edge] (0,0) -- (3.55,-1.35);
-\draw[edge] (0,0) -- (0.00,-2.70);
-\draw[edge] (0,0) -- (-3.55,-1.35);
-\draw[edge] (0,0) -- (-3.55,1.35);
-\node[hub] at (0,0) {What changes around it};
-\node[br] at (0.00,2.70) {\textbf{A new layer}\\[1pt]{\scriptsize Between plain code and the large model}};
-\node[br] at (3.55,1.35) {\textbf{Routing}\\[1pt]{\scriptsize Cheap by default, large on exception}};
-\node[br] at (3.55,-1.35) {\textbf{A shared interface}\\[1pt]{\scriptsize Open projects reuse the request shape}};
-\node[br] at (0.00,-2.70) {\textbf{Cost and speed}\\[1pt]{\scriptsize Vendor claims, not yet independent}};
-\node[br] at (-3.55,-1.35) {\textbf{Tooling}\\[1pt]{\scriptsize Evaluation and tracing catch up}};
-\node[br] at (-3.55,1.35) {\textbf{New risks}\\[1pt]{\scriptsize Correlated errors, and re-measuring on a swap}};
+\node[hub] (hub) at (0,0) {What changes around it};
+\node[br] (b0) at (-4.35,1.90) {\textbf{A new layer}\\[1pt]{\scriptsize Between plain code and the large model}};
+\draw[edge] (hub) -- (b0);
+\node[br] (b1) at (4.35,1.90) {\textbf{Routing}\\[1pt]{\scriptsize Cheap by default, large on exception}};
+\draw[edge] (hub) -- (b1);
+\node[br] (b2) at (-4.35,0.00) {\textbf{A shared interface}\\[1pt]{\scriptsize Open projects reuse the request shape}};
+\draw[edge] (hub) -- (b2);
+\node[br] (b3) at (4.35,0.00) {\textbf{Cost and speed}\\[1pt]{\scriptsize Vendor claims, not yet independent}};
+\draw[edge] (hub) -- (b3);
+\node[br] (b4) at (-4.35,-1.90) {\textbf{Tooling}\\[1pt]{\scriptsize Evaluation and tracing catch up}};
+\draw[edge] (hub) -- (b4);
+\node[br] (b5) at (4.35,-1.90) {\textbf{New risks}\\[1pt]{\scriptsize Correlated errors, and re-measuring on a swap}};
+\draw[edge] (hub) -- (b5);
 \end{tikzpicture}
 \end{document}

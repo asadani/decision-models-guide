@@ -54,7 +54,11 @@ Neither method recovers evidence that was never in the state, and neither repair
 
 A probability is not a promise about one answer. It is a claim about a group of answers.
 
+::: {.center}
+
 ![](../../assets/diagrams/generated/map-ch04.png){alt="Mindmap. Center: Reading the numbers. Branches: Probability (Weight on each option); Confidence (One number, defined differently by each system); Calibration (Judged over groups, never one answer); Training labels (RLHF, RLVR and RLCD are different goals); Rescaling (Possible from probabilities alone); Thresholds (Do not carry over between systems)."}
+
+:::
 
 [^ch4-1]: TypeSafe AI, "Confidence," documentation, <https://docs.typesafe.ai/confidence.md>. It states that Noul answers "don't carry one" and that confidence "is derived from the probabilities."
 

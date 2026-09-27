@@ -66,6 +66,10 @@ If you carry one idea out of this book, let it be this. A decision model gives y
 
 The deliverable is a measured operating boundary, including what people keep.
 
+::: {.center}
+
 ![](../../assets/diagrams/generated/map-ch13.png){alt="Mindmap. Center: What to build first. Branches: One reversible decision (Routing before refunds); An evaluation set (Ordinary, ambiguous, costly, stress); Baselines (A rules answer plus two candidates); Tune and freeze (On a separate split, then test once); Shadow mode (Compare, do not execute); Widen slowly (Limited routing, receipts, review)."}
+
+:::
 
 [^ch13-1]: Arseny Kravchenko, "We Tested Jev on 100 Real Agent Calls. How Easy Is It To Beat a Constant?," Archestra, September 21, 2026, <https://archestra.ai/blog/we-tested-jev-on-100-real-agent-calls>. The article reports that around 90 of 100 randomly sampled calls were routine and only about 10 covered the dangerous cases, and that this made the original benchmark "bad."

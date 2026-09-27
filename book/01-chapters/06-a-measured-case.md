@@ -76,7 +76,11 @@ What they do show is a pattern. The model was better than a comparison model on 
 
 Good on average and overconfident in the middle. A high number is not knowledge.
 
+::: {.center}
+
 ![](../../assets/diagrams/generated/map-ch06.png){alt="Mindmap. Center: A measured case. Branches: Accuracy (Ahead of Qwen on this task, one setup); Confidence bins (The middle of the range is the worst); Exactly 1.00 (Still wrong 44 times in 1,516); No option fits (It answers anyway, confidently); The constant baseline (Always saying benign scored 79 percent); Labels and odds (Labels stable, probabilities float)."}
+
+:::
 
 [^ch6-1]: Nhu Hoang, "Jev vs. LLMs: When AI Moves from Generation to Decision-Making," Towards Data Science, September 25, 2026, <https://towardsdatascience.com/jev-vs-llms-when-ai-moves-from-generation-to-decision-making/>. Supplied copy. Setup: section 8.1 (pages 18 to 19). Accuracy, timing, invalid labels: section 8.2 (pages 19 to 20). Confidence groups: section 6, Figure 11 (page 14), and section 8.3 (pages 20 to 22). Figures from other evaluators (scienthoon, themsquared, PriorBench): sections 6 and 7.3 (pages 14 and 17 to 18). Rounding to two decimal places: page 15. Compared against page images for the figures shown.
 

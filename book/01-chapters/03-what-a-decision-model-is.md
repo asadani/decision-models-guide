@@ -55,7 +55,11 @@ That matters for how much you can infer. When another model in this book is desc
 
 A contract of state, question and permitted answers. It guarantees the shape, not the truth.
 
+::: {.center}
+
 ![](../../assets/diagrams/generated/map-ch03.png){alt="Mindmap. Center: What a decision model is. Branches: State (The evidence you send); Question (Typed, literal, one thing); Three primitives (Choice, Noul and Score); The schema buys (No parsing, no stray text); Jagged edges (Literal, no arithmetic, no hostile-input defense); Not known (Size, data and architecture)."}
+
+:::
 
 [^ch3-1]: Diogo Almeida, "Introducing System One Models & Jev," TypeSafe AI, September 15, 2026, <https://typesafe.ai/blog/introducing-system-one-models-and-jev>. The phrases quoted are from the post; it describes Jev as "a frontier-intelligence function call: unstructured state in, typed probabilistic decisions out."
 

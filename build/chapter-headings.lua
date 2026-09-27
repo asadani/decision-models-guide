@@ -6,6 +6,10 @@
 -- 2. In LaTeX output, restart footnote numbering at every top-level heading, so
 --    each chapter's notes are numbered from 1. (Chapter headings are unnumbered
 --    in pandoc's LaTeX output, so LaTeX's own chapter counter never resets them.)
+-- 3. A ::: {.center} ::: div centers its content. Pandoc's LaTeX writer does not
+--    do this on its own for an uncaptioned image (only a captioned figure gets
+--    \centering), so in LaTeX output this wraps the content in \begin{center}.
+--    In HTML the div passes through and site-extra.css centers it.
 
 local function is_chapter_marker(elements)
   if #elements < 3 then return false end
@@ -35,4 +39,15 @@ function Header(elem)
     return { pandoc.RawBlock("latex", "\\setcounter{footnote}{0}"), elem }
   end
   return elem
+end
+
+function Div(elem)
+  if not elem.classes:includes("center") then return nil end
+  if FORMAT:match("latex") or FORMAT:match("pdf") then
+    local blocks = { pandoc.RawBlock("latex", "\\begin{center}") }
+    for _, b in ipairs(elem.content) do blocks[#blocks + 1] = b end
+    blocks[#blocks + 1] = pandoc.RawBlock("latex", "\\end{center}")
+    return blocks
+  end
+  return nil
 end

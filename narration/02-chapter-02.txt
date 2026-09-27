@@ -70,4 +70,4 @@ Remember this.
 
 The model does not write an answer. It scores your options, and you decide what to do with the scores.
 
-The map has The idea in plain language at the centre, with 6 branches. Decide, don't write, one pass over your options. A spread of odds, every option gets a probability. Confidence, how peaked the spread is. Calibration, right as often as it says, over groups. Accuracy and coverage, a threshold trades one for the other. How it is trained, claimed, and not published.
+The map has The idea in plain language at the center, with six branches. Decide, don't write, one pass over your options. A spread of odds, every option gets a probability. Confidence, how peaked the spread is. Calibration, right as often as it says, over groups. Accuracy and coverage, a threshold trades one for the other. How it is trained, claimed, and not published.

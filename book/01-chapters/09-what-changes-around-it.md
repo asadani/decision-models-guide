@@ -37,7 +37,11 @@ What follows is my inference from those reports. I have no source that says it.
 
 A cheap decision layer changes how work is routed, and the shared interface may outlast any one model.
 
+::: {.center}
+
 ![](../../assets/diagrams/generated/map-ch09.png){alt="Mindmap. Center: What changes around it. Branches: A new layer (Between plain code and the large model); Routing (Cheap by default, large on exception); A shared interface (Open projects reuse the request shape); Cost and speed (Vendor claims, not yet independent); Tooling (Evaluation and tracing catch up); New risks (Correlated errors, and re-measuring on a swap)."}
+
+:::
 
 [^ch9-1]: vLLM Semantic Router Team, "Introducing Decision 1.0: Open Decision Foundation Models," September 22, 2026, <https://vllm-sr.ai/blog/decision-models/>: "Decision uses the upstream System One request format: state, model, and named questions," with the "official TypeSafe Python SDK or an equivalent HTTP request" against "your own SystemOne-compatible deployment." Jev launched on September 15, 2026 (Diogo Almeida, "Introducing System One Models & Jev," TypeSafe AI, <https://typesafe.ai/blog/introducing-system-one-models-and-jev>). The seven days between them is my arithmetic from the two dates.
 

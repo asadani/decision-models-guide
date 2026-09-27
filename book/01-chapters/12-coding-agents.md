@@ -74,7 +74,11 @@ The same pattern appeared in the Doom story of Chapter 8. State representation, 
 
 Keep the loop, the safety and the arithmetic in code. Use the model for the narrow judgment.
 
+::: {.center}
+
 ![](../../assets/diagrams/generated/map-ch12.png){alt="Mindmap. Center: Coding agents. Branches: A layer beside (Not the model that writes code); Routing costs (Price by context rebuild, not per token); Where tokens go (Reading and searching dominate); Advice, not authority (A score never authorizes); Tool choice (Choosing a tool is not choosing its arguments); Test it (On your own sessions)."}
+
+:::
 
 [^ch12-1]: "Jev Engineering for Coding Agents: The TypeSafe Founder's Blueprint for Building with Jev," an independently compiled working note, September 2026 (supplied PDF; no author named and no web address). Its final page states that it is an independent synthesis for study, that its diagrams are original to it, that its cost figures are "illustrative and based on list prices cited in the source notes," and that the token-share table is "an illustrative estimate." The routing arithmetic is on page 4, the token table on page 5, and the fastcontext figures on pages 5 and 6. I checked the arithmetic and the chart values in Figure 2 of the document against my own calculation.
 
