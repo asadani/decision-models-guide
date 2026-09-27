@@ -43,6 +43,7 @@ preflight:
 	@bash $(SCRIPTS_DIR)/preflight.sh
 
 diagrams:
+	@python $(SCRIPTS_DIR)/mindmaps.py
 	@python $(SCRIPTS_DIR)/render_diagrams.py
 
 verify:

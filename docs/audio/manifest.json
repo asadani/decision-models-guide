@@ -4,73 +4,78 @@
  "dir": "audio/",
  "tracks": {
   "ch00": {
-   "f": "00-preface.mp3",
-   "d": 275.9,
-   "t": "Preface"
+   "f": "00-card.mp3",
+   "d": 77.8,
+   "t": "Copyright, permissions, and how this was made"
   },
   "ch01": {
-   "f": "01-how-to-read.mp3",
-   "d": 163.3,
-   "t": "How to read this book"
-  },
-  "ch02": {
-   "f": "02-chapter-01.mp3",
-   "d": 295.5,
+   "f": "01-chapter-01.mp3",
+   "d": 412.2,
    "t": "Chapter 1. The Ticket That Isn't One Question"
   },
+  "ch02": {
+   "f": "02-chapter-02.mp3",
+   "d": 440.8,
+   "t": "Chapter 2. The Idea in Plain Language"
+  },
   "ch03": {
-   "f": "03-chapter-02.mp3",
-   "d": 347.6,
-   "t": "Chapter 2. What a Decision Model Is, and Isn't"
+   "f": "03-chapter-03.mp3",
+   "d": 381.2,
+   "t": "Chapter 3. What a Decision Model Is, and Isn't"
   },
   "ch04": {
-   "f": "04-chapter-03.mp3",
-   "d": 444.7,
-   "t": "Chapter 3. Reading the Numbers"
+   "f": "04-chapter-04.mp3",
+   "d": 429.5,
+   "t": "Chapter 4. Reading the Numbers"
   },
   "ch05": {
-   "f": "05-chapter-04.mp3",
-   "d": 370.9,
-   "t": "Chapter 4. One Real Call"
+   "f": "05-chapter-05.mp3",
+   "d": 401.4,
+   "t": "Chapter 5. One Real Call"
   },
   "ch06": {
-   "f": "06-chapter-05.mp3",
-   "d": 656.8,
-   "t": "Chapter 5. A Measured Case"
+   "f": "06-chapter-06.mp3",
+   "d": 665.5,
+   "t": "Chapter 6. A Measured Case"
   },
   "ch07": {
-   "f": "07-chapter-06.mp3",
-   "d": 512.6,
-   "t": "Chapter 6. The Cascade That Made Things Worse"
+   "f": "07-chapter-07.mp3",
+   "d": 533.9,
+   "t": "Chapter 7. The Cascade That Made Things Worse"
   },
   "ch08": {
-   "f": "08-chapter-07.mp3",
-   "d": 604.7,
-   "t": "Chapter 7. The Alternatives"
+   "f": "08-chapter-08.mp3",
+   "d": 659.5,
+   "t": "Chapter 8. The Alternatives"
   },
   "ch09": {
-   "f": "09-chapter-08.mp3",
-   "d": 472.6,
-   "t": "Chapter 8. Between Prediction and Action"
+   "f": "09-chapter-09.mp3",
+   "d": 353.9,
+   "t": "Chapter 9. What Changes Around It"
   },
   "ch10": {
-   "f": "10-chapter-09.mp3",
-   "d": 584.8,
-   "t": "Chapter 9. The Accountability Argument"
+   "f": "10-chapter-10.mp3",
+   "d": 511.0,
+   "t": "Chapter 10. Between Prediction and Action"
   },
   "ch11": {
-   "f": "11-chapter-10.mp3",
-   "d": 505.6,
-   "t": "Chapter 10. Extending the Pattern to Coding Agents"
+   "f": "11-chapter-11.mp3",
+   "d": 634.8,
+   "t": "Chapter 11. The Accountability Argument"
   },
   "ch12": {
-   "f": "12-chapter-11.mp3",
-   "d": 364.0,
-   "t": "Chapter 11. What to Build First"
+   "f": "12-chapter-12.mp3",
+   "d": 552.8,
+   "t": "Chapter 12. Extending the Pattern to Coding Agents"
   },
   "ch13": {
-   "f": "13-appendix-a.mp3",
-   "d": 407.3,
+   "f": "13-chapter-13.mp3",
+   "d": 399.9,
+   "t": "Chapter 13. What to Build First"
+  },
+  "ch14": {
+   "f": "14-appendix-a.mp3",
+   "d": 412.3,
    "t": "Appendix A. What Was and Was Not Validated"
   }
  }

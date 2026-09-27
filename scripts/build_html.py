@@ -1,7 +1,7 @@
 """Build the reading edition: docs/index.html with the narration player.
 
-Pandoc turns the book's Markdown (without the print-only cover, copyright and
-contents pages) into one HTML page in the project's reading theme. The audio
+Pandoc turns the book's Markdown (without the print-only cover and contents
+pages) into one HTML page in the project's reading theme. The audio
 manifest written by scripts/render_audio.py is embedded, and each track is
 attached to its chapter. If there is no manifest, the page is built without a
 player and works as a plain reading copy.
@@ -21,7 +21,9 @@ ROOT = Path(__file__).resolve().parents[1]
 BOOK = ROOT / "book"
 SITE = ROOT / "docs"
 
-SOURCES = ([BOOK / "00-front-matter/03-preface.md", BOOK / "00-front-matter/04-how-to-read.md"]
+CARD = BOOK / "00-front-matter/01-copyright.md"
+CARD_HEADING = "# Copyright, permissions, and how this was made {.unnumbered}"
+SOURCES = ([CARD]
            + sorted((BOOK / "01-chapters").glob("*.md"))
            + sorted((BOOK / "02-appendices").glob("*.md")))
 
@@ -31,7 +33,13 @@ def main():
         sys.exit("pandoc is required")
     SITE.mkdir(exist_ok=True)
 
-    body = "\n\n".join(p.read_text(encoding="utf-8").replace("../../assets/", "assets/") for p in SOURCES)
+    parts = []
+    for p in SOURCES:
+        text = p.read_text(encoding="utf-8").replace("../../assets/", "assets/")
+        if p == CARD:
+            text = CARD_HEADING + "\n\n" + text      # the print card has no heading of its own
+        parts.append(text)
+    body = "\n\n".join(parts)
     md = ROOT / "output" / "site-body.md"
     md.parent.mkdir(exist_ok=True)
     md.write_text(body, encoding="utf-8", newline="\n")
@@ -48,10 +56,10 @@ def main():
         check=True, cwd=str(ROOT))
     html = html_path.read_text(encoding="utf-8")
 
-    # Top-level sections in document order: preface, how to read, chapters, appendices.
+    # Top-level sections in document order: the card, chapters, appendices.
     sections = re.findall(r'<section id="([^"]+)"[^>]*class="level1[^"]*"', html)
-    if len(sections) < 14:
-        sys.exit("expected at least 14 top-level sections, found %d" % len(sections))
+    if len(sections) < 18:
+        sys.exit("expected at least 18 top-level sections, found %d" % len(sections))
 
     manifest_path = SITE / "audio" / "manifest.json"
     if manifest_path.exists():

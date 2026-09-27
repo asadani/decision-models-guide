@@ -1,0 +1,30 @@
+\documentclass[border=6pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc,fit}
+\begin{document}
+\hyphenpenalty=10000 \exhyphenpenalty=10000
+\begin{tikzpicture}[
+  font=\footnotesize\sffamily,
+  hub/.style={draw=red!55!black, line width=1pt, rounded corners=7pt, fill=red!8, align=center,
+              text width=3.2cm, inner sep=7pt, font=\bfseries\small\sffamily},
+  br/.style={draw=black!60, rounded corners=3pt, fill=black!3, align=center,
+             text width=3.05cm, inner sep=4pt},
+  edge/.style={draw=black!50, line width=0.8pt}
+]
+\draw[edge] (0,0) -- (0.00,2.70);
+\draw[edge] (0,0) -- (3.55,1.35);
+\draw[edge] (0,0) -- (3.55,-1.35);
+\draw[edge] (0,0) -- (0.00,-2.70);
+\draw[edge] (0,0) -- (-3.55,-1.35);
+\draw[edge] (0,0) -- (-3.55,1.35);
+\node[hub] at (0,0) {The ticket};
+\node[br] at (0.00,2.70) {\textbf{Which queue?}\\[1pt]{\scriptsize A classification}};
+\node[br] at (3.55,1.35) {\textbf{What does it ask?}\\[1pt]{\scriptsize A reading of intent}};
+\node[br] at (3.55,-1.35) {\textbf{May anyone act?}\\[1pt]{\scriptsize Not in the text: records and policy}};
+\node[br] at (0.00,-2.70) {\textbf{Sort the work}\\[1pt]{\scriptsize Code, then model, then policy}};
+\node[br] at (-3.55,-1.35) {\textbf{Valid is not correct}\\[1pt]{\scriptsize A rate to measure, not a defect to fix}};
+\node[br] at (-3.55,1.35) {\textbf{Keep baselines}\\[1pt]{\scriptsize A rules answer and a constrained LLM}};
+\end{tikzpicture}
+\end{document}

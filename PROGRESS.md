@@ -8,19 +8,19 @@ This supersedes the tutorial (`tutorial/`) as the main deliverable. The user fou
 
 **What exists**
 
-- `book/` is the manuscript in the skill's layout: `00-front-matter/` (title, copyright, contents, preface, how to read), `01-chapters/` (11 chapters), `02-appendices/` (A validation, B glossary, C sources). About 13.6K words of chapters plus front and back matter. Footnotes are chapter-scoped ids (`[^chN-k]`); a repeated source in a chapter gets a short-form note.
+- `book/` is the manuscript in the skill's layout: `00-front-matter/` (title, one copyright-and-method card, contents), `01-chapters/` (13 chapters, each ending in a mindmap), `02-appendices/` (A validation, B glossary, C sources, D reference tables). About 13.6K words of chapters plus front and back matter. Footnotes are chapter-scoped ids (`[^chN-k]`); a repeated source in a chapter gets a short-form note.
 - Build: `make pdf` (Letter, 62 pp), `make paperback` (6x9 interior, 90 pp with blank versos), `make verify` (26 URLs; `build/link-allowlist.txt` skips one POST-only endpoint), `make diagrams` (TikZ sources in `assets/diagrams/src/` to PNG). On Windows pandoc's `--resource-path` separator is `;`; the Makefile handles it.
 - Cover: `assets/cover/decision-models-front-cover.png` (supplied; 1024x1536, text matches the book). `make pdf` puts it on page 1 via `build/frontcover.tex`; the paperback interior has none. The reading edition shows a 720px JPEG in the masthead. 1024x1536 is fine for Ko-fi and screens but too small for print: a 6x9 KDP cover needs at least 1800x2700.
 - Published as `docs/` (GitHub Pages, `https://tech.anujsadani.in/decision-models-guide/`). The typeset PDF is sold on Ko-fi (https://ko-fi.com/s/9e3a539eb0) and is deliberately not in the repo or on the site; the reading edition links to Ko-fi in its header, masthead and footer.
 - Trimmed to what the book needs: the research-phase scripts (source capture, OCR, reference rendering), the tutorial's HTML page and its builder, and `DESIGN.md` were removed. `tutorial/` keeps the Markdown only; the base theme moved to `build/site-base.css`.
-- Claim ledger: `python scripts/check_book_claims.py` checks 80 claims (60 against captured source text, 5 read from page images, 15 recomputed) and writes `.research/book-claims.jsonl`. Numbers taken from OCR'd PDFs were checked against rendered page images where they matter; Appendix A lists what was and was not verified.
+- Claim ledger: `python scripts/check_book_claims.py` checks 99 claims (77 against captured source text, 5 read from page images, 17 recomputed) and writes `.research/book-claims.jsonl`. Numbers taken from OCR'd PDFs were checked against rendered page images where they matter; Appendix A lists what was and was not verified.
 - Narration: `scripts/make_narration.py` derives `narration/NN-*.txt` from the book (spoken versions of tables, code, figures and equations are in `scripts/narration_say.py`); `scripts/render_audio.py` calls `narrate.py` from the sibling `narrate-your-writing` repo (Kokoro-82M, voice `bm_george+bm_fable`, speed 1.0, `--no-acronyms`; resumable) and writes `docs/audio/manifest.json` for the player. The existing audio was rendered by an earlier in-repo renderer with the same model, voice and speed; its stamps were converted to narrate.py's format so it is recognized as current. A forced re-render through narrate.py runs about 3 percent longer (pauses between sentence chunks). `scripts/build_html.py` builds the reading edition `docs/index.html` with the player; `node scripts/check_site.cjs` checks it (needs Playwright via `NODE_PATH` and `PREVIEW_CHROMIUM`).
 
 **Decisions and cautions**
 
 - No live Jev call was made; no benchmark reproduced. Every measurement is reported by its author and attributed.
-- The preface, "How this book was written" and the one-line "About the author" are drafts in the author's voice and need the author's review.
-- The `jev.txt` accountability ideas (Chapter 9) and the coding-agent document (Chapter 10) are presented as proposals. The coding-agent PDF's attribution to TypeSafe's founder is unverified.
+- The copyright-and-method card is a draft in the author's voice and needs the author's review. The preface, how-to-read and about-the-author pages were removed in the 27 September revision.
+- The `jev.txt` accountability ideas (Chapter 11) and the coding-agent document (Chapter 12) are presented as proposals. The coding-agent PDF's attribution to TypeSafe's founder is unverified.
 - Writing files with Python heredocs mangles backslashes on this machine; use the file-edit tool for anything containing LaTeX.
 - The old `tutorial/` and its research scripts are kept for reference; the README points to the book.
 

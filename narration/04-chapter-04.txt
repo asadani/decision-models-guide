@@ -1,0 +1,61 @@
+Chapter 4. Reading the Numbers.
+
+Two dashboards sit side by side. Both report 80 correct out of 100 on a held-out set, for predictions whose top probability was about 0.8. On the first, the twenty misses each sent a ticket to the wrong queue, where a person moved it an hour later. On the second, the twenty misses each issued a refund nobody had approved.
+
+The accuracy is identical and the dashboards are equally well calibrated. Nobody would automate both the same way. Calibration is the property that makes a probability usable, and it is silent on what you should do with it.
+
+Three numbers that get confused.
+
+A Choice or Score answer carries three things: the option probabilities, a selected answer, and a confidence field. They are different.
+
+The probabilities are a distribution over your options and sum to one. The selected answer is the option with the most weight. The confidence field, the documentation says, is "a statistic computed from the probability distribution the answer already gives you": a single number from 0 to 1 for how concentrated the distribution is. Noul answers carry no confidence field, because the probability of yes already is the belief.
+
+The practitioner report we return to in Chapter 6 hit the difference in its first call. A three-level anger question came back with 0 point six three on its top level and a confidence of 0 point four four. The confidence is lower than the top probability because the other 0 point three seven sits on a single second level, so the distribution is split between two answers, not peaked on one.
+
+The documentation does not spell the formula out, and says you are "never locked into our definition." Another project's README gives one for Jev, and it is a simple rescaling of the top probability: 0 point six three on the top level of three is a confidence in the mid-0.4s, which fits the 0 point four four that was reported. That is my reading of the README, not a statement of TypeSafe's implementation.
+
+The practical point is that another model's confidence can be a different statistic. The Laya model computes it as one minus normalized entropy and warns that "a threshold carried over from Jev does not transfer." A confidence threshold is a property of the model and its version, and you validate it there.
+
+Calibration is about groups.
+
+One vendor page states the idea plainly. Across many predictions from a well-calibrated model, outcomes assigned 0.2 should occur about 20 percent of the time and outcomes assigned 0.8 about 80 percent. "These rates describe groups of predictions, not a guarantee about any single answer."
+
+Chapter 2 used a weather forecaster to make this concrete, and the practitioner report in Chapter 6 uses the same one. A model that says "90 percent sure" and is right half the time is overconfident, and its numbers cannot be relied on. The test is never whether one 90 percent prediction was right. It is whether predictions that carried similar confidence were right at roughly that rate.
+
+Finite groups are noisy. Of 100 predictions near 0.8, seeing 78 or 83 correct tells you little. Seeing 55 correct tells you a lot. A reliability table needs group sizes and intervals alongside its percentages, which is why the experiment in Chapter 6 reports both.
+
+Where the numbers come from.
+
+Chapter 2 named three ways a model can be taught. R L H F trains it toward answers people prefer, and Instruct G P T is the standard research example. R L V R rewards outputs that can be checked automatically, such as a math result, and is associated with reasoning-model work like DeepSeek R one. R L C D is TypeSafe's name for training toward decisions and probabilities that come true at the stated rate.
+
+TypeSafe argues that R L H F can reward sycophancy and confident-sounding hallucinations, and that an output can be compelling to a person without being reliable enough for unattended automation. That is a claim about a training objective. The recipe for R L C D has not been published, and I did not find anything independent that reproduces it.
+
+Keep the three labels apart. One of the supplied notes describes R L C D as building on R L V R, but TypeSafe's own primer lists three separate paths, and that is the framing to use. A reward for a correct answer and a reward for honest uncertainty target different properties, and a model trained for either can still be badly calibrated on a population it never saw. Chapter 6 measures exactly that.
+
+Recalibrating after the fact.
+
+If reported probabilities do not match outcomes on your data, you can adjust them. One classic method, temperature scaling (Guo and colleagues, 2017), softens an overconfident model with a single setting and does not change which answer ranks first.
+
+A hosted A P I returns probabilities, not the raw scores that method needs, and one practitioner concludes that it is therefore unavailable. That is too strong. Softening the probabilities you are given, then renormalizing so they sum to one, has the same effect. The setting has to be fitted, so keep a labeled calibration set that is separate from anything you tuned prompts on. The ranking of options does not change, so the winner stays the same and only the sharpness moves.
+
+The catch is precision. Jev rounds probabilities to two decimal places, so an answer of 1 point zero zero or 0 point zero zero carries almost no information to rescale. Isotonic regression, which learns a correction curve from labeled examples, works from the returned probabilities alone and is the safer choice for A P I users.
+
+Neither method recovers evidence that was never in the state, and neither repairs a wrong ranking.
+
+In practice.
+
+Decide which signal you will threshold on, the confidence field or the largest option probability, and measure both. The report in Chapter 6 found them nearly identical on one dataset; another evaluation it cites found the largest probability tracked accuracy better.
+
+Do not carry a threshold across models, model versions, or question types.
+
+Report calibration with group sizes and intervals. A percentage without an n is a rumor.
+
+Set the automation policy by what an error costs, not by the calibration curve alone.
+
+If you recalibrate, fit on a separate split and record the split.
+
+Remember this.
+
+A probability is not a promise about one answer. It is a claim about a group of answers.
+
+The map has Reading the numbers at the centre, with 6 branches. Probability, weight on each option. Confidence, one number, defined differently by each system. Calibration, judged over groups, never one answer. Training labels, rLHF, R L V R and R L C D are different goals. Rescaling, possible from probabilities alone. Thresholds, do not carry over between systems.

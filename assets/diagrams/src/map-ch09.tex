@@ -1,0 +1,30 @@
+\documentclass[border=6pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc,fit}
+\begin{document}
+\hyphenpenalty=10000 \exhyphenpenalty=10000
+\begin{tikzpicture}[
+  font=\footnotesize\sffamily,
+  hub/.style={draw=red!55!black, line width=1pt, rounded corners=7pt, fill=red!8, align=center,
+              text width=3.2cm, inner sep=7pt, font=\bfseries\small\sffamily},
+  br/.style={draw=black!60, rounded corners=3pt, fill=black!3, align=center,
+             text width=3.05cm, inner sep=4pt},
+  edge/.style={draw=black!50, line width=0.8pt}
+]
+\draw[edge] (0,0) -- (0.00,2.70);
+\draw[edge] (0,0) -- (3.55,1.35);
+\draw[edge] (0,0) -- (3.55,-1.35);
+\draw[edge] (0,0) -- (0.00,-2.70);
+\draw[edge] (0,0) -- (-3.55,-1.35);
+\draw[edge] (0,0) -- (-3.55,1.35);
+\node[hub] at (0,0) {What changes around it};
+\node[br] at (0.00,2.70) {\textbf{A new layer}\\[1pt]{\scriptsize Between plain code and the large model}};
+\node[br] at (3.55,1.35) {\textbf{Routing}\\[1pt]{\scriptsize Cheap by default, large on exception}};
+\node[br] at (3.55,-1.35) {\textbf{A shared interface}\\[1pt]{\scriptsize Open projects reuse the request shape}};
+\node[br] at (0.00,-2.70) {\textbf{Cost and speed}\\[1pt]{\scriptsize Vendor claims, not yet independent}};
+\node[br] at (-3.55,-1.35) {\textbf{Tooling}\\[1pt]{\scriptsize Evaluation and tracing catch up}};
+\node[br] at (-3.55,1.35) {\textbf{New risks}\\[1pt]{\scriptsize Correlated errors, and re-measuring on a swap}};
+\end{tikzpicture}
+\end{document}

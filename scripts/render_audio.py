@@ -62,6 +62,10 @@ def main() -> None:
     ap.add_argument("--speed", type=float, default=1.0,
                     help="narrate.py's own default is 0.9; this book was recorded at 1.0")
     ap.add_argument("--force", action="store_true", help="re-render every track")
+    ap.add_argument("--device", choices=["auto", "cpu", "cuda"], default="auto",
+                    help="passed to narrate.py; cuda needs onnxruntime-gpu in the interpreter used")
+    ap.add_argument("--python", default=sys.executable,
+                    help="interpreter that runs narrate.py (e.g. a conda env with onnxruntime-gpu)")
     ap.add_argument("--manifest-only", action="store_true")
     args = ap.parse_args()
 
@@ -71,9 +75,9 @@ def main() -> None:
 
     if not args.manifest_only:
         tool = find_tool()
-        cmd = [sys.executable, str(tool / "narrate.py"), str(NARRATION),
+        cmd = [args.python, str(tool / "narrate.py"), str(NARRATION),
                "--out", str(AUDIO), "--engine", "kokoro",
-               "--voice", args.voice, "--speed", str(args.speed),
+               "--voice", args.voice, "--speed", str(args.speed), "--device", args.device,
                # make_narration.py already respells acronyms and numbers for the ear
                "--no-acronyms"]
         if args.force:

@@ -1,0 +1,30 @@
+\documentclass[border=6pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc,fit}
+\begin{document}
+\hyphenpenalty=10000 \exhyphenpenalty=10000
+\begin{tikzpicture}[
+  font=\footnotesize\sffamily,
+  hub/.style={draw=red!55!black, line width=1pt, rounded corners=7pt, fill=red!8, align=center,
+              text width=3.2cm, inner sep=7pt, font=\bfseries\small\sffamily},
+  br/.style={draw=black!60, rounded corners=3pt, fill=black!3, align=center,
+             text width=3.05cm, inner sep=4pt},
+  edge/.style={draw=black!50, line width=0.8pt}
+]
+\draw[edge] (0,0) -- (0.00,2.70);
+\draw[edge] (0,0) -- (3.55,1.35);
+\draw[edge] (0,0) -- (3.55,-1.35);
+\draw[edge] (0,0) -- (0.00,-2.70);
+\draw[edge] (0,0) -- (-3.55,-1.35);
+\draw[edge] (0,0) -- (-3.55,1.35);
+\node[hub] at (0,0) {The alternatives};
+\node[br] at (0.00,2.70) {\textbf{Laya}\\[1pt]{\scriptsize Open encoder, honest about its limits}};
+\node[br] at (3.55,1.35) {\textbf{GLiNER}\\[1pt]{\scriptsize Small, schema-driven, its own benchmark}};
+\node[br] at (3.55,-1.35) {\textbf{Decision 1.0}\\[1pt]{\scriptsize Six open models, one request format}};
+\node[br] at (0.00,-2.70) {\textbf{AnyJev}\\[1pt]{\scriptsize Reads and debiases an existing model}};
+\node[br] at (-3.55,-1.35) {\textbf{SemIf}\\[1pt]{\scriptsize Open reproduction of the interface}};
+\node[br] at (-3.55,1.35) {\textbf{Numbers}\\[1pt]{\scriptsize Not interchangeable between setups}};
+\end{tikzpicture}
+\end{document}

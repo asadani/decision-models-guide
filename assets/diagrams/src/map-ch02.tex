@@ -1,0 +1,30 @@
+\documentclass[border=6pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc,fit}
+\begin{document}
+\hyphenpenalty=10000 \exhyphenpenalty=10000
+\begin{tikzpicture}[
+  font=\footnotesize\sffamily,
+  hub/.style={draw=red!55!black, line width=1pt, rounded corners=7pt, fill=red!8, align=center,
+              text width=3.2cm, inner sep=7pt, font=\bfseries\small\sffamily},
+  br/.style={draw=black!60, rounded corners=3pt, fill=black!3, align=center,
+             text width=3.05cm, inner sep=4pt},
+  edge/.style={draw=black!50, line width=0.8pt}
+]
+\draw[edge] (0,0) -- (0.00,2.70);
+\draw[edge] (0,0) -- (3.55,1.35);
+\draw[edge] (0,0) -- (3.55,-1.35);
+\draw[edge] (0,0) -- (0.00,-2.70);
+\draw[edge] (0,0) -- (-3.55,-1.35);
+\draw[edge] (0,0) -- (-3.55,1.35);
+\node[hub] at (0,0) {The idea in plain language};
+\node[br] at (0.00,2.70) {\textbf{Decide, don't write}\\[1pt]{\scriptsize One pass over your options}};
+\node[br] at (3.55,1.35) {\textbf{A spread of odds}\\[1pt]{\scriptsize Every option gets a probability}};
+\node[br] at (3.55,-1.35) {\textbf{Confidence}\\[1pt]{\scriptsize How peaked the spread is}};
+\node[br] at (0.00,-2.70) {\textbf{Calibration}\\[1pt]{\scriptsize Right as often as it says, over groups}};
+\node[br] at (-3.55,-1.35) {\textbf{Accuracy and coverage}\\[1pt]{\scriptsize A threshold trades one for the other}};
+\node[br] at (-3.55,1.35) {\textbf{How it is trained}\\[1pt]{\scriptsize Claimed, and not published}};
+\end{tikzpicture}
+\end{document}

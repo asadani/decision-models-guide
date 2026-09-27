@@ -6,11 +6,19 @@ The obvious move is to hand the message to a model and take whatever comes back.
 
 Those are three questions with three kinds of answer. The first is a classification. The second is a reading of intent. The third is not about the message at all. Its answer lives in the payment records, in whether the account has been verified, and in a policy somebody wrote and can be held to. A model can help with the first two. It cannot supply the third, because the third is not in the text, and a system that lets a probability stand in for it no longer has a policy.
 
-Most of this book is about keeping those questions apart.
+A decision model gives your software a typed answer and a probability. Neither one tells you that the answer is correct, that the probability means what you think it means, or that anyone was entitled to act on it. Closing those three gaps is most of the work, and keeping the three questions above apart is how it starts.
+
+This book is for people who write or review software that acts on a model's output. You do not need a machine-learning background, only enough comfort to read a short Python example. It is not a product manual, because the API will change, and it is not a benchmark: the measurements in it are other people's, attributed, and Appendix A says which were checked.
+
+## The whole book on one page
+
+The map below is the book in six branches. Each chapter ends with a smaller one of its own, so you can check what you kept before moving on. Chapter 2 explains the idea in plain language and needs no background.
+
+![](../../assets/diagrams/generated/map-book.png){alt="Mindmap. Center: A typed answer and a probability. Branches: What it is (Plain-language idea, the contract, one real call); Is it right? (Measure on your own cases, not the launch numbers); Does the number mean it? (Calibration, checked on your population); May anyone act? (A written policy and a record between prediction and action); What it changes (The layer it adds, and the alternatives around it); What to build (One reversible decision first, then widen)."}
 
 ## What a decision model is
 
-For the purposes of this book, a *decision model* is a component that takes evidence and a defined question, then evaluates a permitted list of answers. That is a functional definition. It says nothing about architecture or training, and it does not claim that every system that fits it works the same way. Chapter 2 looks at one such model, Jev, in detail, and Chapter 7 looks at several others.
+For the purposes of this book, a *decision model* is a component that takes evidence and a defined question, then evaluates a permitted list of answers. That is a functional definition. It says nothing about architecture or training, and it does not claim that every system that fits it works the same way. Chapter 2 explains the idea in plain language. Chapter 3 looks at one such model, Jev, in detail, and Chapter 8 looks at several others.
 
 A useful application contract has three parts: the evidence, the question, and the allowed answers.
 
@@ -54,6 +62,12 @@ Hold on to the distinction, because the rest of the book leans on it. A model th
 - Give the model only the first kind of question. Answer the others from records and rules.
 - Keep at least two baselines: a rules or majority-class answer, and a constrained LLM you would really deploy.
 - Treat "the output is always valid" as a statement about parsing. It says nothing about whether the answer is right.
+
+## Remember this
+
+One message hides three questions, and only the first two are for the model.
+
+![](../../assets/diagrams/generated/map-ch01.png){alt="Mindmap. Center: The ticket. Branches: Which queue? (A classification); What does it ask? (A reading of intent); May anyone act? (Not in the text: records and policy); Sort the work (Code, then model, then policy); Valid is not correct (A rate to measure, not a defect to fix); Keep baselines (A rules answer and a constrained LLM)."}
 
 [^ch1-1]: TypeSafe AI, "Jev 1.13 jaggedness," documentation, reviewed September 17, 2026, <https://docs.typesafe.ai/model-jaggedness/jev-1.13.md>. The page recommends keeping arithmetic in code, extracting date components and comparing them in code, and filtering state so it holds only what the question needs.
 

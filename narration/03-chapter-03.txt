@@ -1,0 +1,61 @@
+Chapter 3. What a Decision Model Is, and Isn't.
+
+On September 15, 2026, a founder who had worked on the methods behind Chat G P T announced a model that could not write a sentence. Diogo Almeida called it a System One model and said its first release, Jev, "gives up string generation" in exchange for structured outputs. The pitch fit in one line: "unstructured state in, typed probabilistic decisions out."
+
+Set the marketing aside and what remains is a narrow, useful idea. A model that never has to produce prose can be given a contract your code can rely on.
+
+The contract.
+
+You send Jev a state, the thing to be judged: a customer message, a proposed tool call, a Jason object. You send it one or more typed questions. It answers all of them against the same state in a single parallel pass, and each answer comes back in the shape you asked for.
+
+There are three question types and no others.
+
+There are three primitives. Choice takes up to two hundred fifty-five options, each with a description, and returns the selected option and a probability for every option. Noul takes a yes-or-no statement and returns the probability that it is true. Score takes two to ten ordered levels, described in words, and returns a probability for each level and their probability-weighted mean.
+
+The documentation defines a Score as a probability-weighted mean of the level numbers. Take a three-level urgency rubric: no time pressure stated, time-sensitive without an outage, current outage. Suppose the model puts probabilities of 0 point one zero, 0 point three zero and 0 point six zero on the levels, numbered from zero. The score is 0(0 point one zero) + 1(0 point three zero) + 2(0 point six zero), which is 1 point five zero. That number is a position on a rubric you wrote. It is not hours, not money, and not evidence that the distance between adjacent levels is equal in the world. When two different mixtures would need two different actions, keep the whole distribution.
+
+A real call reported by one practitioner shows the same arithmetic. For a message about a double charge, a three-level anger rubric came back as 0 point six three on "frustrated but civil" and 0 point three seven on "very angry", giving a score of 1 point three seven. The same call returned 1 point zero zero for billing as the team and 0 point nine nine for "is a refund requested." That is a useful picture of the output: three questions, three typed answers, each with a number.
+
+What the schema buys, and what it doesn't.
+
+The schema buys you a guarantee that is easy to state and worth having. Free text is not in the answer space, so it cannot come back. There is nothing to parse, no markdown fence to strip, no enum that arrives as "technical support" instead of technical. For the many pipelines where a second program exists only to claw a decision out of prose, that is a real saving.
+
+It does not buy correctness, and the vendor is unusually forthcoming about the edges.
+
+The jagged edges.
+
+TypeSafe publishes a page called "jaggedness" for the current model, and it is worth reading before you design a single question. It lists nine failure modes. Four of them shape the way you write everything else.
+
+The model reads literally. It answers the question you wrote, not the one you meant. If you find yourself explaining what you really meant after seeing a wrong answer, the explanation is the missing half of the instruction.
+
+It is not a calculator. Counting, arithmetic, and comparing dates are unreliable. The page's advice is to extract the parts with the model and do the arithmetic in code.
+
+Irrelevant state costs accuracy. Send the fields the question needs and nothing else.
+
+State is data, not a threat model. Content written to steer the answer, such as an injected instruction, can move it. The page says the model "does not treat it as hostile by default."
+
+There is a fifth item that matters just as much for anyone who plans to compose several questions. Structurally related questions are not guaranteed to agree. The page shows a Noul and a yes/no Choice asking the same thing of one ticket and returning different-looking numbers, and two Nouls, one asking about refunds and one asking about "something other than a refund," summing to 1 point one nine. Its advice is to word each question to mean exactly what you want, not to hold the model to arithmetic identities between separate questions, and not to carry a threshold tuned on a Noul over to a Choice.
+
+What is not known.
+
+TypeSafe has not published the model's size, its training data, or its architecture. One practitioner who tested it notes that the company has released documentation and a launch post but no technical paper. "System One" is a metaphor borrowed from Daniel Kahneman's fast, intuitive thinking. It describes what the model is for. It is not evidence about how it works inside.
+
+That matters for how much you can infer. When another model in this book is described as an encoder or a decoder, that is a fact about that model. Nothing TypeSafe has published lets you say the same of Jev.
+
+In practice.
+
+Write each question so a person who has never seen your ticket system would understand it. Put boundary cases in the option descriptions.
+
+Keep exact work in code: sums, counts, dates, lookups. Give the model the judgment that remains.
+
+Send the smallest state that answers the question. Filter before you call.
+
+Add an explicit "other" or "not stated" option wherever real inputs can fall outside your categories. Chapter 6 shows what happens when you don't.
+
+Do not treat two answers to related questions as one consistent belief. Test them together.
+
+Remember this.
+
+A contract of state, question and permitted answers. It guarantees the shape, not the truth.
+
+The map has What a decision model is at the centre, with 6 branches. State, the evidence you send. Question, typed, literal, one thing. Three primitives, choice, Noul and Score. The schema buys, no parsing, no stray text. Jagged edges, literal, no arithmetic, no hostile-input defense. Not known, size, data and architecture.

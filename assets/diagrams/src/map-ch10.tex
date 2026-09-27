@@ -1,0 +1,30 @@
+\documentclass[border=6pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc,fit}
+\begin{document}
+\hyphenpenalty=10000 \exhyphenpenalty=10000
+\begin{tikzpicture}[
+  font=\footnotesize\sffamily,
+  hub/.style={draw=red!55!black, line width=1pt, rounded corners=7pt, fill=red!8, align=center,
+              text width=3.2cm, inner sep=7pt, font=\bfseries\small\sffamily},
+  br/.style={draw=black!60, rounded corners=3pt, fill=black!3, align=center,
+             text width=3.05cm, inner sep=4pt},
+  edge/.style={draw=black!50, line width=0.8pt}
+]
+\draw[edge] (0,0) -- (0.00,2.70);
+\draw[edge] (0,0) -- (3.55,1.35);
+\draw[edge] (0,0) -- (3.55,-1.35);
+\draw[edge] (0,0) -- (0.00,-2.70);
+\draw[edge] (0,0) -- (-3.55,-1.35);
+\draw[edge] (0,0) -- (-3.55,1.35);
+\node[hub] at (0,0) {Between prediction and action};
+\node[br] at (0.00,2.70) {\textbf{Validate}\\[1pt]{\scriptsize Is the prediction well formed}};
+\node[br] at (3.55,1.35) {\textbf{Evidence}\\[1pt]{\scriptsize Does the record exist}};
+\node[br] at (3.55,-1.35) {\textbf{Authority}\\[1pt]{\scriptsize May this run without a person}};
+\node[br] at (0.00,-2.70) {\textbf{Confidence}\\[1pt]{\scriptsize Only then, and never alone}};
+\node[br] at (-3.55,-1.35) {\textbf{Beyond the score}\\[1pt]{\scriptsize Prohibitions and failure paths}};
+\node[br] at (-3.55,1.35) {\textbf{A receipt}\\[1pt]{\scriptsize A fingerprint is not an audit log}};
+\end{tikzpicture}
+\end{document}

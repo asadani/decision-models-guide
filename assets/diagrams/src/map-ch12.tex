@@ -1,0 +1,30 @@
+\documentclass[border=6pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc,fit}
+\begin{document}
+\hyphenpenalty=10000 \exhyphenpenalty=10000
+\begin{tikzpicture}[
+  font=\footnotesize\sffamily,
+  hub/.style={draw=red!55!black, line width=1pt, rounded corners=7pt, fill=red!8, align=center,
+              text width=3.2cm, inner sep=7pt, font=\bfseries\small\sffamily},
+  br/.style={draw=black!60, rounded corners=3pt, fill=black!3, align=center,
+             text width=3.05cm, inner sep=4pt},
+  edge/.style={draw=black!50, line width=0.8pt}
+]
+\draw[edge] (0,0) -- (0.00,2.70);
+\draw[edge] (0,0) -- (3.55,1.35);
+\draw[edge] (0,0) -- (3.55,-1.35);
+\draw[edge] (0,0) -- (0.00,-2.70);
+\draw[edge] (0,0) -- (-3.55,-1.35);
+\draw[edge] (0,0) -- (-3.55,1.35);
+\node[hub] at (0,0) {Coding agents};
+\node[br] at (0.00,2.70) {\textbf{A layer beside}\\[1pt]{\scriptsize Not the model that writes code}};
+\node[br] at (3.55,1.35) {\textbf{Routing costs}\\[1pt]{\scriptsize Price by context rebuild, not per token}};
+\node[br] at (3.55,-1.35) {\textbf{Where tokens go}\\[1pt]{\scriptsize Reading and searching dominate}};
+\node[br] at (0.00,-2.70) {\textbf{Advice, not authority}\\[1pt]{\scriptsize A score never authorizes}};
+\node[br] at (-3.55,-1.35) {\textbf{Tool choice}\\[1pt]{\scriptsize Choosing a tool is not choosing its arguments}};
+\node[br] at (-3.55,1.35) {\textbf{Test it}\\[1pt]{\scriptsize On your own sessions}};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,44 @@
+\documentclass[border=6pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\begin{document}
+\hyphenpenalty=10000 \exhyphenpenalty=10000
+% Accuracy against the share of cases Jev keeps (Hoang's cascade table).
+% Data units: x = share kept (0..100), y = accuracy - 76 (so 0..6 stands for 76..82).
+\begin{tikzpicture}[font=\footnotesize\sffamily, x=0.08cm, y=0.8cm]
+  % grid and axes
+  \foreach \y/\t in {0/76, 2/78, 4/80, 6/82} {
+    \draw[black!15, dashed] (0,\y) -- (100,\y);
+    \node[anchor=east, text=black!70] at (-2,\y) {\t};
+  }
+  \foreach \x in {0,20,40,60,80,100} {
+    \draw[black!60] (\x,0) -- (\x,-0.12);
+    \node[anchor=north, text=black!70] at (\x,-0.15) {\x};
+  }
+  \draw[black!60] (0,0) -- (100,0);
+  \draw[black!60] (0,0) -- (0,6);
+
+  % random routing at the same share (dashed, grey)
+  \draw[black!55, dashed, line width=0.9pt] (0,0.4) -- (49.2,2.7) -- (58.2,3.1) -- (74.5,3.9) -- (87.2,4.5) -- (96.2,4.9) -- (100,5.1);
+  \foreach \p in {(49.2,2.7),(58.2,3.1),(74.5,3.9),(87.2,4.5),(96.2,4.9)} {\fill[black!55] \p circle[radius=1.6pt];}
+  % confidence-gated cascade (solid, accent)
+  \draw[red!70!black, line width=1.2pt] (0,0.4) -- (49.2,0.9) -- (58.2,1.6) -- (74.5,3.7) -- (87.2,4.5) -- (96.2,4.7) -- (100,5.1);
+  \foreach \p in {(49.2,0.9),(58.2,1.6),(74.5,3.7),(87.2,4.5),(96.2,4.7)} {\fill[red!70!black] \p circle[radius=2pt];}
+
+  % end points
+  \fill (0,0.4) circle[radius=2pt];
+  \fill (100,5.1) circle[radius=2pt];
+  \node[anchor=center, font=\scriptsize\sffamily] at (19,0.16) {Qwen alone: 76.4};
+  \node[anchor=south east, align=right] at (99,5.25) {Jev alone\\[-1pt]81.1};
+
+  % legend
+  \draw[red!70!black, line width=1.2pt] (4,-1.75) -- (14,-1.75);
+  \node[anchor=west] at (15,-1.75) {confidence gate};
+  \draw[black!55, dashed, line width=0.9pt] (52,-1.75) -- (62,-1.75);
+  \node[anchor=west] at (63,-1.75) {random routing};
+
+  \node[align=center, text=black!80] at (50,-1.05) {share of cases Jev keeps (\%)};
+  \node[rotate=90, text=black!80] at (-11,3) {accuracy (\%)};
+\end{tikzpicture}
+\end{document}

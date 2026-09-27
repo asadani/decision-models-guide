@@ -1,0 +1,75 @@
+Appendix A. What Was and Was Not Validated.
+
+This appendix lists what was checked in preparing the book, how, and what was not. Read it before you rely on any number in the text.
+
+Checked.
+
+The offline lab. The lab in the decision workflow example runs offline, and its six unit tests pass. The metrics quoted in Chapter 10 were produced by running it: accuracy 0 point eight three three, majority baseline 0 point five zero zero, Bryer 0 point three eight one, negative log likelihood 0 point six five seven, expected calibration error 0 point two two five, coverage 0 point five zero zero and selective accuracy 0 point six six seven on the six synthetic cases.
+
+Figures against page images. Four of the supplied P D Fs were image-only, so their text came from O C R, which garbles tables and numbers. Where a figure in the book comes from one of those P D Fs and matters to an argument, I compared it with a rendered image of the page:
+
+Wahng's cascade table, with its thresholds, shares and accuracies (Chapter 7), and the confidence-group table with group sizes, gaps and weighted contributions (Chapter 6).
+
+Wahng's statements of the 57 percent forwarded-set accuracy and of 84 mistakes fixed and 211 introduced (Chapters 6 and 7).
+
+The launch-week guide's cost figure: 0 point zero zero zero four dollars and 0 point zero three zero four dollars per case, 30400 dollars and 6480 dollars in total (Chapter 7).
+
+The drone layer table in the same guide, whose rates O C R had scrambled (Chapter 12).
+
+Internal consistency, by my arithmetic. These checks are mine, and each is marked as derived where it appears:
+
+The six confidence-group sizes sum to 3080, and the weighted gaps sum to the reported 0 point zero nine seven.
+
+53 invalid labels is 1 point seven two percent of 3080.
+
+The guide's 6480 dollars cascade cost reproduces from its own per-case figures.
+
+The coding-agent document's routing totals reproduce (4 point one five and 6 point one nine), and so do the components in its chart.
+
+Wahng's overall accuracy, kept-set accuracy and 84/211 counts agree with one another to within one answer.
+
+Documentation. The TypeSafe documentation pages, the Laya, Any Jev and Sem If READMEs, the Decision 1.0 and Glee-ner release posts, the model card, the Archestra and LangChain articles, and the NIST excerpt were captured on September 26, 2026. Statements in the book about what they say were checked against those captures. Repository pages on a main branch and documentation for a current model change over time.
+
+Links. Every URL in the book is checked by the build (make verify), which fails on a 4xx or 5xx response.
+
+Not checked.
+
+No live Jev call was made. No A P I key was used and the Python S D K was not installed. The example in Chapter 5 was syntax-checked and compared against the documented A P I. It has not been run against the service.
+
+No benchmark was reproduced. Every measurement in the book is reported by the person who ran it. That includes Banking seventy-seven, the Archestra results, the vendor benchmarks, and the figures other evaluators are quoted as having found.
+
+No local model was run, and no model weights were downloaded.
+
+Other pages of the supplied P D Fs were read through O C R text. Figures that do not appear in the book were not checked against images.
+
+Vendor claims about latency, price and speed are reported as documented at capture time. I did not measure them.
+
+The proposals in Chapters 11 and 12 are proposals. I found no source showing them working, and I did not build them.
+
+Sources with no web address (two Medium articles, a LinkedIn post, and one independently compiled P D F) could not be re-fetched.
+
+Where a source says more than it should.
+
+Several statements in the supplied material were not repeated in the book, or were corrected. They are listed so that you can recognize them elsewhere.
+
+"No validation, parsing or retry is needed." A schema guarantees the shape of the answer. It says nothing about whether the answer is right, and transient failures still need handling (Chapters 1 and 5).
+
+"Jev's 0 percent malformed rate." By TypeSafe's own account this is guaranteed by schema matching and is not an empirical measurement (Chapter 1).
+
+Temperature scaling is impossible on a hosted A P I. Too strong: with unrounded positive probabilities it can be expressed directly, though rounding to two decimals limits it (Chapter 4).
+
+A ten-level, 0 to 9 Score. The documented contract is two to ten ordered levels (Chapter 3).
+
+A 79 percent saving from the cascade. An arithmetic sketch that leaves out the cost of one branch of its own diagram, presented with a traffic split its author calls illustrative (Chapter 7).
+
+Benchmark percentages as accuracy. TypeSafe's workflow benchmark scores agreement with a reference built from other models' answers. It has no independent ground truth, and the launch-week guide notes that no independent reproduction exists yet. Decision 1.0's 54-task suite and Glee-ner's 17-dataset benchmark are also their publishers' own selections. None of these can be merged with another (Chapter 8).
+
+"Glee-ner beat Jev." The release compares against Jev K five, which it describes as an open reproduction and not TypeSafe's Jev (Chapter 8).
+
+"Zero latency, zero hallucinations." The author of the LinkedIn overview wrote this in a reply to a comment. The vendor's own latency claim is 70 to 500 milliseconds, and valid but wrong answers still happen (Chapters 1, 5 and 6).
+
+Limits of the record.
+
+This book describes a field that was less than two weeks old when its sources were written. Model versions, prices, limits and repository contents will change. The measurements are small, mostly single-run, and mostly on one task each. What lasts is the shape of the questions: is the answer valid, is it right, is the number calibrated on your population, and who is entitled to act on it.
+
+The glossary, the full list of sources and the reference tables are in the written edition.

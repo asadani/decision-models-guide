@@ -2,85 +2,91 @@
  {
   "id": "ch00",
   "n": 0,
-  "file": "00-preface.txt",
-  "title": "Preface"
+  "file": "00-card.txt",
+  "title": "Copyright, permissions, and how this was made"
  },
  {
   "id": "ch01",
   "n": 1,
-  "file": "01-how-to-read.txt",
-  "title": "How to read this book"
+  "file": "01-chapter-01.txt",
+  "title": "Chapter 1. The Ticket That Isn't One Question"
  },
  {
   "id": "ch02",
   "n": 2,
-  "file": "02-chapter-01.txt",
-  "title": "Chapter 1. The Ticket That Isn't One Question"
+  "file": "02-chapter-02.txt",
+  "title": "Chapter 2. The Idea in Plain Language"
  },
  {
   "id": "ch03",
   "n": 3,
-  "file": "03-chapter-02.txt",
-  "title": "Chapter 2. What a Decision Model Is, and Isn't"
+  "file": "03-chapter-03.txt",
+  "title": "Chapter 3. What a Decision Model Is, and Isn't"
  },
  {
   "id": "ch04",
   "n": 4,
-  "file": "04-chapter-03.txt",
-  "title": "Chapter 3. Reading the Numbers"
+  "file": "04-chapter-04.txt",
+  "title": "Chapter 4. Reading the Numbers"
  },
  {
   "id": "ch05",
   "n": 5,
-  "file": "05-chapter-04.txt",
-  "title": "Chapter 4. One Real Call"
+  "file": "05-chapter-05.txt",
+  "title": "Chapter 5. One Real Call"
  },
  {
   "id": "ch06",
   "n": 6,
-  "file": "06-chapter-05.txt",
-  "title": "Chapter 5. A Measured Case"
+  "file": "06-chapter-06.txt",
+  "title": "Chapter 6. A Measured Case"
  },
  {
   "id": "ch07",
   "n": 7,
-  "file": "07-chapter-06.txt",
-  "title": "Chapter 6. The Cascade That Made Things Worse"
+  "file": "07-chapter-07.txt",
+  "title": "Chapter 7. The Cascade That Made Things Worse"
  },
  {
   "id": "ch08",
   "n": 8,
-  "file": "08-chapter-07.txt",
-  "title": "Chapter 7. The Alternatives"
+  "file": "08-chapter-08.txt",
+  "title": "Chapter 8. The Alternatives"
  },
  {
   "id": "ch09",
   "n": 9,
-  "file": "09-chapter-08.txt",
-  "title": "Chapter 8. Between Prediction and Action"
+  "file": "09-chapter-09.txt",
+  "title": "Chapter 9. What Changes Around It"
  },
  {
   "id": "ch10",
   "n": 10,
-  "file": "10-chapter-09.txt",
-  "title": "Chapter 9. The Accountability Argument"
+  "file": "10-chapter-10.txt",
+  "title": "Chapter 10. Between Prediction and Action"
  },
  {
   "id": "ch11",
   "n": 11,
-  "file": "11-chapter-10.txt",
-  "title": "Chapter 10. Extending the Pattern to Coding Agents"
+  "file": "11-chapter-11.txt",
+  "title": "Chapter 11. The Accountability Argument"
  },
  {
   "id": "ch12",
   "n": 12,
-  "file": "12-chapter-11.txt",
-  "title": "Chapter 11. What to Build First"
+  "file": "12-chapter-12.txt",
+  "title": "Chapter 12. Extending the Pattern to Coding Agents"
  },
  {
   "id": "ch13",
   "n": 13,
-  "file": "13-appendix-a.txt",
+  "file": "13-chapter-13.txt",
+  "title": "Chapter 13. What to Build First"
+ },
+ {
+  "id": "ch14",
+  "n": 14,
+  "file": "14-appendix-a.txt",
   "title": "Appendix A. What Was and Was Not Validated"
  }
 ]

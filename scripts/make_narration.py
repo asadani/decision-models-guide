@@ -16,30 +16,25 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from narration_say import INLINE, SAY  # noqa: E402
+import mindmaps  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 BOOK = ROOT / "book"
 OUT = ROOT / "narration"
 
-# (track number, output slug, source file, chapter prefix for SAY, intro paragraphs, outro paragraphs)
+# (track number, output slug, source file, chapter prefix for SAY, intro paragraphs, outro paragraphs, title)
+# The card is read from its <!-- narrate-from --> marker: the legal lines stay in print and on the page.
+CH = BOOK / "01-chapters"
 TRACKS = [
-    (0, "preface", BOOK / "00-front-matter/03-preface.md", None,
+    (0, "card", BOOK / "00-front-matter/01-copyright.md", None,
      ["Decision Models. From a Typed Prediction to an Accountable Action.",
-      "By Anuj Sadani. An independent work, not affiliated with TypeSafe AI or any project discussed in it."], []),
-    (1, "how-to-read", BOOK / "00-front-matter/04-how-to-read.md", None, [], []),
-    (2, "chapter-01", BOOK / "01-chapters/01-the-ticket-that-isnt-one-question.md", "01", [], []),
-    (3, "chapter-02", BOOK / "01-chapters/02-what-a-decision-model-is.md", "02", [], []),
-    (4, "chapter-03", BOOK / "01-chapters/03-reading-the-numbers.md", "03", [], []),
-    (5, "chapter-04", BOOK / "01-chapters/04-one-real-call.md", "04", [], []),
-    (6, "chapter-05", BOOK / "01-chapters/05-a-measured-case.md", "05", [], []),
-    (7, "chapter-06", BOOK / "01-chapters/06-the-cascade-that-made-things-worse.md", "06", [], []),
-    (8, "chapter-07", BOOK / "01-chapters/07-the-alternatives.md", "07", [], []),
-    (9, "chapter-08", BOOK / "01-chapters/08-between-prediction-and-action.md", "08", [], []),
-    (10, "chapter-09", BOOK / "01-chapters/09-the-accountability-argument.md", "09", [], []),
-    (11, "chapter-10", BOOK / "01-chapters/10-coding-agents.md", "10", [], []),
-    (12, "chapter-11", BOOK / "01-chapters/11-what-to-build-first.md", "11", [], []),
-    (13, "appendix-a", BOOK / "02-appendices/A-what-was-validated.md", None, [],
-     ["The glossary and the full list of sources are in the written edition."]),
+      "By Anuj Sadani. An independent work, not affiliated with TypeSafe AI or any project discussed in it."], [],
+     "Copyright, permissions, and how this was made"),
+] + [
+    (n, "chapter-%02d" % n, next(CH.glob("%02d-*.md" % n)), "%02d" % n, [], [], None) for n in range(1, 14)
+] + [
+    (14, "appendix-a", BOOK / "02-appendices/A-what-was-validated.md", None, [],
+     ["The glossary, the full list of sources and the reference tables are in the written edition."], None),
 ]
 
 # Words the text-to-speech model gets wrong, respelled for the ear. Order matters.
@@ -127,7 +122,6 @@ def normalize_numbers(text: str) -> str:
     """
     text = re.sub(r"(?<=\d),(?=\d{3}(?!\d))", "", text)
     text = re.sub(r"\$(\d+(?:\.\d+)?)", r"\1 dollars", text)
-    text = re.sub(r"\b1/T\b", "one over T", text)
 
     def decimal(m):
         return m.group(1) + " point " + " ".join(DIGIT_WORDS[int(d)] for d in m.group(2))
@@ -155,6 +149,8 @@ def clean(text: str) -> str:
 
 def convert(path: Path, prefix, intro, outro):
     lines = path.read_text(encoding="utf-8").splitlines()
+    if "<!-- narrate-from -->" in lines:
+        lines = lines[lines.index("<!-- narrate-from -->") + 1:]
     paras = list(intro)
     counts = Counter()
     used = set()
@@ -215,10 +211,19 @@ def convert(path: Path, prefix, intro, outro):
             say("table")
             skip_italic = True
             continue
+        if line.startswith("![]("):                          # a mindmap: read its recap
+            flush()
+            key = re.search(r"map-([\w]+)\.png", line).group(1)
+            paras.append(clean(mindmaps.spoken(key)))
+            i += 1
+            continue
         if line.startswith("!["):
             flush()
             i += 1
             say("figure")
+            continue
+        if line.startswith(("<!--", "\\")):                  # comments and raw LaTeX lines
+            i += 1
             continue
         if line.startswith("#"):
             flush()
@@ -260,7 +265,7 @@ def main():
     OUT.mkdir(exist_ok=True)
     total_words = 0
     index = []
-    for num, slug, path, prefix, intro, outro in TRACKS:
+    for num, slug, path, prefix, intro, outro, title_override in TRACKS:
         paras = convert(path, prefix, intro, outro)
         text = "\n\n".join(paras) + "\n"
         name = "%02d-%s.txt" % (num, slug)
@@ -268,8 +273,11 @@ def main():
         words = len(text.split())
         total_words += words
         # Track title: the source file's first heading, without pandoc attributes.
-        first = next(l for l in path.read_text(encoding="utf-8").splitlines() if l.startswith("# "))
-        title = re.sub(r"\{[^}]*\}", "", first[2:]).strip()
+        if title_override:
+            title = title_override
+        else:
+            first = next(l for l in path.read_text(encoding="utf-8").splitlines() if l.startswith("# "))
+            title = re.sub(r"\{[^}]*\}", "", first[2:]).strip()
         index.append({"id": "ch%02d" % num, "n": num, "file": name, "title": title})
         print("%02d-%-11s %5d words  ~%4.1f min" % (num, slug, words, words / 150))
     produced = {t["file"] for t in index}

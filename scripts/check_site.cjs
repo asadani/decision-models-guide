@@ -47,8 +47,8 @@ const { pathToFileURL } = require('node:url');
         };
       });
       check(errors.length === 0, `${vp.name}: no page errors ${errors.join('; ')}`);
-      check(info.sections >= 16, `${vp.name}: ${info.sections} top-level sections`);
-      check(info.imgs === 5 && info.broken.length === 0, `${vp.name}: ${info.imgs} figures, none broken ${info.broken.join(',')}`);
+      check(info.sections >= 18, `${vp.name}: ${info.sections} top-level sections`);
+      check(info.imgs === 21 && info.broken.length === 0, `${vp.name}: ${info.imgs} figures, none broken ${info.broken.join(',')}`);
       check(info.noAlt === 0, `${vp.name}: every figure has alt text`);
       const cover = await page.evaluate(() => { const i = document.querySelector('.mast-cover'); return i ? { ok: i.complete && i.naturalWidth > 0, alt: !!(i.alt || '').trim() } : null; });
       check(cover && cover.ok && cover.alt, `${vp.name}: cover image loads and has alt text`);
@@ -58,14 +58,14 @@ const { pathToFileURL } = require('node:url');
       check(info.footnoteRefs > 50 && info.footnoteLists >= 12, `${vp.name}: ${info.footnoteRefs} footnote refs in ${info.footnoteLists} lists`);
       check(!info.overflowX, `${vp.name}: no horizontal page overflow`);
       if (info.hasManifest) {
-        check(info.strips >= 14, `${vp.name}: ${info.strips} player strips`);
+        check(info.strips >= 15, `${vp.name}: ${info.strips} player strips`);
         check(info.introReady && info.visibleStrips === info.strips, `${vp.name}: player revealed after audio answered`);
       } else {
         console.log(`note  ${vp.name}: no audio manifest embedded (reading copy only)`);
       }
       if (shots) {
         await page.screenshot({ path: path.join(shots, `site-${vp.name}-top.png`) });
-        for (const [key, sel] of [['ch5', '#chapter-5\\.-a-measured-case'], ['ch6', '#chapter-6\\.-the-cascade-that-made-things-worse'], ['ch8', '#chapter-8\\.-between-prediction-and-action']]) {
+        for (const [key, sel] of [['ch6', '#chapter-6\\.-a-measured-case'], ['ch7', '#chapter-7\\.-the-cascade-that-made-things-worse'], ['ch10', '#chapter-10\\.-between-prediction-and-action']]) {
           const el = await page.$(sel);
           if (el) {
             await el.scrollIntoViewIfNeeded();
