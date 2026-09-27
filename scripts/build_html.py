@@ -2,7 +2,7 @@
 
 Pandoc turns the book's Markdown (without the print-only cover, copyright and
 contents pages) into one HTML page in the project's reading theme. The audio
-manifest written by scripts/generate_audio.py is embedded, and each track is
+manifest written by scripts/render_audio.py is embedded, and each track is
 attached to its chapter. If there is no manifest, the page is built without a
 player and works as a plain reading copy.
 
@@ -84,6 +84,13 @@ def main():
     dest.mkdir(parents=True, exist_ok=True)
     for png in (ROOT / "assets/diagrams/generated").glob("*.png"):
         shutil.copyfile(png, dest / png.name)
+    # Cover: a 720px JPEG for the page (the 1024x1536 PNG stays in assets/cover/).
+    from PIL import Image
+    cover_dir = SITE / "assets" / "cover"
+    cover_dir.mkdir(parents=True, exist_ok=True)
+    with Image.open(ROOT / "assets/cover/decision-models-front-cover.png") as im:
+        im.convert("RGB").resize((720, 1080), Image.LANCZOS).save(
+            cover_dir / "decision-models-front-cover.jpg", quality=88, optimize=True)
     pdf = ROOT / "output" / "decision-models.pdf"
     if pdf.exists():
         shutil.copyfile(pdf, SITE / "decision-models.pdf")

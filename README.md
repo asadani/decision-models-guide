@@ -41,12 +41,12 @@ The narration and the reading edition:
 
 ```text
 python scripts/make_narration.py      # book -> narration/*.txt
-python scripts/generate_audio.py      # narration -> site/audio/*.mp3 (Kokoro-82M, CPU, resumable)
+python scripts/render_audio.py        # narration -> site/audio/*.mp3 via narrate-your-writing (Kokoro-82M, resumable) + manifest
 python scripts/build_html.py          # -> site/index.html with the player
 node scripts/check_site.cjs           # structure and layout checks (Playwright)
 ```
 
-Kokoro needs `pip install kokoro-onnx soundfile numpy` and the two model files (`kokoro-v1.0.onnx`, `voices-v1.0.bin`); `generate_audio.py` looks in `$KOKORO_MODELS`, `./models`, and the sibling `narrate-your-writing` and `mcp-101` folders. Nothing is sent anywhere.
+Rendering uses `narrate.py` from the sibling [`narrate-your-writing`](../narrate-your-writing) checkout (or `$NARRATE_YOUR_WRITING`), including its model files (`python narrate.py --fetch-model` there once). `render_audio.py` only fixes this book's settings and writes the manifest the player reads. Nothing is sent anywhere.
 
 ## Layout
 
@@ -55,6 +55,7 @@ book/00-front-matter, 01-chapters, 02-appendices   the manuscript (Markdown)
 build/          pandoc metadata, the chapter-heading filter, the reading-edition template
 scripts/        build, claim checking, narration, site checks
 assets/diagrams TikZ sources and rendered PNGs (original figures)
+assets/cover   front cover (PNG, 1024x1536) and the prompt it was generated from; the screen PDF opens with it
 examples/       the offline lab (Chapter 8) and the optional live call (Chapter 4)
 narration/      spoken-form scripts, one per audio track (derived from book/)
 site/           the reading edition and its audio

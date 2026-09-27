@@ -53,9 +53,12 @@ manuscript: $(MANUSCRIPT)
 $(MANUSCRIPT): book/00-front-matter/*.md book/01-chapters/*.md book/02-appendices/*.md
 	@bash $(SCRIPTS_DIR)/concat-chapters.sh
 
-$(PDF_OUT): $(MANUSCRIPT) $(METADATA)
-	@echo "build: pandoc -> pdf"
+COVER_PNG    := assets/cover/decision-models-front-cover.png
+
+$(PDF_OUT): $(MANUSCRIPT) $(METADATA) $(BUILD_DIR)/frontcover.tex $(COVER_PNG)
+	@echo "build: pandoc -> pdf (with front cover)"
 	@$(PANDOC) $(MANUSCRIPT) $(COMMON_FLAGS) --metadata-file=$(METADATA) \
+		--include-before-body=$(BUILD_DIR)/frontcover.tex \
 		--pdf-engine=$(PDF_ENGINE) -o $(PDF_OUT)
 
 $(PAPERBACK_OUT): $(MANUSCRIPT) $(PAPERBACK_METADATA)

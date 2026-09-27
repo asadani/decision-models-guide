@@ -49,6 +49,8 @@ const { pathToFileURL } = require('node:url');
       check(info.sections >= 16, `${vp.name}: ${info.sections} top-level sections`);
       check(info.imgs === 5 && info.broken.length === 0, `${vp.name}: ${info.imgs} figures, none broken ${info.broken.join(',')}`);
       check(info.noAlt === 0, `${vp.name}: every figure has alt text`);
+      const cover = await page.evaluate(() => { const i = document.querySelector('.mast-cover'); return i ? { ok: i.complete && i.naturalWidth > 0, alt: !!(i.alt || '').trim() } : null; });
+      check(cover && cover.ok && cover.alt, `${vp.name}: cover image loads and has alt text`);
       check(info.navHome, `${vp.name}: site header has a link home`);
       check(info.tables === info.wrapped && info.tables > 0, `${vp.name}: ${info.tables} tables, all in scroll regions`);
       check(info.footnoteRefs > 50 && info.footnoteLists >= 12, `${vp.name}: ${info.footnoteRefs} footnote refs in ${info.footnoteLists} lists`);

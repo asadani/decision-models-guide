@@ -4,72 +4,72 @@
  "dir": "audio/",
  "tracks": {
   "ch00": {
-   "f": "ch00.mp3",
+   "f": "00-preface.mp3",
    "d": 275.9,
    "t": "Preface"
   },
   "ch01": {
-   "f": "ch01.mp3",
+   "f": "01-how-to-read.mp3",
    "d": 163.3,
    "t": "How to read this book"
   },
   "ch02": {
-   "f": "ch02.mp3",
+   "f": "02-chapter-01.mp3",
    "d": 295.5,
    "t": "Chapter 1. The Ticket That Isn't One Question"
   },
   "ch03": {
-   "f": "ch03.mp3",
+   "f": "03-chapter-02.mp3",
    "d": 347.6,
    "t": "Chapter 2. What a Decision Model Is, and Isn't"
   },
   "ch04": {
-   "f": "ch04.mp3",
+   "f": "04-chapter-03.mp3",
    "d": 444.7,
    "t": "Chapter 3. Reading the Numbers"
   },
   "ch05": {
-   "f": "ch05.mp3",
+   "f": "05-chapter-04.mp3",
    "d": 370.9,
    "t": "Chapter 4. One Real Call"
   },
   "ch06": {
-   "f": "ch06.mp3",
+   "f": "06-chapter-05.mp3",
    "d": 656.8,
    "t": "Chapter 5. A Measured Case"
   },
   "ch07": {
-   "f": "ch07.mp3",
+   "f": "07-chapter-06.mp3",
    "d": 512.6,
    "t": "Chapter 6. The Cascade That Made Things Worse"
   },
   "ch08": {
-   "f": "ch08.mp3",
+   "f": "08-chapter-07.mp3",
    "d": 604.7,
    "t": "Chapter 7. The Alternatives"
   },
   "ch09": {
-   "f": "ch09.mp3",
+   "f": "09-chapter-08.mp3",
    "d": 472.6,
    "t": "Chapter 8. Between Prediction and Action"
   },
   "ch10": {
-   "f": "ch10.mp3",
+   "f": "10-chapter-09.mp3",
    "d": 584.8,
    "t": "Chapter 9. The Accountability Argument"
   },
   "ch11": {
-   "f": "ch11.mp3",
+   "f": "11-chapter-10.mp3",
    "d": 505.6,
    "t": "Chapter 10. Extending the Pattern to Coding Agents"
   },
   "ch12": {
-   "f": "ch12.mp3",
+   "f": "12-chapter-11.mp3",
    "d": 364.0,
    "t": "Chapter 11. What to Build First"
   },
   "ch13": {
-   "f": "ch13.mp3",
+   "f": "13-appendix-a.mp3",
    "d": 407.3,
    "t": "Appendix A. What Was and Was Not Validated"
   }

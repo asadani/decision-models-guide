@@ -17,7 +17,7 @@ archive/
 # Narration pipeline: model weights and the per-chunk synthesis cache are
 # regenerable; audio/.chunks only makes an interrupted render resumable.
 models/
-audio/.chunks/
+**/.chunks/
 
 # Book build artifacts
 output/

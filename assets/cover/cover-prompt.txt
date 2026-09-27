@@ -1,0 +1,9 @@
+Generated with the built-in image generation tool.
+
+Use case: stylized-concept
+Asset type: finished nonfiction technical book front cover, flat rectangular artwork, portrait 2:3 ratio matching a 6 by 9 inch book. Generate at high resolution.
+Primary request: Design an exceptionally refined editorial cover for a serious engineering book about decision models, probabilities, calibration, and the policy separating a prediction from an accountable action. Sophisticated independent publishing design, visually striking at thumbnail scale.
+Text (verbatim): Title "Decision Models"; subtitle "From a Typed Prediction to an Accountable Action"; author "Anuj Sadani". No other text.
+Composition: generous margins, clear typographic hierarchy. Large bold beautifully typeset title in the upper third, split over two lines. Smaller highly legible subtitle underneath. Author near the bottom. Main conceptual illustration in middle/lower section: delicate branching paths representing uncertain predictions approach a precise architectural rectangular gate; one selected vivid path passes through it and resolves into a solid purposeful endpoint. An elegant restrained geometric editorial illustration, tactile ink and paper texture, not a literal flowchart.
+Style: contemporary literary science/technology book design. Warm ivory paper background, near-black deep navy typography and fine branching lines, a carefully restrained vermilion accent for the selected path and gate. Ample negative space, meticulous optical balance, strong typography. Crisp flat print design with subtle tactile texture.
+Constraints: perfectly spelled exact title subtitle author; subtitle rendered once. No extra labels, no fake publisher marks, no robot brains, no circuitry, no stock AI imagery, no neon gradients, no 3D book mockup, no spine or back cover, no drop shadow, no surrounding desk. Image fills the entire front cover.

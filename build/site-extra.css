@@ -5,7 +5,11 @@ main figure{margin:28px 0;text-align:center}
 main figure img{max-width:min(100%,520px);height:auto;background:#fff;border:1px solid var(--rule);padding:10px}
 main figcaption{font-family:var(--mono);font-size:12px;line-height:1.65;color:var(--ink-2);margin:12px auto 0;max-width:62ch;text-align:left}
 main img{max-width:100%;height:auto}
-.title{font-size:clamp(44px,7vw,92px)}
+.mast-grid{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:44px;align-items:start}
+.mast-cover{width:250px;height:auto;display:block;border:1px solid var(--rule);box-shadow:0 8px 24px rgba(20,28,26,.16);margin-top:6px}
+.title{font-size:clamp(36px,4.6vw,66px)}
+@media (max-width:860px){.mast-grid{grid-template-columns:minmax(0,1fr)}.mast-cover{order:-1;width:min(64%,260px);margin:0 0 26px}}
+@media print{.mast-cover{display:none}}
 section.level1{padding:8px 0 40px;scroll-margin-top:20px}
 section.level1>h1{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(30px,4.4vw,52px);line-height:1.05;letter-spacing:-.01em;margin:34px 0 22px;border-top:2px solid var(--ink);padding-top:24px}
 section.level2>h2,main h2{font-size:clamp(24px,3.2vw,34px);margin:34px 0 16px}
