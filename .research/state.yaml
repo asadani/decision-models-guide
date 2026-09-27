@@ -1,0 +1,12 @@
+phase: reported
+question: How should developers understand, evaluate and integrate decision models?
+lens: technical
+started: 2026-09-26
+updated: 2026-09-26
+report: tutorial/decision-models.md
+sources: 33
+claims: 29
+semantic_audit: 29 pass, 0 fail
+verification: pass
+code_tests: 6 pass
+live_api_tested: false

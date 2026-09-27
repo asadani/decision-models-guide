@@ -1,0 +1,157 @@
+[
+  {
+    "url": "https://www.langchain.com/blog/building-prod-with-jev-and-langgraph",
+    "found_in": "links.txt",
+    "scope": "required capture"
+  },
+  {
+    "url": "https://vllm-sr.ai/blog/decision-models/",
+    "found_in": "links.txt",
+    "scope": "required capture"
+  },
+  {
+    "url": "https://archestra.ai/blog/we-tested-jev-on-100-real-agent-calls",
+    "found_in": "links.txt",
+    "scope": "required capture"
+  },
+  {
+    "url": "https://github.com/nokia-applied-research/AnyJev",
+    "found_in": "links.txt",
+    "scope": "required capture"
+  },
+  {
+    "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev?utm_source=chatgpt.com",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://www.ibm.com/products/watsonx-governance?utm_source=chatgpt.com",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/?utm_source=chatgpt.com",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj?utm_source=chatgpt.com",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://typesafe.ai",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://www.youtube.com",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=X117w2Rark8&t=759",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://towardsdatascience.com",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://towardsdatascience.com/a-new-kind-of-model-for-ai-decision-making/",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=X8Outd-khS0&t=124",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://medium.com",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://medium.com/data-science-collective/jev-explained-typesafes-ai-model-for-workflow-automation-8f1a1395dd7a",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=qPN_XZcJf_s&t=489",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=HK1z_8TSvzM",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://www.ultralytics.com",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://www.ultralytics.com/glossary/reinforcement-learning-from-human-feedback-rlhf",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://www.mindstudio.ai",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://www.mindstudio.ai/blog/typesafe-jev-rlcd-vs-rlhf",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://www.mindstudio.ai/blog/jev-system-one-model-launch",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=mSHGRE4Ljpc&t=162",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=bA8WeHYmJko&t=182",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://towardsdatascience.com/jev-vs-llms-when-ai-moves-from-generation-to-decision-making/",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://saraswatmks.github.io",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://saraswatmks.github.io/2026/02/rlhf-rlaif-rlvr.html",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://en.wikipedia.org",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Jev_%28AI_model%29",
+    "found_in": "jev.txt",
+    "scope": "embedded reference; follow selectively"
+  }
+]

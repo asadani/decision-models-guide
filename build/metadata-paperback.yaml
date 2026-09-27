@@ -1,0 +1,60 @@
+---
+# Paperback profile: 6"x9" trim, twoside with a binding gutter, no cover
+# wrappers (a paperback cover is a separate wraparound PDF).
+title: "Decision Models"
+subtitle: "From a Typed Prediction to an Accountable Action"
+author: "Anuj Sadani"
+date: "2026"
+lang: en-US
+toc: true
+toc-depth: 2
+documentclass: book
+classoption:
+  - twoside
+  - 10pt
+  - openright
+geometry:
+  - paperwidth=6in
+  - paperheight=9in
+  - inner=0.875in
+  - outer=0.625in
+  - top=0.9in
+  - bottom=0.85in
+  - headheight=14pt
+  - headsep=16pt
+linestretch: 1.15
+linkcolor: "black"
+urlcolor: "black"
+toccolor: "black"
+header-includes:
+  - \usepackage[T1]{fontenc}
+  - \usepackage{lmodern}
+  - \usepackage{textcomp}
+  - \usepackage{microtype}
+  - \usepackage{parskip}
+  - \usepackage{xurl}
+  - \usepackage{titlesec}
+  - \titleformat{\chapter}[display]{\normalfont\bfseries\Huge}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhf{}
+  - \fancyhead[LE]{\footnotesize\thepage}
+  - \fancyhead[RE]{\footnotesize\nouppercase{\begingroup\renewcommand{\\}{\space}\leftmark\endgroup}}
+  - \fancyhead[LO]{\footnotesize\nouppercase{\begingroup\renewcommand{\\}{\space}\rightmark\endgroup}}
+  - \fancyhead[RO]{\footnotesize\thepage}
+  - \renewcommand{\headrulewidth}{0.4pt}
+  - \emergencystretch=3em
+  - \usepackage{fvextra}
+  - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,breakanywhere,commandchars=\\\{\}}
+  - \fvset{breaklines=true,breakanywhere=true,fontsize=\footnotesize}
+  - \RecustomVerbatimEnvironment{verbatim}{Verbatim}{breaklines,breakanywhere,fontsize=\footnotesize}
+  - \AtBeginDocument{\let\maketitle\relax}
+  # emptypage strips headers from the blank versos \cleardoublepage inserts.
+  - \usepackage{emptypage}
+  - \let\realtableofcontents\tableofcontents
+  - \renewcommand{\tableofcontents}{}
+  - \usepackage{booktabs}
+  - \usepackage{longtable}
+  - \usepackage{array}
+  - \usepackage{float}
+---

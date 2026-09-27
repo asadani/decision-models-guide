@@ -1,0 +1,81 @@
+Chapter 5. A Measured Case.
+
+Ten days after Jev's launch, Nhu Wahng published the result of deciding to stop reading other people's benchmarks and run one. The test used 3080 bank-support messages, each labeled with one of 77 intents such as "card arrival," "wrong exchange rate" and "top-up failed," and asked Jev and an open model the same question of every message: which intent is this?
+
+The article publishes its setup, its intervals and its failures. It is also one person's run on one dataset, and everything below is reported, not reproduced. I compared each figure with the article's page images, since the text copy I was given came through O C R. Where a number below is mine, it says so.
+
+The setup.
+
+The dataset is Banking seventy-seven, a public collection of English bank-support messages, 3080 of them in its test split with 40 per intent. Every message has a valid label, so the test has no "other" category. Jev, at version jev one point thirteen point zero, answered one Choice question whose options were all 77 intents. The comparison model was Kwen three Coder Next, eighty B, A three B, served locally with v L L M, 4-bit weights, temperature zero and thinking disabled. Both models got the same categories and short descriptions. Jev was asked through a Choice question, and Kwen was prompted to return exactly one category name.
+
+After a 100-example pilot to settle the prompts, each model ran once over the full set, alternating in blocks of 250.
+
+Accuracy.
+
+Jev scored eighty-one point one percent, with a ninety-five percent interval from seventy-nine point six to eighty-two point four. Qwen scored seventy-six point four percent, with an interval from seventy-four point eight to seventy-seven point eight. Jev's lead is four point seven points, with an interval from three point seven to five point seven. Median time per call was two hundred forty-five milliseconds for Jev and two hundred forty-nine for Qwen. Input tokens per call were two thousand two hundred eighty-eight for Jev and one thousand three hundred fifty for Qwen.
+
+Jev was ahead by 4.7 points, and the interval on the difference stays above zero. Speed was close, and the author declines to read anything into it: Kwen ran locally with prefix caching, while Jev's timing included a network request from Japan to a remote server.
+
+Kwen also produced 53 invalid labels, 1 point seven two percent of its answers, because nothing prevented it from returning a string outside the allowed set. Jev could not. My arithmetic agrees with the article's: 53 of 3080 is 1 point seven two percent, and if every invalid Kwen answer were counted as correct, Kwen would reach about 78.1 percent and Jev would still lead by about three points.
+
+The author is explicit about the reach of this result: one Kwen model, one prompt, one inference configuration. It is evidence for this setup and not a claim that Jev beats every language model.
+
+Confidence, bin by bin.
+
+The more useful result is what happened to Jev's confidence field. The author sorted all 3080 answers into six groups by that value and compared each group's average confidence with how often it was right.
+
+Six groups. Below zero point five: one hundred seventeen answers, a gap of about zero point zero one. Zero point five to zero point seven: two hundred seventy-seven answers, a gap of zero point one seven. Zero point seven to zero point nine: three hundred ninety answers, a gap of zero point two seven. Zero point nine to zero point nine nine: five hundred three answers, a gap of zero point one six. Zero point nine nine to just below one: two hundred seventy-seven answers, a gap of zero point zero seven. And exactly one point zero zero: one thousand five hundred sixteen answers, a gap of zero point zero three. Weighted by group size, the gaps add up to zero point zero nine seven.
+
+The group sizes sum to 3080 and the last column sums to 0 point zero nine seven, which is the article's stated expected calibration error. Both checks are mine. In every group the reported confidence sat above the observed accuracy, which is what overconfidence looks like.
+
+The extremes held up. Below 0.5, Jev averaged 0 point four one confidence and was right 39 percent of the time. At exactly 1 point zero zero it was right 97.1 percent of the time across 1516 messages, with 44 mistakes. The middle was worse. Between 0.7 and 0.9, average confidence was 0 point eight one and accuracy was 53 percent. Between 0.9 and 0 point nine nine, average confidence was 0 point nine five and accuracy was 79 percent.
+
+Two things follow. First, a threshold on this field means different things in different places. The behavior above 0 point nine nine tells you nothing about the behavior between 0.7 and 0.9. Second, "exactly 1 point zero zero" is not the same as certainty. TypeSafe's primer says outcomes assigned probability 1.0 "should occur 100% of the time." Here the top group was right 97.1 percent of the time. One possible reason, which I have not tested, is that Jev rounds its probabilities to two decimal places, so a value displayed as 1 point zero zero can stand for anything from about 0 point nine nine five up.
+
+The author also checked the two signals separately, the confidence field and the largest option probability, and found them almost identical on this data, with a small edge for the confidence field. An evaluation the article cites found the reverse, with the largest probability tracking accuracy better. This is why Chapter 3 said to measure both.
+
+Numbers from other people's tests.
+
+The article collects several results from other evaluators. I have not seen their sources, so they are second-hand.
+
+One evaluation reported expected calibration errors of 0 point zero eight two for Choice, 0 point zero seven nine for yes-or-no questions and 0 point three two five for Score. Calibration looked close on the first two and much weaker on Score.
+
+Another found all 40 predictions at confidence exactly 1 point zero zero zero were correct. A third reported 100 percent accuracy at 0 point nine nine and above, covering 60.2 percent of its traffic.
+
+One benchmark gave Jev 30 messages that belonged to no available category and offered no "none of these" option. Every one was filed under a listed category, with confidence of at least 0 point nine nine.
+
+In another, a "priority" rule that could not be determined from the text was applied anyway. Accuracy fell to 44.7 percent while average confidence stayed at 0 point seven four.
+
+Read together, they say the same thing three ways. A high number is not knowledge. If the state doesn't contain what the question needs, or no option fits, the model still answers, and it can answer confidently. That is the case for the explicit "other" option in Chapter 2, and for testing the case where it is the right answer.
+
+A benchmark where accuracy misleads.
+
+Archestra tested Jev on a different kind of task: labeling 100 real tool calls from coding-agent sessions by their information-flow properties, as a classifier that sits on a security boundary. Their first observation was about the dataset. Seventy-nine percent of calls were harmless and stayed local, so a classifier that always answers "benign" scores 79 percent. A model at 75 percent is worse than a line of code.
+
+The results are on the 337 of 400 decisions where three independent judge models agreed.
+
+Sonnet five scored ninety-eight percent, and caught four of the nine dangerous calls. Jev scored ninety-three percent, and caught seven of the nine. Always answering benign scored seventy-nine percent, and caught none. The other models tested scored between forty-eight and eighty-three percent zero-shot.
+
+In this test the frontier model was more accurate than Jev, and it missed more of the calls that mattered. Every one of Sonnet's eight errors on the strict set was a leak, a dangerous call allowed through. It treated an outbound search query as harmless reading, when the query itself can carry data out of a poisoned session.
+
+Four of the seven models tested scored below the constant 79 percent. That count is mine, read from Archestra's table.
+
+Archestra also ran Jev five times. Across identical repeats, 394 to 398 of 400 labels matched, and nearly all flips were near-ties. But only 35 to 39 percent of the probabilities were bit-identical on the same payload, and they drifted by as much as 0 point one seven. Reordering the option keys changed the outcome on five to seven calls per hundred for three-way labels, and about four in a hundred after subtracting baseline noise, costing 1.5 to 2 points of accuracy. The report's conclusion is worth keeping: Jev's labels are mostly stable, its probabilities float, and if you plan to rely on a tight probability threshold, that matters.
+
+What this does and doesn't show.
+
+These are three experiments by three parties. None reproduces the others, and none tests your traffic. Wahng used one English dataset with no out-of-category messages, one local model on one G P U, and one remote model version. Archestra used 100 calls, and its own review of the results found that some of the disagreement came from unclear instructions in its benchmark, not from the models.
+
+What they do show is a pattern. The model was better than a comparison model on one task, worse than a frontier model on another, overconfident in the middle of its range on the first and useful as an escalation signal on the second. A summary that says "Jev is accurate" or "Jev is unreliable" is wrong in both directions. The accurate summary has to name the task, the population, the baseline and the error cost.
+
+In practice.
+
+Always compute the constant baseline. If your traffic is 79 percent one class, that is the number to beat.
+
+Bin your own confidence values, report n per bin, and look at the middle of the range, not only the top.
+
+Include cases that belong to no category, and cases the state cannot answer, and check what the model does with them.
+
+Repeat your evaluation and permute your option order. Measure how much the decisions move, and set the width of your threshold accordingly.
+
+Report errors by cost. A 98 percent classifier that misses the dangerous cases can be worse than a 93 percent one that catches them.

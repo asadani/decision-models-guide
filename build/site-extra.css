@@ -1,0 +1,47 @@
+/* Additions for the book's reading edition. Tokens come from preview.css. */
+
+/* tables and figures */
+main figure{margin:28px 0;text-align:center}
+main figure img{max-width:min(100%,520px);height:auto;background:#fff;border:1px solid var(--rule);padding:10px}
+main figcaption{font-family:var(--mono);font-size:12px;line-height:1.65;color:var(--ink-2);margin:12px auto 0;max-width:62ch;text-align:left}
+main img{max-width:100%;height:auto}
+.title{font-size:clamp(44px,7vw,92px)}
+section.level1{padding:8px 0 40px;scroll-margin-top:20px}
+section.level1>h1{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(30px,4.4vw,52px);line-height:1.05;letter-spacing:-.01em;margin:34px 0 22px;border-top:2px solid var(--ink);padding-top:24px}
+section.level2>h2,main h2{font-size:clamp(24px,3.2vw,34px);margin:34px 0 16px}
+.rail br{display:none}
+
+/* long URLs (bibliography, footnotes) wrap instead of widening the page */
+main a,main li,main p{overflow-wrap:anywhere}
+
+/* footnotes */
+aside.footnotes{font-size:13px;overflow-wrap:anywhere;border-top:1px solid var(--rule);margin-top:34px;padding-top:12px}
+section.footnotes,.footnotes{font-size:13px;overflow-wrap:anywhere;border-top:1px solid var(--rule);margin-top:34px;padding-top:12px}
+.footnotes ol{padding-left:22px}.footnotes li{margin-bottom:12px}
+a.footnote-ref{text-decoration:none;font-family:var(--mono);font-size:.8em}
+
+/* narration player */
+.aud{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border:1px solid var(--rule);border-left:3px solid var(--wire);background:var(--paper-2);padding:9px 14px;border-radius:2px;margin:0 0 26px;max-width:66ch}
+.aud-play{flex:0 0 auto;width:30px;height:30px;padding:0;border-radius:50%;border:1px solid var(--ink);background:var(--ink);color:var(--paper-2);display:grid;place-items:center;font-size:11px;line-height:1;cursor:pointer}
+.aud-play:hover{opacity:.85}
+.aud-lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);flex:0 0 auto}
+.aud.on .aud-lbl{color:var(--wire)}
+.aud-seek{flex:1 1 150px;min-width:120px;accent-color:var(--wire);height:16px;cursor:pointer}
+.aud-time{font-family:var(--mono);font-size:11px;color:var(--ink-2);flex:0 0 auto;font-variant-numeric:tabular-nums}
+.aud-time b{color:var(--ink);font-weight:500}
+.aud-rate{flex:0 0 auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;border:1px solid var(--rule);background:transparent;color:var(--ink-2);padding:4px 7px;border-radius:2px;min-width:42px;cursor:pointer}
+.aud-rate:hover{background:var(--paper-3)}
+.aud-intro{display:none;align-items:center;gap:14px;flex-wrap:wrap;margin-top:22px}
+.aud-intro.ready{display:flex}
+.aud-start{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--ink);background:var(--ink);color:var(--paper-2);padding:10px 16px;border-radius:2px;cursor:pointer}
+.aud-start:hover{opacity:.88}
+.aud-meta{font-family:var(--mono);font-size:11.5px;color:var(--ink-2)}
+.aud-bar{position:fixed;left:50%;transform:translateX(-50%) translateY(140%);bottom:16px;z-index:40;display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--ink);color:var(--paper-2);padding:9px 10px 9px 14px;border-radius:3px;box-shadow:0 6px 22px rgba(20,28,26,.26);transition:transform .22s ease;max-width:calc(100vw - 24px)}
+.aud-bar.up{transform:translateX(-50%) translateY(0)}
+.aud-bar .t{font-family:var(--mono);font-size:11px;letter-spacing:.06em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:36vw}
+.aud-bar .t b{color:var(--paper);font-weight:500}
+.aud-bar button{border:1px solid rgba(244,245,241,.34);background:transparent;color:var(--paper-2);border-radius:2px;padding:4px 9px;font-family:var(--mono);font-size:11px;cursor:pointer}
+.aud-bar button:hover{background:rgba(244,245,241,.14)}
+.aud-bar button[aria-pressed="true"]{background:var(--paper-2);color:var(--ink);border-color:var(--paper-2)}
+@media (max-width:520px){.aud-bar .t{max-width:28vw}.aud-seek{flex-basis:100%;order:5}}
+@media print{.aud,.aud-bar,.aud-intro{display:none!important}main figure img{border:0}}

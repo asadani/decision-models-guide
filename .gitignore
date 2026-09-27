@@ -1,0 +1,25 @@
+# Scratch: one-off scripts, tool output, regenerable OCR page renders.
+_scratch/
+
+# Python
+__pycache__/
+*.pyc
+
+# Third-party inputs and captured pages are research records, not material to
+# republish. They stay on disk for the source ledger and claim gate.
+/*.pdf
+.research/snapshots/
+.research/alternatives/snapshots/
+.research/extracted/
+
+# Narration pipeline: model weights and the per-chunk synthesis cache are
+# regenerable; audio/.chunks only makes an interrupted render resumable.
+models/
+audio/.chunks/
+
+# Book build artifacts
+output/
+
+# Render log for the narration
+site/audio/render.log
+.research/web/

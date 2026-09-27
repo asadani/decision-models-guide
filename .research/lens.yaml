@@ -1,0 +1,50 @@
+lens: technical
+name: Technical
+use_when: >
+  Evaluating software, frameworks, protocols, architectures, or infrastructure.
+  Framework comparisons, build-versus-buy, dependency decisions, performance
+  questions, migration risk.
+
+tiers:
+  T1: >
+    The artifact itself. Source code, the RFC or specification, the changelog, the
+    issue tracker, a benchmark you ran, the actual API response. Facts you can
+    re-derive without trusting anyone.
+  T2: >
+    First-party technical documentation and engineering write-ups from the
+    maintainers, plus independent reproducible benchmarks that publish their
+    method and configuration.
+  T3: >
+    Practitioner reports with specifics: conference talks, engineering blogs
+    describing a real deployment, detailed Stack Overflow answers, well-argued
+    comparison posts by someone with no stake.
+  T4: >
+    Vendor benchmarks and marketing, aggregator listicles, undated tutorials,
+    LLM-generated comparison pages, "top 10 X in 2026" articles.
+
+recency:
+  default_window_years: 2
+  note: >
+    Software rots fast. A benchmark against a version two majors back is
+    describing a different program. Always record the version the source tested
+    and check it against the version under consideration -- a source that does
+    not state its version is T4 regardless of who wrote it.
+
+strong_evidence: >
+  A benchmark that publishes its configuration, hardware, dataset, and version,
+  and that you could rerun. Second best: the same finding reported by two
+  independent deployments at different scales.
+
+traps:
+  - "A vendor benchmark is strong evidence of what the vendor claims and weak evidence of what you will see."
+  - "Benchmarks run on the vendor's preferred workload, hardware, or tuning."
+  - "GitHub stars and download counts as proxies for quality or maintenance."
+  - "A stale comparison table whose numbers were true for a version nobody runs."
+  - "Reading a maintainer's aspiration in a roadmap as a shipped feature."
+  - "'It scales' with no number attached to it."
+
+preferred_sources:
+  - Official docs and specifications
+  - Repository source, releases, and issues
+  - Independent benchmark suites that publish method
+  - Post-incident reviews and engineering blogs describing real production use

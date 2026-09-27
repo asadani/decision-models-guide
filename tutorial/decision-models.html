@@ -1,0 +1,1236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decision models — from prediction to action</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="preview.css">
+<style>html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to tutorial</a>
+<div class="sitebar"><span class="brand">Decision models guide</span><a href="decision-models.md">Markdown source ↗</a></div>
+<div class="frame">
+<header class="masthead">
+<div class="partno"><b>A practical developer guide</b><span>Research · 26 September 2026</span></div>
+<h1 class="title">Decision models<br><span class="thin">From prediction<br>to action.</span></h1>
+<p class="subtitle">Understand Jev and its alternatives. Evaluate uncertainty, write an execution policy, and record the decisions your software makes.</p>
+<div class="legend"><span class="key host">Model judgment</span><span class="key server">Application policy</span><span class="key wire">Evidence &amp; evaluation</span></div>
+</header>
+<div class="split">
+<nav id="TOC" class="rail" aria-label="Chapters"><div class="rail-title">In this guide</div><ul>
+<li><a href="#start-with-the-decision-not-the-model"
+id="toc-start-with-the-decision-not-the-model">1. Start with the
+decision, not the model</a></li>
+<li><a href="#learn-the-three-jev-primitives"
+id="toc-learn-the-three-jev-primitives">2. Learn the three Jev
+primitives</a></li>
+<li><a href="#distinguish-probabilities-confidence-and-calibration"
+id="toc-distinguish-probabilities-confidence-and-calibration">3.
+Distinguish probabilities, confidence and calibration</a></li>
+<li><a href="#make-one-documented-jev-call"
+id="toc-make-one-documented-jev-call">4. Make one documented Jev
+call</a></li>
+<li><a href="#compare-approaches-beneath-similar-interfaces"
+id="toc-compare-approaches-beneath-similar-interfaces">5. Compare
+approaches beneath similar interfaces</a></li>
+<li><a href="#build-an-evaluation-before-increasing-automation"
+id="toc-build-an-evaluation-before-increasing-automation">6. Build an
+evaluation before increasing automation</a></li>
+<li><a href="#test-the-fallback-on-the-cases-it-will-actually-receive"
+id="toc-test-the-fallback-on-the-cases-it-will-actually-receive">7. Test
+the fallback on the cases it will actually receive</a></li>
+<li><a href="#put-an-explicit-policy-between-prediction-and-action"
+id="toc-put-an-explicit-policy-between-prediction-and-action">8. Put an
+explicit policy between prediction and action</a></li>
+<li><a href="#turn-the-concerns-in-jev.txt-into-testable-controls"
+id="toc-turn-the-concerns-in-jev.txt-into-testable-controls">9. Turn the
+concerns in jev.txt into testable controls</a></li>
+<li><a href="#extend-the-pattern-to-coding-agents"
+id="toc-extend-the-pattern-to-coding-agents">10. Extend the pattern to
+coding agents</a></li>
+<li><a href="#a-practical-sequence-for-the-next-build"
+id="toc-a-practical-sequence-for-the-next-build">11. A practical
+sequence for the next build</a></li>
+<li><a href="#what-was-and-was-not-validated"
+id="toc-what-was-and-was-not-validated">What was and was not
+validated</a></li>
+<li><a href="#references" id="toc-references">References</a></li>
+</ul></nav>
+<main id="main" tabindex="-1"><p><em>A practical tutorial for Python
+developers, centered on Jev and several alternatives. Sources checked 26
+September 2026.</em></p>
+<p>An application receives this message:</p>
+<blockquote>
+<p>“My invoice contains the same charge twice. Please refund the
+duplicate.”</p>
+</blockquote>
+<p>Before writing a reply, the application needs to decide which queue
+owns the ticket, whether a refund was requested, and whether any action
+is authorized. Those are three different questions. We will keep them
+separate throughout this tutorial.</p>
+<p>You will build a small decision workflow, learn to interpret its
+outputs, compare implementation families, measure mistakes, and design a
+boundary between a prediction and an action. The code includes an
+offline lesson that needs no API key and a separate optional Jev call.
+The examples and diagrams are original; empirical findings are
+attributed to their sources.</p>
+<section id="start-with-the-decision-not-the-model" class="level2">
+<h2>1. Start with the decision, not the model</h2>
+<p>For this tutorial, call a <em>decision model</em> a component that
+takes evidence and a defined question, then evaluates permitted answers.
+That is a functional definition, not a claim that every such component
+shares an architecture or training method.</p>
+<p>For example, Jev’s Choice primitive selects from options the caller
+supplies.<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> A useful application contract might
+look like this:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;state&quot;</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">&quot;message&quot;</span><span class="fu">:</span> <span class="st">&quot;My invoice contains the same charge twice.&quot;</span><span class="fu">},</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;question&quot;</span><span class="fu">:</span> <span class="st">&quot;Which team should handle this?&quot;</span><span class="fu">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;options&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;billing&quot;</span><span class="ot">,</span> <span class="st">&quot;technical&quot;</span><span class="ot">,</span> <span class="st">&quot;other&quot;</span><span class="ot">]</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>This is a conceptual contract, not the Jev HTTP schema. A
+hypothetical result might assign <code>billing=0.90</code>,
+<code>technical=0.05</code> and <code>other=0.05</code>. Nothing in that
+result establishes that the charge was duplicated in the payment
+database. The customer has reported a problem; the application still
+needs to investigate it.</p>
+<pre class="mermaid">flowchart TD
+    T[Ticket text] --&gt; E[Evidence prepared by code]
+    Q[Question and allowed answers] --&gt; M[Decision component]
+    E --&gt; M
+    M --&gt; P[Typed prediction]
+    P --&gt; V[Validation and application policy]
+    V --&gt; R[Route ticket]
+    V --&gt; H[Request evidence or review]</pre>
+<p><em>Figure 1. Original tutorial diagram. The bounded choice contract
+is based on TypeSafe’s <a
+href="https://docs.typesafe.ai/primitives/choice">Choice
+documentation</a>; the application boundary is our design.</em></p>
+<p>Before choosing a model, classify the work:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Question</th>
+<th>Starting implementation to test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Does the invoice total equal the sum of its line items?</td>
+<td>Exact arithmetic in code</td>
+</tr>
+<tr>
+<td>Does this message ask for a refund?</td>
+<td>Semantic classifier or decision model</td>
+</tr>
+<tr>
+<td>Which of our permitted queues best fits the request?</td>
+<td>Rules baseline, then a decision model</td>
+</tr>
+<tr>
+<td>What should a helpful reply say?</td>
+<td>Template or generative model</td>
+</tr>
+<tr>
+<td>May this account receive money?</td>
+<td>Verified business facts and authorization policy, with any learned
+judgments kept explicit</td>
+</tr>
+</tbody>
+</table>
+<p>An LLM returning a constrained JSON label is a legitimate comparison
+baseline. Do not compare a carefully engineered decision API only
+against a deliberately fragile “please return JSON” prompt. Measure the
+alternatives your application would actually deploy.</p>
+<p>The central boundary is <strong>valid output versus correct
+interpretation</strong>. TypeSafe attributes its zero-percent formatting
+figure to schema matching.<a href="#fn2" class="footnote-ref"
+id="fnref2" role="doc-noteref"><sup>2</sup></a> That does not establish
+zero wrong choices. Its own Jev limitation page documents numerical,
+adversarial-input and consistency problems.<a href="#fn3"
+class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+</section>
+<section id="learn-the-three-jev-primitives" class="level2">
+<h2>2. Learn the three Jev primitives</h2>
+<p>Use the current documentation for the contract, rather than copying
+SDK syntax out of article screenshots.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Primitive</th>
+<th>What to ask</th>
+<th>What to inspect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Choice</td>
+<td>Which one of these queues fits?</td>
+<td>Selected option and distribution across options<a href="#fn4"
+class="footnote-ref" id="fnref4"
+role="doc-noteref"><sup>4</sup></a></td>
+</tr>
+<tr>
+<td>Noul</td>
+<td>Is a refund explicitly requested?</td>
+<td>Probability that the answer is yes<a href="#fn5"
+class="footnote-ref" id="fnref5"
+role="doc-noteref"><sup>5</sup></a></td>
+</tr>
+<tr>
+<td>Score</td>
+<td>Which ordered urgency description fits?</td>
+<td>Distribution across ordered rubric levels<a href="#fn6"
+class="footnote-ref" id="fnref6"
+role="doc-noteref"><sup>6</sup></a></td>
+</tr>
+</tbody>
+</table>
+<section id="choice-describe-the-alternatives" class="level3">
+<h3>Choice: describe the alternatives</h3>
+<p>Prefer criteria with operational meaning:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>criteria <span class="op">=</span> {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;billing&quot;</span>: <span class="st">&quot;Charges, invoices, payment disputes, or refunds&quot;</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;technical&quot;</span>: <span class="st">&quot;Product faults or integration failures&quot;</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;other&quot;</span>: <span class="st">&quot;Insufficient information or outside these categories&quot;</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Adding <code>other</code> gives the model a permitted way to
+represent taxonomy mismatch. It does not guarantee that every unfamiliar
+request will land there. Include unrelated and ambiguous tickets in the
+evaluation set.</p>
+<p>Keep two issues separate: “the model found one option much better
+than the others” and “the available options adequately represent the
+situation.” A narrow answer set can make the former easy while the
+latter is false.</p>
+</section>
+<section id="noul-preserve-the-number" class="level3">
+<h3>Noul: preserve the number</h3>
+<p>A Noul is a probability of yes, not a Python Boolean.<a href="#fn7"
+class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> For
+illustration, <code>0.03</code> supports a different interpretation from
+<code>0.97</code>; both would become <code>True</code> if carelessly
+passed through Python’s <code>bool()</code>.</p>
+<p>Ask literal, testable questions. “Does the customer explicitly
+request a refund?” is narrower than “Should we refund?” The second folds
+customer intent, evidence, account verification, policy and execution
+authority into one opaque judgment.</p>
+</section>
+<section id="score-define-the-rubric-before-using-its-average"
+class="level3">
+<h3>Score: define the rubric before using its average</h3>
+<p>Our urgency rubric will be:</p>
+<ol type="1">
+<li>No time pressure stated.</li>
+<li>Time-sensitive issue without a stated outage.</li>
+<li>Current service outage or inability to operate.</li>
+</ol>
+<p>The SDK represents these as zero-based ordered levels and reports a
+probability-weighted expected score.<a href="#fn8" class="footnote-ref"
+id="fnref8" role="doc-noteref"><sup>8</sup></a> With illustrative
+probabilities <code>[0.10, 0.30, 0.60]</code>, the expectation is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo stretchy="false" form="prefix">(</mo><mn>0.10</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>1</mn><mo stretchy="false" form="prefix">(</mo><mn>0.30</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mn>0.60</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>1.50</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+0(0.10) + 1(0.30) + 2(0.60) = 1.50.
+</annotation></semantics></math></p>
+<p>That is an index on our rubric. It is not a measured number of hours,
+a monetary loss, or proof that the real-world gaps between levels are
+equal. Keep the full distribution when different mixtures would require
+different actions.</p>
+</section>
+</section>
+<section id="distinguish-probabilities-confidence-and-calibration"
+class="level2">
+<h2>3. Distinguish probabilities, confidence and calibration</h2>
+<p>For a categorical distribution, let <code>p_max</code> be the largest
+option probability. That is one signal you can evaluate. A provider’s
+field named <code>confidence</code> is another.</p>
+<p>TypeSafe derives Choice/Score confidence from the distribution; Noul
+has no separate confidence field.<a href="#fn9" class="footnote-ref"
+id="fnref9" role="doc-noteref"><sup>9</sup></a> Do not interpret every
+provider’s <code>confidence=0.9</code> as “90% of these decisions will
+be correct.” Laya explicitly warns that a confidence threshold ported
+from Jev does not transfer.<a href="#fn10" class="footnote-ref"
+id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
+<p><strong>Calibration is an empirical relationship.</strong> Consider a
+hypothetical held-out set where 100 predictions have top probability
+close to <code>0.8</code>. If about 80 selected labels are correct, that
+group is consistent with top-label calibration. If only 55 are correct,
+it is overconfident on that group. Finite groups have sampling
+uncertainty, so a small discrepancy is not automatically meaningful.
+TypeSafe’s own primer describes calibration over groups rather than a
+promise about one answer.<a href="#fn11" class="footnote-ref"
+id="fnref11" role="doc-noteref"><sup>11</sup></a></p>
+<p>Now suppose two groups both have 80 correct predictions out of 100.
+In one, every error merely sends a ticket to the wrong queue. In the
+other, errors trigger unauthorized refunds. Their empirical accuracy is
+identical; our willingness to automate them should differ. Calibration
+informs a policy. It does not choose the policy’s objective.</p>
+<section id="where-rlhf-rlvr-and-rlcd-fit" class="level3">
+<h3>Where RLHF, RLVR and RLCD fit</h3>
+<p>Use these as descriptions of objectives, not interchangeable
+labels:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Term</th>
+<th>Learning signal to understand</th>
+<th>Evidence boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RLHF</td>
+<td>Human feedback/preferences about outputs</td>
+<td>InstructGPT is a primary research example.<a href="#fn12"
+class="footnote-ref" id="fnref12"
+role="doc-noteref"><sup>12</sup></a></td>
+</tr>
+<tr>
+<td>RLVR</td>
+<td>Rewards based on verifiable outcomes, such as checkable answers</td>
+<td>Read this alongside reasoning-RL research such as DeepSeek-R1; it is
+not a calibration guarantee.<a href="#fn13" class="footnote-ref"
+id="fnref13" role="doc-noteref"><sup>13</sup></a></td>
+</tr>
+<tr>
+<td>RLCD</td>
+<td>TypeSafe’s name for training aimed at calibrated decisions</td>
+<td>Vendor-described approach; the full proprietary recipe was not
+reproduced here.<a href="#fn14" class="footnote-ref" id="fnref14"
+role="doc-noteref"><sup>14</sup></a></td>
+</tr>
+</tbody>
+</table>
+<p>The supplied notes group RLVR and RLCD together too closely. A reward
+for obtaining a correct result and a reward for representing uncertainty
+honestly target different properties. A training objective is also not
+evidence that calibration survives every distribution shift.</p>
+<p>Recalibration is another distinct step. Temperature scaling is
+studied in the calibration literature.<a href="#fn15"
+class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a>
+For strictly positive categorical probabilities, its algebra can be
+written:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>i</mi></msub><mo>=</mo><mfrac><msubsup><mi>p</mi><mi>i</mi><mrow><mn>1</mn><mi>/</mi><mi>T</mi></mrow></msubsup><mrow><munder><mo>∑</mo><mi>j</mi></munder><msubsup><mi>p</mi><mi>j</mi><mrow><mn>1</mn><mi>/</mi><mi>T</mi></mrow></msubsup></mrow></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mi>T</mi><mo>&gt;</mo><mn>0</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+q_i = \frac{p_i^{1/T}}{\sum_j p_j^{1/T}}, \qquad T&gt;0.
+</annotation></semantics></math></p>
+<p>Fit <code>T</code> on a separate labeled calibration set. At positive
+<code>T</code>, this transformation preserves the ranking; it changes
+sharpness, not the winner. Rounded or zero API probabilities complicate
+reconstructing the original distribution. Recalibration is not a way to
+recover missing evidence or repair a wrong ranking.</p>
+</section>
+</section>
+<section id="make-one-documented-jev-call" class="level2">
+<h2>4. Make one documented Jev call</h2>
+<p>The optional example is <a
+href="../examples/jev_triage.py">jev_triage.py</a>. It uses the
+documented <code>system_one</code> method with named questions. The
+documented HTTP endpoint is
+<code>POST https://api.typesafe.ai/v1/systemone</code>.<a href="#fn16"
+class="footnote-ref" id="fnref16"
+role="doc-noteref"><sup>16</sup></a></p>
+<p>Create a separate Python environment, install
+<code>typesafe-sdk==0.7.1</code> (the captured <a
+href="https://docs.typesafe.ai/sdk/python/changelog">Python
+changelog</a> documents this release), set <code>TYPESAFE_API_KEY</code>
+through your environment, and run:</p>
+<pre class="text"><code>python examples/jev_triage.py</code></pre>
+<p>The key portion is:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typesafe_sdk <span class="im">import</span> Choice, Noul, Score, TypeSafeClient</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>questions <span class="op">=</span> {</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;team&quot;</span>: Choice(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        instructions<span class="op">=</span><span class="st">&quot;Choose the team best suited to this ticket.&quot;</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        criteria<span class="op">=</span>{</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;billing&quot;</span>: <span class="st">&quot;Charges, invoices, or refunds&quot;</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;technical&quot;</span>: <span class="st">&quot;Product faults or integration failures&quot;</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;other&quot;</span>: <span class="st">&quot;Missing information or outside these categories&quot;</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;refund_requested&quot;</span>: Noul(</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        instructions<span class="op">=</span><span class="st">&quot;Does the message explicitly request a refund?&quot;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;urgency&quot;</span>: Score(instructions<span class="op">=</span><span class="st">&quot;Rate urgency from stated facts.&quot;</span>, criteria<span class="op">=</span>[</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;No time pressure stated&quot;</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Time-sensitive issue without a stated outage&quot;</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Current service outage or inability to operate&quot;</span>,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    ]),</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> TypeSafeClient(model<span class="op">=</span><span class="st">&quot;jev-1.13.0&quot;</span>, timeout<span class="op">=</span><span class="fl">20.0</span>) <span class="im">as</span> client:</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> client.system_one(</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        state<span class="op">=</span>{<span class="st">&quot;message&quot;</span>: <span class="st">&quot;Please refund the duplicate invoice charge.&quot;</span>},</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        questions<span class="op">=</span>questions,</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result.choices[<span class="st">&quot;team&quot;</span>].probabilities)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result.nouls[<span class="st">&quot;refund_requested&quot;</span>].noul)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result.scores[<span class="st">&quot;urgency&quot;</span>].score)</span></code></pre></div>
+<p>The complete file supplies more precise instructions and explicitly
+stops before any account action. The API shape was checked against
+captured documentation and the Python source was syntax-checked. The SDK
+was not installed here, and no live API request was made during
+preparation.</p>
+<p>Two maintenance details matter. The Python SDK changed Score criteria
+to an ordered sequence in version 0.6.0.<a href="#fn17"
+class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a>
+TypeSafe also recommends pinning the model version after tuning
+thresholds, because aliases can move.<a href="#fn18"
+class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a>
+Record the SDK version, returned model identifier, question schema and
+policy version together when you evaluate an integration.</p>
+<p>For application deployment, add timeout/error handling that routes to
+review, input minimization, retry limits, observability and an
+idempotent action handler. The small example demonstrates the call
+contract; it is not a production service.</p>
+</section>
+<section id="compare-approaches-beneath-similar-interfaces"
+class="level2">
+<h2>5. Compare approaches beneath similar interfaces</h2>
+<p>Select comparison candidates by what you need to control: the hosted
+service, model weights, runtime, labels, calibration procedure or
+application policy. A familiar request shape does not make outputs or
+thresholds interchangeable.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Candidate</th>
+<th>Distinction worth investigating</th>
+<th>First question for your evaluation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jev / TypeSafe</td>
+<td>Hosted typed-decision interface</td>
+<td>Does its uncertainty signal separate acceptable automation from
+review on our tickets?</td>
+</tr>
+<tr>
+<td>Laya</td>
+<td>Encoder checkpoints with task specialization</td>
+<td>Which checkpoint and input/option budgets actually match our
+workload?</td>
+</tr>
+<tr>
+<td>Decision 1.0</td>
+<td>Family spanning encoder and adapted Qwen branches</td>
+<td>Which release/runtime fits our evidence length and latency
+constraints?</td>
+</tr>
+<tr>
+<td>GLiNER2.5-Decide</td>
+<td>Schema-driven classification with related structured
+capabilities</td>
+<td>Do we need multi-label decisions, extraction or cross-output
+constraints?</td>
+</tr>
+<tr>
+<td>AnyJev</td>
+<td>Readout/debiasing/calibration toolkit around an existing LLM</td>
+<td>Can we improve our existing model’s decision interface without
+confusing debiasing with calibration?</td>
+</tr>
+<tr>
+<td>SemIf</td>
+<td>Option-conditioned readout plus workload calibration support</td>
+<td>How do option wording, ordering and calibration data change
+results?</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Laya:</strong> the current repository distinguishes base
+checkpoints from a specialized typed-decisions checkpoint, and describes
+near-chance base performance on its typed-decisions evaluation.<a
+href="#fn19" class="footnote-ref" id="fnref19"
+role="doc-noteref"><sup>19</sup></a> That is a reason to check the exact
+checkpoint, not to declare every Laya use ineffective. Its confidence
+semantics require separate threshold validation.<a href="#fn20"
+class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a>
+The supplied Doom article is a useful harness-design story, not a
+general accuracy benchmark.</p>
+<p><strong>Decision 1.0:</strong> the captured release describes encoder
+and adapted Qwen branches. It also says native vLLM-SR integration and
+Open Decision API support are planned next.<a href="#fn21"
+class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a>
+Do not turn a roadmap into an installation claim. Its release benchmark
+should remain attached to its own selected task suite, runtime and
+weighting.</p>
+<p><strong>GLiNER2.5-Decide:</strong> its model card identifies a 340M
+English classification model.<a href="#fn22" class="footnote-ref"
+id="fnref22" role="doc-noteref"><sup>22</sup></a> Fastino’s release also
+describes structured extraction and constraints, but explicitly says
+classification answers themselves do not return evidence spans.<a
+href="#fn23" class="footnote-ref" id="fnref23"
+role="doc-noteref"><sup>23</sup></a> Requesting an extraction task is
+different from receiving a causal explanation for every classification.
+Another crucial naming correction: the release says JevK5 is an open
+reproduction, not TypeSafe Jev.<a href="#fn24" class="footnote-ref"
+id="fnref24" role="doc-noteref"><sup>24</sup></a> Its leaderboard cannot
+be retold as “GLiNER beat Jev.”</p>
+<p><strong>AnyJev:</strong> L0 debiasing does not by itself establish
+calibrated uncertainty; the documented L1 calibration has a
+distribution-shift boundary.<a href="#fn25" class="footnote-ref"
+id="fnref25" role="doc-noteref"><sup>25</sup></a><a href="#fn26"
+class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a>
+Treat the project as a toolkit with multiple levels, not as one
+pretrained checkpoint or a promise that no fitting is ever involved.</p>
+<p><strong>SemIf:</strong> returned distributions are conditional on the
+supplied options.<a href="#fn27" class="footnote-ref" id="fnref27"
+role="doc-noteref"><sup>27</sup></a> Its current repository includes
+workload-specific calibration, which leaves the selected option
+unchanged.<a href="#fn28" class="footnote-ref" id="fnref28"
+role="doc-noteref"><sup>28</sup></a> Older descriptions calling the
+entire project uncalibrated are incomplete.</p>
+<p>For a fair application comparison, fix the cases and labeling policy
+first. Let each system use its supported interface, but record
+differences in prompts, candidates, truncation, quantization, hardware
+and retries. Run a rules or majority-class baseline alongside them.
+There is no universal winner established by this research pack.</p>
+</section>
+<section id="build-an-evaluation-before-increasing-automation"
+class="level2">
+<h2>6. Build an evaluation before increasing automation</h2>
+<p>Our suggested dataset design has four groups:</p>
+<ul>
+<li>Representative ordinary tickets, sampled from the intended
+traffic.</li>
+<li>Ambiguous and missing-information cases.</li>
+<li>Rare but costly mistakes, deliberately oversampled for diagnostic
+testing.</li>
+<li>Stress cases: negation, contradictory evidence, injected
+instructions, unfamiliar topics, languages and option permutations.</li>
+</ul>
+<p>Keep production-weighted results separate from stress-suite results.
+Otherwise, an adversarially enriched suite can misrepresent expected
+traffic, while an ordinary random sample can hide rare harm. Have domain
+reviewers resolve the labeling policy before asking models to
+compete.</p>
+<pre class="mermaid">flowchart TD
+    D[Labeled cases with provenance] --&gt; S[Split before tuning]
+    S --&gt; A[Development: wording and taxonomy]
+    S --&gt; B[Calibration: thresholds and transforms]
+    S --&gt; C[Test: frozen final evaluation]
+    A --&gt; F[Freeze candidate configuration]
+    B --&gt; F
+    F --&gt; C
+    C --&gt; O[Report quality, coverage and failure costs]</pre>
+<p><em>Figure 2. Original tutorial evaluation protocol. Keep related
+cases together when splitting, and use a later time period when testing
+temporal generalization.</em></p>
+<p>Track multiple outcomes:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Why include it?</th>
+<th>Common mistake</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accuracy and majority baseline</td>
+<td>Does the model improve on a trivial choice?</td>
+<td>Ignoring class imbalance</td>
+</tr>
+<tr>
+<td>Per-class precision/recall and confusion matrix</td>
+<td>Which mistakes does it make?</td>
+<td>Reporting only an average</td>
+</tr>
+<tr>
+<td>Brier score / negative log likelihood</td>
+<td>How good are the distributions?</td>
+<td>Evaluating only the winning label</td>
+</tr>
+<tr>
+<td>Reliability bins / calibration error</td>
+<td>Does the chosen probability signal match outcomes?</td>
+<td>Calling any <code>confidence</code> field a probability</td>
+</tr>
+<tr>
+<td>Coverage and selective risk</td>
+<td>How much work is automated, and how often is that work wrong?</td>
+<td>Reporting high accepted accuracy without accepted volume</td>
+</tr>
+<tr>
+<td>Latency distribution and cost</td>
+<td>What does the complete workflow consume?</td>
+<td>Reporting only warm model compute time</td>
+</tr>
+<tr>
+<td>Repeated and permuted inputs</td>
+<td>How stable is the decision near the policy boundary?</td>
+<td>Assuming repeatability from a typed schema</td>
+</tr>
+</tbody>
+</table>
+<p>Archestra’s report used 337 judge-agreed decisions from an initial
+400-label, 100-call sample.<a href="#fn29" class="footnote-ref"
+id="fnref29" role="doc-noteref"><sup>29</sup></a> It reports mostly
+stable Jev labels alongside drifting probabilities and some sensitivity
+to option order.<a href="#fn30" class="footnote-ref" id="fnref30"
+role="doc-noteref"><sup>30</sup></a> Those findings motivate stress
+tests; they do not establish behavior on every workload or current
+version. Judge agreement is also an operational reference, not
+infallible ground truth.</p>
+<section id="run-the-offline-metrics-lesson" class="level3">
+<h3>Run the offline metrics lesson</h3>
+<pre class="text"><code>python examples/decision_workflow.py
+python -m unittest discover -s examples -p &quot;test_*.py&quot; -v</code></pre>
+<p>The script uses six explicitly synthetic probability distributions.
+It implements:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">Brier</mtext><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></munderover><mo stretchy="false" form="prefix">(</mo><msub><mi>p</mi><mrow><mi>i</mi><mi>k</mi></mrow></msub><mo>−</mo><msub><mi>y</mi><mrow><mi>i</mi><mi>k</mi></mrow></msub><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">
+\text{Brier} = \frac{1}{N}\sum_{i=1}^{N}\sum_{k=1}^{K}(p_{ik}-y_{ik})^2
+</annotation></semantics></math></p>
+<p>and top-label expected calibration error:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">ECE</mtext><mo>=</mo><munder><mo>∑</mo><mi>b</mi></munder><mfrac><mrow><mo stretchy="false" form="prefix">|</mo><msub><mi>B</mi><mi>b</mi></msub><mo stretchy="false" form="prefix">|</mo></mrow><mi>N</mi></mfrac><mrow><mo stretchy="true" form="prefix">|</mo><mi mathvariant="normal">accuracy</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>B</mi><mi>b</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mi mathvariant="normal">meanTopProbability</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>B</mi><mi>b</mi></msub><mo stretchy="false" form="postfix">)</mo><mo stretchy="true" form="postfix">|</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">
+\text{ECE} = \sum_b \frac{|B_b|}{N}
+\left|\operatorname{accuracy}(B_b)-\operatorname{meanTopProbability}(B_b)\right|.
+</annotation></semantics></math></p>
+<p>Here <code>y</code> is one-hot. The Brier convention sums over
+classes and averages over cases; some libraries use different
+normalization. The implementation clips probabilities only inside the
+logarithm when computing negative log likelihood. ECE depends on binning
+and is descriptive, especially for tiny samples.</p>
+<p>In this constructed dataset, five of six top labels are correct. A
+probability-only cutoff of <code>0.8</code> would accept four cases,
+three correct. Our policy also sends <code>other</code> to review, so
+only three cases automatically route, and one of those three is wrong.
+This is intentionally a counterexample to assuming that a threshold
+improves accepted accuracy. It says nothing about Jev’s performance.</p>
+<p>For real data, add uncertainty intervals, class/subgroup slices where
+appropriate, denied/reviewed-case outcomes, and a threshold sweep chosen
+on calibration data. Freeze the threshold before final test
+evaluation.</p>
+</section>
+</section>
+<section id="test-the-fallback-on-the-cases-it-will-actually-receive"
+class="level2">
+<h2>7. Test the fallback on the cases it will actually receive</h2>
+<p>It is tempting to route uncertain cases to a larger model and assume
+quality improves. Instead, compare the two models on exactly those
+forwarded cases.</p>
+<p>Let <code>S</code> be the subset the gate forwards. The quality
+question is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">Accuracy</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">fallback</mtext><mo>∣</mo><mi>S</mi><mo stretchy="false" form="postfix">)</mo><mo>&gt;</mo><mrow><mi mathvariant="normal">Accuracy</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">primary</mtext><mo>∣</mo><mi>S</mi><mo stretchy="false" form="postfix">)</mo><mi>?</mi></mrow><annotation encoding="application/x-tex">
+\operatorname{Accuracy}(\text{fallback}\mid S)
+&gt; \operatorname{Accuracy}(\text{primary}\mid S)?
+</annotation></semantics></math></p>
+<p>The fallback’s overall benchmark score does not answer that
+conditional question. Its failures can overlap the primary model’s
+difficult cases.</p>
+<p>In the supplied Banking77 article, Nhu Hoang reports that routing Jev
+answers below the exact-1.00 confidence split to the tested Qwen
+configuration fixed 84 errors but introduced 211.<a href="#fn31"
+class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a>
+This is one author-reported experiment, not a reproduced result here or
+proof that cascades generally fail. Its value is the test it suggests:
+count both corrected and newly introduced mistakes.</p>
+<pre class="mermaid">flowchart TD
+    P[Primary prediction] --&gt; G{Frozen gate}
+    G --&gt;|Accept| A[Primary decision]
+    G --&gt;|Forward| F[Fallback prediction]
+    F --&gt; V[Validate against same schema and policy]
+    V --&gt; H[Execute permitted route or review]
+    A --&gt; V
+    H --&gt; J[Join outcomes]
+    J --&gt; M[Measure whole cascade and forwarded subset]</pre>
+<p><em>Figure 3. Original tutorial diagram. The gate changes the
+population seen by the fallback.</em></p>
+<p>For a sequential fallback design, a simple expected-cost model
+is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><msub><mi>C</mi><mrow><mi>p</mi><mi>r</mi><mi>i</mi><mi>m</mi><mi>a</mi><mi>r</mi><mi>y</mi></mrow></msub><mo>+</mo><mi>q</mi><msub><mi>C</mi><mrow><mi>f</mi><mi>a</mi><mi>l</mi><mi>l</mi><mi>b</mi><mi>a</mi><mi>c</mi><mi>k</mi></mrow></msub><mo>+</mo><msub><mi>C</mi><mrow><mi>r</mi><mi>e</mi><mi>t</mi><mi>r</mi><mi>i</mi><mi>e</mi><mi>v</mi><mi>a</mi><mi>l</mi></mrow></msub><mo>+</mo><msub><mi>C</mi><mrow><mi>p</mi><mi>o</mi><mi>l</mi><mi>i</mi><mi>c</mi><mi>y</mi></mrow></msub><mo>+</mo><msub><mi>C</mi><mrow><mi>h</mi><mi>a</mi><mi>n</mi><mi>d</mi><mi>o</mi><mi>f</mi><mi>f</mi></mrow></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">
+C = C_{primary} + q C_{fallback} + C_{retrieval} + C_{policy} + C_{handoff},
+</annotation></semantics></math></p>
+<p>where <code>q</code> is the forwarded fraction. Add human review,
+retries and infrastructure when relevant. A lower per-call model price
+does not automatically yield a cheaper completed workflow. End-to-end
+latency also needs its own measurement; a serial forwarded request pays
+for both model calls.</p>
+</section>
+<section id="put-an-explicit-policy-between-prediction-and-action"
+class="level2">
+<h2>8. Put an explicit policy between prediction and action</h2>
+<p>The offline lab’s policy deliberately authorizes only queue routing.
+A refund request can have probability <code>1.0</code> while the policy
+still requires review for a refund action. This distinction is enforced
+by code and covered by a test.</p>
+<p>The order is intentional:</p>
+<ol type="1">
+<li>Validate label membership, finite probabilities and a normalized
+distribution.</li>
+<li>Check that required evidence exists.</li>
+<li>Check whether the action is in the permitted automatic-action
+class.</li>
+<li>Handle ties, <code>other</code>, and uncertainty.</li>
+<li>Produce a routing proposal or a review outcome.</li>
+</ol>
+<p>The code does not perform external side effects. Its <code>0.8</code>
+threshold is a teaching parameter, not a recommended production cutoff.
+Even after a policy permits an action, a real executor needs current
+authorization, business invariants and duplicate-action protection.
+Recheck relevant state at execution time so a stale decision cannot
+bypass a changed condition.</p>
+<p>For high-impact applications, define review requirements
+independently of confidence. A high score should not override an absent
+mandate, missing evidence or an explicit prohibition. If the model call
+times out or its response fails validation, the workflow needs a defined
+non-executing path.</p>
+</section>
+<section id="turn-the-concerns-in-jev.txt-into-testable-controls"
+class="level2">
+<h2>9. Turn the concerns in jev.txt into testable controls</h2>
+<p>The notes raise an important hypothetical: a system could optimize
+for commercial interests while presenting its output as neutral. This is
+a threat model to examine, not an allegation supported here about any
+named model provider.</p>
+<p>We will call the proposed application layer a <strong>decision
+control service</strong>. It records why an action was allowed, checks
+policy, and observes outcomes. NIST’s AI RMF Core groups risk work under
+Govern, Map, Measure and Manage; that provides context, not
+certification of this proposed design.<a href="#fn32"
+class="footnote-ref" id="fnref32"
+role="doc-noteref"><sup>32</sup></a></p>
+<pre class="mermaid">flowchart TD
+    E[Evidence with provenance] --&gt; M[Model judgment]
+    M --&gt; C[Decision control service]
+    O[Declared objective and conflicts] --&gt; C
+    P[Versioned policy and authority] --&gt; C
+    C --&gt; R[Review or request more evidence]
+    C --&gt; A[Permitted action]
+    R --&gt; L[Decision and review record]
+    A --&gt; L
+    L --&gt; U[Outcome and appeal monitoring]
+    U --&gt; T[Evaluate policy or model changes]</pre>
+<p><em>Figure 4. Original proposed architecture inspired by the supplied
+concerns. This is application design, not a claimed Jev
+feature.</em></p>
+<section
+id="record-the-decision-without-pretending-to-explain-hidden-reasoning"
+class="level3">
+<h3>Record the decision without pretending to explain hidden
+reasoning</h3>
+<p>A production receipt should identify the question/schema,
+model/version, available alternatives, evidence references, probability
+distribution, threshold signal/value, policy version, execution
+authority, conflict disclosures, review path and eventual outcome.</p>
+<p>The example’s receipt is deliberately smaller. It includes an input
+fingerprint, prediction and policy result. <strong>A hash is not an
+immutable log.</strong> Immutability would require additional storage
+controls and access policy. A fingerprint alone cannot reconstruct the
+evidence, and retaining evidence needs privacy-aware access and
+retention rules. Replaying inputs to a hosted service also does not
+guarantee bit-identical outputs.</p>
+<p>An evidence record answers “what was available and which rule
+permitted execution?” It should not be presented as the model’s private
+chain of reasoning or a causal explanation of its internals.</p>
+</section>
+<section id="evaluate-incentives-sensitivity-and-disagreement"
+class="level3">
+<h3>Evaluate incentives, sensitivity and disagreement</h3>
+<p>For a recommendation task, declare whether the objective is user
+suitability, revenue, support cost, or an explicit combination. Design
+paired tests that vary a sponsorship field while holding legitimate
+relevance facts fixed. A changed outcome is a signal to investigate, not
+proof of undisclosed misconduct.</p>
+<p>Use similarly careful tests for irrelevant wording, missing evidence
+and demographic proxies. Arbitrary attribute swaps may produce
+implausible records; they are sensitivity probes, not automatically
+causal fairness estimates.</p>
+<p>A shadow model can reveal disagreement, but agreement is not a
+certificate. Two systems may share training sources, label biases or
+blind spots. Keep deterministic constraints and an accountable review
+process alongside shadow judgments.</p>
+<p>Finally, monitor consequences: reversals, appeal outcomes, delayed
+failures, review volume, subgroup error concentrations and changes after
+a model or threshold update. Track what is unknown. If rejected
+opportunities never receive an observable outcome, the dataset has a
+selection problem rather than a complete record of success.</p>
+<p>Do not turn the notes’ proposed
+<code>impact × uncertainty × incentives × autonomy</code> formula into
+an authoritative risk score. Without defined scales and validation, it
+is a brainstorming aid. Explicit action classes and non-negotiable
+policy checks are easier to inspect and test.</p>
+</section>
+</section>
+<section id="extend-the-pattern-to-coding-agents" class="level2">
+<h2>10. Extend the pattern to coding agents</h2>
+<p>The supplied coding-agent PDF identifies itself as an independent
+synthesis, not a TypeSafe publication.<a href="#fn33"
+class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a>
+Its context-selection and routing ideas are useful advanced design
+proposals. Treat its illustrative cost and token-share figures
+accordingly.</p>
+<p>Consider an agent investigating a failing test. Our proposed workflow
+might retrieve file candidates, ask a decision component which are
+relevant, assemble a bounded context, and route the task to a suitable
+model. Tool execution remains behind explicit permissions.</p>
+<pre class="mermaid">flowchart TD
+    S[Versioned task state and repository facts] --&gt; K[Retrieve candidate context]
+    K --&gt; D[Relevance and task-routing judgments]
+    D --&gt; B[Code assembles bounded context]
+    B --&gt; L[Generator proposes patch or tool action]
+    L --&gt; P[Permissions and deterministic validation]
+    P --&gt; X[Tool execution]
+    X --&gt; S
+    S --&gt; O[Read-only evaluation and review]</pre>
+<p><em>Figure 5. Original proposed agent design. The source of
+inspiration is the independent <a
+href="../Jev-Engineering-for-Coding-Agents.pdf">coding-agent study</a>,
+not copied artwork.</em></p>
+<p>Test whether context filtering preserves the evidence needed for the
+final task. Keep binding instructions and unresolved constraints outside
+discretionary relevance pruning. Choosing a tool also does not supply
+arbitrary valid arguments; extraction or generation still needs
+validation.</p>
+<p>Measure routing at workflow level. A symbolic comparison is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>r</mi><mi>o</mi><mi>u</mi><mi>t</mi><mi>e</mi><mi>d</mi></mrow></msub><mo>=</mo><msub><mi>C</mi><mrow><mi>r</mi><mi>o</mi><mi>u</mi><mi>t</mi><mi>e</mi><mi>r</mi></mrow></msub><mo>+</mo><msub><mi>C</mi><mrow><mi>h</mi><mi>e</mi><mi>l</mi><mi>p</mi><mi>e</mi><mi>r</mi><mspace width="0.222em"></mspace><mi>i</mi><mi>n</mi><mi>p</mi><mi>u</mi><mi>t</mi></mrow></msub><mo>+</mo><msub><mi>C</mi><mrow><mi>h</mi><mi>e</mi><mi>l</mi><mi>p</mi><mi>e</mi><mi>r</mi><mspace width="0.222em"></mspace><mi>o</mi><mi>u</mi><mi>t</mi><mi>p</mi><mi>u</mi><mi>t</mi></mrow></msub><mo>+</mo><msub><mi>C</mi><mrow><mi>h</mi><mi>a</mi><mi>n</mi><mi>d</mi><mi>o</mi><mi>f</mi><mi>f</mi></mrow></msub><mo>+</mo><msub><mi>C</mi><mrow><mi>p</mi><mi>a</mi><mi>r</mi><mi>e</mi><mi>n</mi><mi>t</mi><mspace width="0.222em"></mspace><mi>r</mi><mi>e</mi><mi>r</mi><mi>e</mi><mi>a</mi><mi>d</mi></mrow></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">
+C_{routed} = C_{router} + C_{helper\ input} + C_{helper\ output}
++ C_{handoff} + C_{parent\ reread}.
+</annotation></semantics></math></p>
+<p>Compare that with the direct path under the same success criterion.
+Cache reuse, prefix changes, summaries and repeated handoffs can change
+the result. Use observed token accounting and latency rather than
+importing someone else’s list-price calculation.</p>
+<p>LangChain’s supplied <a
+href="https://www.langchain.com/blog/building-prod-with-jev-and-langgraph">Jev
+and LangGraph article</a> is further reading for orchestration. The
+tutorial’s next implementation exercise would make classification,
+policy, review and execution separate graph nodes, then test
+interruption and resumption without repeating a side effect.</p>
+</section>
+<section id="a-practical-sequence-for-the-next-build" class="level2">
+<h2>11. A practical sequence for the next build</h2>
+<ol type="1">
+<li><strong>Choose one reversible decision.</strong> Ticket routing is a
+better first experiment than moving money. Define <code>other</code>,
+missing evidence and review behavior.</li>
+<li><strong>Create an adjudicated evaluation set.</strong> Keep
+development, calibration and final test cases separate; include costly
+edge cases as a named stress suite.</li>
+<li><strong>Run baselines and two candidates.</strong> Record exact
+versions, question schemas, truncation, full distributions and
+end-to-end timing.</li>
+<li><strong>Tune thresholds and probability calibration on calibration
+data.</strong> Keep prompt and taxonomy development in the development
+split. Measure accepted error rates and review load across thresholds.
+Validate any fallback on forwarded cases.</li>
+<li><strong>Run in shadow mode.</strong> Compare proposed actions with
+actual handling, without allowing the candidate to execute them.</li>
+<li><strong>Enable limited routing with receipts.</strong> Add rollback,
+rate limits, review capacity, policy ownership and duplicate-action
+protection.</li>
+<li><strong>Review outcomes before widening authority.</strong> Model
+quality, policy quality and available evidence each need their own
+explanation.</li>
+</ol>
+<p>Try three exercises with the offline lab: change the threshold and
+inspect coverage; insert a confident wrong prediction and observe
+calibration metrics; request a refund action and confirm that
+probability cannot bypass policy. Then replace the synthetic predictions
+with a saved, labeled evaluation run while keeping the same policy and
+metrics contract.</p>
+<p>The purpose of the next build is to establish a measured operating
+boundary: which judgments this configuration handles, under what
+evidence and policy, with which residual errors. That boundary is the
+useful deliverable, even when the correct result is that some cases must
+stay with people.</p>
+</section>
+<section id="what-was-and-was-not-validated" class="level2">
+<h2>What was and was not validated</h2>
+<p>The local lab ran successfully and six tests passed. They cover
+high-probability unauthorized actions, missing evidence, malformed
+distributions, ties, hand-calculated metrics and zero coverage. The
+optional Jev example was syntax-checked, not live-tested; its SDK was
+not installed in this workspace. No model weights were downloaded and no
+vendor benchmark was reproduced.</p>
+<p>All five supplied PDFs and four required web links were captured.
+OCR-derived experiment numbers remain attributed and should be checked
+against original pages before creating a published quantitative chart.
+Company images were not embedded; all diagrams are new tutorial
+compositions. See the <a href="../.research/synthesis.md">research
+synthesis</a>, <a href="plan.md">learning plan</a>, and <a
+href="assets.md">asset policy</a> for provenance and remaining gaps.</p>
+</section>
+<section id="references" class="level2">
+<h2>References</h2>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Choice selects one option from a caller-defined set. -
+<a href="https://docs.typesafe.ai/primitives/choice.md">TypeSafe
+documentation: primitives/choice</a>. Accessed 2026-09-26; T2. Evidence:
+s-006 in the <a href="../.research/sources.jsonl">source ledger</a>.<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>TypeSafe attributes its zero-percent figure to schema
+matching, not empirical task correctness. - <a
+href="https://typesafe.ai/blog/introducing-system-one-models-and-jev">Introducing
+System One Models and Jev</a>. Accessed 2026-09-26; T4. Evidence: s-004
+in the <a href="../.research/sources.jsonl">source ledger</a>.<a
+href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>TypeSafe documents numerical, adversarial-input and
+cross-question consistency limitations for Jev 1.13. - <a
+href="https://docs.typesafe.ai/model-jaggedness/jev-1.13.md">TypeSafe
+documentation: model-jaggedness/jev-1.13</a>. Accessed 2026-09-26; T2.
+Evidence: s-011 in the <a href="../.research/sources.jsonl">source
+ledger</a>.<a href="#fnref3" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Choice selects one option from a caller-defined set. -
+<a href="https://docs.typesafe.ai/primitives/choice.md">TypeSafe
+documentation: primitives/choice</a>. Accessed 2026-09-26; T2. Evidence:
+s-006 in the <a href="../.research/sources.jsonl">source ledger</a>.<a
+href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Noul returns the probability of yes. - <a
+href="https://docs.typesafe.ai/primitives/noul.md">TypeSafe
+documentation: primitives/noul</a>. Accessed 2026-09-26; T2. Evidence:
+s-008 in the <a href="../.research/sources.jsonl">source ledger</a>.<a
+href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Score uses ordered descriptive levels. - <a
+href="https://docs.typesafe.ai/primitives/score.md">TypeSafe
+documentation: primitives/score</a>. Accessed 2026-09-26; T2. Evidence:
+s-007 in the <a href="../.research/sources.jsonl">source ledger</a>.<a
+href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Noul returns the probability of yes. - <a
+href="https://docs.typesafe.ai/primitives/noul.md">TypeSafe
+documentation: primitives/noul</a>. Accessed 2026-09-26; T2. Evidence:
+s-008 in the <a href="../.research/sources.jsonl">source ledger</a>.<a
+href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>The SDK Score answer reports a probability-weighted
+expected rubric score. - <a
+href="https://docs.typesafe.ai/sdk/python/api/types/responses.md">TypeSafe
+documentation: sdk/python/api/types/responses</a>. Accessed 2026-09-26;
+T2. Evidence: s-012 in the <a href="../.research/sources.jsonl">source
+ledger</a>.<a href="#fnref8" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>TypeSafe confidence is derived from the output
+distribution; Noul has no separate confidence field. - <a
+href="https://docs.typesafe.ai/confidence.md">TypeSafe documentation:
+confidence</a>. Accessed 2026-09-26; T2. Evidence: s-009 in the <a
+href="../.research/sources.jsonl">source ledger</a>.<a href="#fnref9"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Laya documents that a Jev confidence threshold does not
+transfer directly. - <a
+href="https://raw.githubusercontent.com/NandhaKishorM/laya/main/README.md">Laya
+repository README</a>. Accessed 2026-09-26; T1. Evidence: s-022 in the
+<a href="../.research/sources.jsonl">source ledger</a>.<a
+href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>TypeSafe calls its decision-training approach RLCD and
+describes calibration over groups, not a guarantee about one prediction.
+- <a
+href="https://docs.typesafe.ai/introduction/machine-learning-primer.md">TypeSafe
+documentation: introduction/machine-learning-primer</a>. Accessed
+2026-09-26; T2. Evidence: s-010 in the <a
+href="../.research/sources.jsonl">source ledger</a>.<a href="#fnref11"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>InstructGPT research describes fine-tuning from human
+feedback. - <a href="https://arxiv.org/abs/2203.02155">Training language
+models to follow instructions with human feedback</a>. Accessed
+2026-09-26; T1. Evidence: s-017 in the <a
+href="../.research/sources.jsonl">source ledger</a>.<a href="#fnref12"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>The DeepSeek-R1 paper describes reinforcement learning
+for reasoning. - <a href="https://arxiv.org/abs/2501.12948">DeepSeek-R1:
+Incentivizing Reasoning Capability in LLMs via Reinforcement
+Learning</a>. Accessed 2026-09-26; T1. Evidence: s-018 in the <a
+href="../.research/sources.jsonl">source ledger</a>.<a href="#fnref13"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>TypeSafe calls its decision-training approach RLCD and
+describes calibration over groups, not a guarantee about one prediction.
+- <a
+href="https://docs.typesafe.ai/introduction/machine-learning-primer.md">TypeSafe
+documentation: introduction/machine-learning-primer</a>. Accessed
+2026-09-26; T2. Evidence: s-010 in the <a
+href="../.research/sources.jsonl">source ledger</a>.<a href="#fnref14"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>Guo et al. study neural-network probability calibration
+and temperature scaling. - <a
+href="https://proceedings.mlr.press/v70/guo17a.html">On Calibration of
+Modern Neural Networks</a>. Accessed 2026-09-26; T1. Evidence: s-016 in
+the <a href="../.research/sources.jsonl">source ledger</a>.<a
+href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>The documented Jev HTTP endpoint is POST
+https://api.typesafe.ai/v1/systemone. - <a
+href="https://docs.typesafe.ai/introduction/quickstart.md">TypeSafe
+documentation: introduction/quickstart</a>. Accessed 2026-09-26; T2.
+Evidence: s-005 in the <a href="../.research/sources.jsonl">source
+ledger</a>.<a href="#fnref16" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>Python SDK version 0.6.0 changed Score criteria to an
+ordered sequence. - <a
+href="https://docs.typesafe.ai/sdk/python/changelog.md">TypeSafe
+documentation: sdk/python/changelog</a>. Accessed 2026-09-26; T2.
+Evidence: s-015 in the <a href="../.research/sources.jsonl">source
+ledger</a>.<a href="#fnref17" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p>TypeSafe advises pinning a version after tuning
+thresholds because aliases can move. - <a
+href="https://docs.typesafe.ai/models.md">TypeSafe documentation:
+models</a>. Accessed 2026-09-26; T2. Evidence: s-014 in the <a
+href="../.research/sources.jsonl">source ledger</a>.<a href="#fnref18"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p>Laya distinguishes near-chance base-checkpoint
+typed-decisions performance from its specialized checkpoint. - <a
+href="https://raw.githubusercontent.com/NandhaKishorM/laya/main/README.md">Laya
+repository README</a>. Accessed 2026-09-26; T1. Evidence: s-022 in the
+<a href="../.research/sources.jsonl">source ledger</a>.<a
+href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p>Laya documents that a Jev confidence threshold does not
+transfer directly. - <a
+href="https://raw.githubusercontent.com/NandhaKishorM/laya/main/README.md">Laya
+repository README</a>. Accessed 2026-09-26; T1. Evidence: s-022 in the
+<a href="../.research/sources.jsonl">source ledger</a>.<a
+href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p>Decision 1.0 provides encoder and adapted Qwen
+branches; native vLLM-SR integration is described as planned in its
+release. - <a
+href="https://vllm-sr.ai/blog/decision-models/">Introducing Decision
+1.0</a>. Accessed 2026-09-26; T4. Evidence: s-002 in the <a
+href="../.research/sources.jsonl">source ledger</a>.<a href="#fnref21"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p>GLiNER2.5-Decide is documented as a 340M English
+classification model. - <a
+href="https://huggingface.co/fastino/GLiNER2.5-Decide/raw/main/README.md">GLiNER2.5-Decide
+model card</a>. Accessed 2026-09-26; T2. Evidence: s-023 in the <a
+href="../.research/sources.jsonl">source ledger</a>.<a href="#fnref22"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p>Fastino says classification answers themselves do not
+include evidence spans. - <a
+href="https://fastino.ai/blog/gliner-2-5-decide-open-weight-decision-model">GLiNER2.5-Decide
+release</a>. Accessed 2026-09-26; T4. Evidence: s-033 in the <a
+href="../.research/sources.jsonl">source ledger</a>.<a href="#fnref23"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p>Fastino explicitly distinguishes its JevK5 benchmark
+comparator from TypeSafe Jev. - <a
+href="https://fastino.ai/blog/gliner-2-5-decide-open-weight-decision-model">GLiNER2.5-Decide
+release</a>. Accessed 2026-09-26; T4. Evidence: s-033 in the <a
+href="../.research/sources.jsonl">source ledger</a>.<a href="#fnref24"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p>AnyJev L0 debiasing alone does not establish calibrated
+model uncertainty. - <a
+href="https://raw.githubusercontent.com/nokia-applied-research/AnyJev/main/docs/levels.md">AnyJev
+decision levels</a>. Accessed 2026-09-26; T1. Evidence: s-021 in the <a
+href="../.research/sources.jsonl">source ledger</a>.<a href="#fnref25"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p>AnyJev warns its L1 calibration does not generally
+survive distribution shift beyond its calibration set. - <a
+href="https://raw.githubusercontent.com/nokia-applied-research/AnyJev/main/docs/levels.md">AnyJev
+decision levels</a>. Accessed 2026-09-26; T1. Evidence: s-021 in the <a
+href="../.research/sources.jsonl">source ledger</a>.<a href="#fnref26"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn27"><p>SemIf probabilities are conditional on the provided
+options. - <a
+href="https://raw.githubusercontent.com/TheoLeeCJ/SemIf/master/README.md">SemIf
+repository README</a>. Accessed 2026-09-26; T1. Evidence: s-024 in the
+<a href="../.research/sources.jsonl">source ledger</a>.<a
+href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn28"><p>SemIf includes workload-specific calibration which
+leaves the selected option unchanged. - <a
+href="https://raw.githubusercontent.com/TheoLeeCJ/SemIf/master/README.md">SemIf
+repository README</a>. Accessed 2026-09-26; T1. Evidence: s-024 in the
+<a href="../.research/sources.jsonl">source ledger</a>.<a
+href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn29"><p>Archestra reports 337 judge-agreed decisions from an
+initial 400-label, 100-call sample. - <a
+href="https://archestra.ai/blog/we-tested-jev-on-100-real-agent-calls">We
+Tested Jev on 100 Real Agent Calls</a>. Accessed 2026-09-26; T3.
+Evidence: s-020 in the <a href="../.research/sources.jsonl">source
+ledger</a>.<a href="#fnref29" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn30"><p>Archestra reports mostly stable Jev labels but drifting
+probabilities and some option-order sensitivity. - <a
+href="https://archestra.ai/blog/we-tested-jev-on-100-real-agent-calls">We
+Tested Jev on 100 Real Agent Calls</a>. Accessed 2026-09-26; T3.
+Evidence: s-020 in the <a href="../.research/sources.jsonl">source
+ledger</a>.<a href="#fnref30" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn31"><p>In Nhu Hoang’s supplied Banking77 experiment, retaining
+Jev answers at confidence exactly 1.00 and routing the rest to Qwen
+fixed 84 errors but introduced 211. - <a
+href="https://towardsdatascience.com/jev-vs-llms-when-ai-moves-from-generation-to-decision-making/">Nhu
+Hoang: Jev vs. LLMs (supplied PDF pp. 20-22)</a>. Accessed 2026-09-26;
+T4. Evidence: s-027 in the <a href="../.research/sources.jsonl">source
+ledger</a>.<a href="#fnref31" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn32"><p>NIST AI RMF Core groups activities into Govern, Map,
+Measure and Manage. - <a
+href="https://airc.nist.gov/airmf-resources/airmf/5-sec-core/">AI RMF
+Core</a>. Accessed 2026-09-26; T1. Evidence: s-019 in the <a
+href="../.research/sources.jsonl">source ledger</a>.<a href="#fnref32"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn33"><p>The coding-agent PDF labels itself an independent
+synthesis rather than an official TypeSafe publication. - <a
+href="../Jev-Engineering-for-Coding-Agents.pdf">Jev-Engineering-for-Coding-Agents
+(supplied file)</a>. Accessed 2026-09-26; T4. Evidence: s-028 in the <a
+href="../.research/sources.jsonl">source ledger</a>.<a href="#fnref33"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></main>
+</div>
+<footer>Decision models · Original examples and diagrams · <a href="assets.md">Diagram provenance</a></footer>
+</div>
+<script type="module">
+// Render each graph from textContent, never from Pandoc's HTML markup.
+const graphs = [...document.querySelectorAll('pre.mermaid')].map((pre, index) => {
+  const source = pre.textContent.trim();
+  const panel = document.createElement('div'); panel.className = 'diagram-panel';
+  const label = document.createElement('div'); label.className = 'diagram-label';
+  label.textContent = `Figure ${index + 1} / Original diagram`;
+  const canvas = document.createElement('div'); canvas.className = 'diagram-canvas';
+  canvas.tabIndex = 0; canvas.setAttribute('aria-label', `Diagram ${index + 1}; scroll to explore if needed`);
+  canvas.setAttribute('role', 'status'); canvas.textContent = 'Loading diagram…';
+  const details = document.createElement('details');
+  const summary = document.createElement('summary'); summary.textContent = 'View diagram source';
+  pre.before(panel); details.append(summary, pre); panel.append(label, canvas, details);
+  return {source, canvas, details};
+});
+for (const table of document.querySelectorAll('main table')) {
+  const wrap = document.createElement('div'); wrap.className = 'table-scroll';
+  wrap.tabIndex = 0; wrap.setAttribute('role', 'region'); wrap.setAttribute('aria-label', 'Scrollable comparison table');
+  table.before(wrap); wrap.append(table);
+}
+const links = [...document.querySelectorAll('.rail a')];
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(entries => {
+    for (const entry of entries) if (entry.isIntersecting) {
+      for (const link of links) {
+        if (link.hash === '#' + entry.target.id) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      }
+    }
+  }, {rootMargin: '0px 0px -65% 0px'});
+  document.querySelectorAll('main section.level2').forEach(s => observer.observe(s));
+}
+try {
+  const {default: mermaid} = await import('https://cdn.jsdelivr.net/npm/mermaid@11.12.0/dist/mermaid.esm.min.mjs');
+  const css = getComputedStyle(document.documentElement);
+  const color = name => css.getPropertyValue(name).trim();
+  mermaid.initialize({startOnLoad:false, securityLevel:'strict', theme:'base',
+    fontFamily:'IBM Plex Sans, Segoe UI, sans-serif',
+    themeVariables:{primaryColor:color('--server-bg'),primaryTextColor:color('--ink'),
+      primaryBorderColor:color('--server'),lineColor:color('--ink-2'),
+      secondaryColor:color('--host-bg'),tertiaryColor:color('--wire-bg'),
+      edgeLabelBackground:color('--paper-2'),fontSize:'16px'},
+    flowchart:{htmlLabels:false,useMaxWidth:false,wrappingWidth:150,nodeSpacing:30,rankSpacing:35}});
+  for (const [index, graph] of graphs.entries()) {
+    try {
+      const {svg} = await mermaid.render(`decision-figure-${index + 1}`, graph.source);
+      graph.canvas.innerHTML = svg;
+      graph.canvas.removeAttribute('role');
+      const drawing = graph.canvas.querySelector('svg');
+      drawing.setAttribute('role', 'img');
+      drawing.setAttribute('aria-label', `Figure ${index + 1}: ${graph.source.split('\n')[1].trim()}`);
+      graph.canvas.dataset.rendered = 'true';
+    } catch (error) {
+      graph.canvas.textContent = 'This diagram could not render. Its source is available below.';
+      graph.canvas.classList.add('diagram-error'); graph.details.open = true;
+      console.error(error);
+    }
+  }
+} catch (error) {
+  for (const graph of graphs) {
+    graph.canvas.textContent = 'Connect to the internet and reload to display this diagram. You can read its source below.';
+    graph.details.open = true;
+  }
+  console.error(error);
+}
+</script>
+
+</body>
+</html>

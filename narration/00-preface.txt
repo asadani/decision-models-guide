@@ -1,0 +1,39 @@
+Decision Models. From a Typed Prediction to an Accountable Action.
+
+By Anuj Sadani. An independent work, not affiliated with TypeSafe AI or any project discussed in it.
+
+Preface.
+
+In the third week of September 2026 a new kind of model arrived, and within a few days there were more opinions about it than measurements. TypeSafe A I released Jev on September 15, describing it as a "System One" model: it does not write text, it answers a typed question with a probability for each permitted answer. Independent developers began posting numbers before the week was out. Some were impressive. Some were awkward for the launch story. Nearly all were reported by the person who ran the test, on one dataset, with one configuration.
+
+I collected what I could find: five articles and papers in P D F form, four web links, and two files of notes. I read them against each other and against the vendors' own documentation. I did not run Jev myself; no A P I key was used and no live call was made in the preparation of this book. Everything here about how Jev behaves comes from documentation and from other people's experiments, and I say which each time.
+
+The first thing I produced from that pile was a tutorial. It was accurate and it was thin. It said what to do and skipped the reasons, and it dropped the most interesting material: an experiment in which a fallback model made a good classifier worse, a security benchmark in which a constant "benign" answer scored 79 percent, higher than four of the seven models tested, a game-playing model that never once fired its weapon until someone changed the question. A checklist is easy to follow and easy to forget. This book keeps the checklist and adds the arguments.
+
+The argument is short. A decision model gives software a typed answer and a probability. Neither the type nor the probability tells you that the decision was correct, that the probability means what you think it means, or that anyone was entitled to act on it. Most of the work in a system built on such a model is the work of closing those three gaps: measuring correctness on your own cases, checking calibration on your own population, and writing down, in code and in policy, what may execute and who answers for it.
+
+Who this book is for.
+
+You write software that acts on the output of a model, or you review software that does. You have used a language model to return Jason and have felt the parsing code grow around it. You do not need machine-learning training. You do need to be comfortable reading a short Python example and a small amount of probability.
+
+What this book is not.
+
+It is not a Jev product manual. The A P I will change, and the model versions named here will be superseded. The documentation at docs.typesafe.ai is the authority on the contract. It is also not a benchmark. I did not reproduce anyone's numbers, and where this book repeats a figure it is the author's figure, attributed, with the conditions under which they got it.
+
+A note on sources.
+
+Every external claim in this book has a footnote. Numbers taken from an article are marked as reported by its author. Numbers I computed from those reported figures are marked as derived, with the arithmetic shown so you can check it. Where a source's text came from an O C R pass over a scanned page, I compared the figures against the page image before using them. Appendix C lists the sources, and Appendix A lists what was checked and what was not.
+
+Four of the supplied documents have no web address in the copies I was given: two Medium articles, one LinkedIn newsletter post, and one independently compiled P D F. I cite them by title, author, platform and date, and say so.
+
+A note on independence.
+
+This is an independent work. TypeSafe A I, and the authors of the projects and articles discussed here, did not review it. Several ideas in the final chapters come from notes that argue about incentives and accountability. Those notes describe risks a decision system could have. They do not allege that any named provider has behaved that way, and this book does not either.
+
+A note on how this book was written.
+
+This book was drafted with the help of an A I assistant, working from the source material described above. The assistant read the sources, proposed the structure, and wrote first drafts of the chapters; the figures were checked against the source text and, for scanned pages, against page images. The argument, the selection of what to include, and the responsibility for what it says are mine. If you find an error, it is my error to correct.
+
+About the author.
+
+Anuj Sadani is an engineer who writes about A I systems and publishes his books and articles at tech.anujsadani.in.

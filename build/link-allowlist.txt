@@ -1,0 +1,5 @@
+# URLs skipped by scripts/verify-links.sh. Each needs a reason.
+
+# POST-only API endpoint cited in Chapter 4. It answers GET, HEAD and OPTIONS
+# with 405 Method Not Allowed (checked September 27, 2026), which is expected.
+https://api.typesafe.ai/v1/systemone

@@ -1,0 +1,66 @@
+<script type="module">
+// Render each graph from textContent, never from Pandoc's HTML markup.
+const graphs = [...document.querySelectorAll('pre.mermaid')].map((pre, index) => {
+  const source = pre.textContent.trim();
+  const panel = document.createElement('div'); panel.className = 'diagram-panel';
+  const label = document.createElement('div'); label.className = 'diagram-label';
+  label.textContent = `Figure ${index + 1} / Original diagram`;
+  const canvas = document.createElement('div'); canvas.className = 'diagram-canvas';
+  canvas.tabIndex = 0; canvas.setAttribute('aria-label', `Diagram ${index + 1}; scroll to explore if needed`);
+  canvas.setAttribute('role', 'status'); canvas.textContent = 'Loading diagram…';
+  const details = document.createElement('details');
+  const summary = document.createElement('summary'); summary.textContent = 'View diagram source';
+  pre.before(panel); details.append(summary, pre); panel.append(label, canvas, details);
+  return {source, canvas, details};
+});
+for (const table of document.querySelectorAll('main table')) {
+  const wrap = document.createElement('div'); wrap.className = 'table-scroll';
+  wrap.tabIndex = 0; wrap.setAttribute('role', 'region'); wrap.setAttribute('aria-label', 'Scrollable comparison table');
+  table.before(wrap); wrap.append(table);
+}
+const links = [...document.querySelectorAll('.rail a')];
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(entries => {
+    for (const entry of entries) if (entry.isIntersecting) {
+      for (const link of links) {
+        if (link.hash === '#' + entry.target.id) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      }
+    }
+  }, {rootMargin: '0px 0px -65% 0px'});
+  document.querySelectorAll('main section.level2').forEach(s => observer.observe(s));
+}
+try {
+  const {default: mermaid} = await import('https://cdn.jsdelivr.net/npm/mermaid@11.12.0/dist/mermaid.esm.min.mjs');
+  const css = getComputedStyle(document.documentElement);
+  const color = name => css.getPropertyValue(name).trim();
+  mermaid.initialize({startOnLoad:false, securityLevel:'strict', theme:'base',
+    fontFamily:'IBM Plex Sans, Segoe UI, sans-serif',
+    themeVariables:{primaryColor:color('--server-bg'),primaryTextColor:color('--ink'),
+      primaryBorderColor:color('--server'),lineColor:color('--ink-2'),
+      secondaryColor:color('--host-bg'),tertiaryColor:color('--wire-bg'),
+      edgeLabelBackground:color('--paper-2'),fontSize:'16px'},
+    flowchart:{htmlLabels:false,useMaxWidth:false,wrappingWidth:150,nodeSpacing:30,rankSpacing:35}});
+  for (const [index, graph] of graphs.entries()) {
+    try {
+      const {svg} = await mermaid.render(`decision-figure-${index + 1}`, graph.source);
+      graph.canvas.innerHTML = svg;
+      graph.canvas.removeAttribute('role');
+      const drawing = graph.canvas.querySelector('svg');
+      drawing.setAttribute('role', 'img');
+      drawing.setAttribute('aria-label', `Figure ${index + 1}: ${graph.source.split('\n')[1].trim()}`);
+      graph.canvas.dataset.rendered = 'true';
+    } catch (error) {
+      graph.canvas.textContent = 'This diagram could not render. Its source is available below.';
+      graph.canvas.classList.add('diagram-error'); graph.details.open = true;
+      console.error(error);
+    }
+  }
+} catch (error) {
+  for (const graph of graphs) {
+    graph.canvas.textContent = 'Connect to the internet and reload to display this diagram. You can read its source below.';
+    graph.details.open = true;
+  }
+  console.error(error);
+}
+</script>

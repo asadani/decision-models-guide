@@ -1,0 +1,54 @@
+---
+title: "Decision Models"
+subtitle: "From a Typed Prediction to an Accountable Action"
+author: "Anuj Sadani"
+date: "2026"
+lang: en-US
+toc: true
+toc-depth: 2
+documentclass: book
+classoption:
+  - oneside
+  - 11pt
+geometry:
+  - margin=1in
+  - top=1in
+  - bottom=1in
+linestretch: 1.1
+linkcolor: "RoyalBlue"
+urlcolor: "RoyalBlue"
+toccolor: "black"
+header-includes:
+  - \usepackage[T1]{fontenc}
+  - \usepackage{lmodern}
+  - \usepackage{textcomp}
+  - \usepackage{microtype}
+  - \usepackage{parskip}
+  - \usepackage{xurl}
+  - \usepackage{titlesec}
+  - \titleformat{\chapter}[display]{\normalfont\bfseries\Huge}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhf{}
+  # The chapter-headings filter puts a hard break after "Chapter N." for the
+  # title page; flatten it to a space so the running header is one line.
+  - \fancyhead[L]{\footnotesize\nouppercase{\begingroup\renewcommand{\\}{\space}\leftmark\endgroup}}
+  - \fancyhead[R]{\footnotesize\thepage}
+  - \renewcommand{\headrulewidth}{0.4pt}
+  - \emergencystretch=3em
+  - \usepackage{fvextra}
+  - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,breakanywhere,commandchars=\\\{\}}
+  - \fvset{breaklines=true,breakanywhere=true,fontsize=\small}
+  # Un-tagged code fences render as plain `verbatim`, which does not wrap.
+  - \RecustomVerbatimEnvironment{verbatim}{Verbatim}{breaklines,breakanywhere,fontsize=\small}
+  - \AtBeginDocument{\let\maketitle\relax}
+  - \usepackage{emptypage}
+  # Pandoc's --toc injects \tableofcontents ahead of the title page. Neuter it
+  # here and call \realtableofcontents from book/00-front-matter/02-toc.md.
+  - \let\realtableofcontents\tableofcontents
+  - \renewcommand{\tableofcontents}{}
+  - \usepackage{booktabs}
+  - \usepackage{longtable}
+  - \usepackage{array}
+  - \usepackage{float}
+---
