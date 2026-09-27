@@ -385,7 +385,7 @@ flowchart TD
     S --> O[Read-only evaluation and review]
 ```
 
-*Figure 5. Original proposed agent design. The source of inspiration is the independent [coding-agent study](../Jev-Engineering-for-Coding-Agents.pdf), not copied artwork.*
+*Figure 5. Original proposed agent design. The source of inspiration is the independent [coding-agent study](../archive/Jev-Engineering-for-Coding-Agents.pdf), not copied artwork.*
 
 Test whether context filtering preserves the evidence needed for the final task. Keep binding instructions and unresolved constraints outside discretionary relevance pruning. Choosing a tool also does not supply arbitrary valid arguments; extraction or generation still needs validation.
 
@@ -470,7 +470,7 @@ All five supplied PDFs and four required web links were captured. OCR-derived ex
 
 [^c-024]: In Nhu Hoang's supplied Banking77 experiment, retaining Jev answers at confidence exactly 1.00 and routing the rest to Qwen fixed 84 errors but introduced 211. - [Nhu Hoang: Jev vs. LLMs (supplied PDF pp. 20-22)](https://towardsdatascience.com/jev-vs-llms-when-ai-moves-from-generation-to-decision-making/). Accessed 2026-09-26; T4. Evidence: s-027 in the [source ledger](../.research/sources.jsonl).
 
-[^c-025]: The coding-agent PDF labels itself an independent synthesis rather than an official TypeSafe publication. - [Jev-Engineering-for-Coding-Agents (supplied file)](../Jev-Engineering-for-Coding-Agents.pdf). Accessed 2026-09-26; T4. Evidence: s-028 in the [source ledger](../.research/sources.jsonl).
+[^c-025]: The coding-agent PDF labels itself an independent synthesis rather than an official TypeSafe publication. - [Jev-Engineering-for-Coding-Agents (supplied file)](../archive/Jev-Engineering-for-Coding-Agents.pdf). Accessed 2026-09-26; T4. Evidence: s-028 in the [source ledger](../.research/sources.jsonl).
 
 [^c-026]: NIST AI RMF Core groups activities into Govern, Map, Measure and Manage. - [AI RMF Core](https://airc.nist.gov/airmf-resources/airmf/5-sec-core/). Accessed 2026-09-26; T1. Evidence: s-019 in the [source ledger](../.research/sources.jsonl).
 

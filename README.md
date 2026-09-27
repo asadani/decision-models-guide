@@ -60,6 +60,7 @@ narration/      spoken-form scripts, one per audio track (derived from book/)
 site/           the reading edition and its audio
 .research/      source ledger, claim ledger, captured sources, page-image checks
 tutorial/       the earlier tutorial draft, kept for reference
+archive/        the supplied PDFs and notes (jev.txt, links.txt, other-model.txt); not in git
 ```
 
 ## Run the offline lesson

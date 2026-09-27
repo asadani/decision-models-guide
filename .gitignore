@@ -5,8 +5,10 @@ _scratch/
 __pycache__/
 *.pyc
 
-# Third-party inputs and captured pages are research records, not material to
-# republish. They stay on disk for the source ledger and claim gate.
+# Supplied inputs (the source PDFs and the notes/links text files) live in
+# archive/. Third-party inputs and captured pages are research records, not
+# material to republish. They stay on disk for the source ledger and claim gate.
+archive/
 /*.pdf
 .research/snapshots/
 .research/alternatives/snapshots/

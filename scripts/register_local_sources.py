@@ -15,9 +15,9 @@ for row in map(json.loads,(ROOT/'.research/alternatives/sources.jsonl').read_tex
 for path in (ROOT/'.research/extracted').glob('*.txt'):
     capture(path,'manual:'+path.stem+'.pdf',path.stem,'T4','User-supplied article','OCR except coding-agent PDF; discovery/context only. Consult original pages for numbers and code; primary sources govern technical claims.')
 for name in ['jev.txt','other-model.txt','links.txt']:
-    capture(ROOT/name,'manual:'+name,name,'T4','User-supplied notes','Research input, not verified evidence. Links and hypotheses require independent checking.')
+    capture(ROOT/'archive'/name,'manual:'+name,name,'T4','User-supplied notes','Research input, not verified evidence. Links and hypotheses require independent checking.')
 urls=[]
 for name in ['links.txt','jev.txt','other-model.txt']:
-    for url in re.findall(r'https?://[^\s<>\]\)"]+',(ROOT/name).read_text(encoding='utf-8')):
+    for url in re.findall(r'https?://[^\s<>\]\)"]+',(ROOT/'archive'/name).read_text(encoding='utf-8')):
         if url not in [x['url'] for x in urls]: urls.append({'url':url,'found_in':name,'scope':'required capture' if name=='links.txt' else 'embedded reference; follow selectively'})
 (ROOT/'.research/url-inventory.json').write_text(json.dumps(urls,indent=2),encoding='utf-8')

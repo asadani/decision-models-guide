@@ -33,7 +33,7 @@ SOURCES = {
     "eng": R / "extracted/Jev-Engineering-for-Coding-Agents.txt",
     "lasa": R / "extracted/lasa.txt",
     "jev-2": R / "extracted/jev-2.txt",
-    "notes": ROOT / "jev.txt",
+    "notes": ROOT / "archive" / "jev.txt",
     "launch": R / "snapshots/s-004.txt",
     "langchain": R / "snapshots/s-001.txt",
     "doc-quickstart": R / "snapshots/s-005.txt",
