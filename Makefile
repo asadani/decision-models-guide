@@ -67,5 +67,5 @@ $(PAPERBACK_OUT): $(MANUSCRIPT) $(PAPERBACK_METADATA)
 		--pdf-engine=$(PDF_ENGINE) -o $(PAPERBACK_OUT)
 
 clean:
-	@rm -rf $(OUTPUT_DIR) assets/diagrams/generated/*.png assets/diagrams/generated/*.pdf
+	@rm -rf $(OUTPUT_DIR) assets/diagrams/generated/*.png
 	@echo "clean: OK"

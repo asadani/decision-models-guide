@@ -1,4 +1,4 @@
-"""Build the reading edition: site/index.html with the narration player.
+"""Build the reading edition: docs/index.html with the narration player.
 
 Pandoc turns the book's Markdown (without the print-only cover, copyright and
 contents pages) into one HTML page in the project's reading theme. The audio
@@ -7,7 +7,8 @@ attached to its chapter. If there is no manifest, the page is built without a
 player and works as a plain reading copy.
 
 Run:  python scripts/build_html.py
-Output: site/index.html, site/style.css, site/player.js, site/assets/...
+Output: docs/index.html, docs/style.css, docs/player.js, docs/assets/...
+(docs/ is what GitHub Pages serves. The typeset PDF is not published here; it is sold on Ko-fi.)
 """
 import json
 import re
@@ -18,7 +19,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BOOK = ROOT / "book"
-SITE = ROOT / "site"
+SITE = ROOT / "docs"
 
 SOURCES = ([BOOK / "00-front-matter/03-preface.md", BOOK / "00-front-matter/04-how-to-read.md"]
            + sorted((BOOK / "01-chapters").glob("*.md"))
@@ -76,7 +77,7 @@ def main():
     html_path.write_text(html, encoding="utf-8", newline="\n")
 
     # Stylesheet, script and assets.
-    css = (ROOT / "tutorial/preview.css").read_text(encoding="utf-8") + "\n" + \
+    css = (ROOT / "build/site-base.css").read_text(encoding="utf-8") + "\n" + \
           (ROOT / "build/site-extra.css").read_text(encoding="utf-8")
     (SITE / "style.css").write_text(css, encoding="utf-8", newline="\n")
     shutil.copyfile(ROOT / "build/site-player.js", SITE / "player.js")
@@ -91,9 +92,7 @@ def main():
     with Image.open(ROOT / "assets/cover/decision-models-front-cover.png") as im:
         im.convert("RGB").resize((720, 1080), Image.LANCZOS).save(
             cover_dir / "decision-models-front-cover.jpg", quality=88, optimize=True)
-    pdf = ROOT / "output" / "decision-models.pdf"
-    if pdf.exists():
-        shutil.copyfile(pdf, SITE / "decision-models.pdf")
+    (SITE / ".nojekyll").touch()          # serve as-is; no Jekyll processing
 
     # Every reader-facing page needs the site header with a link home (screen only).
     nav = re.search(r'<nav class="sitebar"[^>]*>(.*?)</nav>', html, re.S)

@@ -4,10 +4,10 @@
 The synthesis itself is done by narrate.py in the sibling narrate-your-writing
 repo (Kokoro-82M, resumable, GPU-capable, per-file skip stamps). This wrapper
 only fixes the settings for this book and turns narrate.py's output into
-site/audio/manifest.json, which the reading edition's player reads.
+docs/audio/manifest.json, which the reading edition's player reads.
 
     python scripts/make_narration.py      # book -> narration/*.txt
-    python scripts/render_audio.py        # narration -> site/audio/*.mp3 + manifest.json
+    python scripts/render_audio.py        # narration -> docs/audio/*.mp3 + manifest.json
     python scripts/render_audio.py --manifest-only
     python scripts/render_audio.py --force --voice bm_george --speed 0.95
 
@@ -24,7 +24,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 NARRATION = ROOT / "narration"
-AUDIO = ROOT / "site" / "audio"
+AUDIO = ROOT / "docs" / "audio"
 CREDIT = "Synthetic voice, Kokoro-82M"
 
 

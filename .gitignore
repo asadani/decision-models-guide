@@ -23,5 +23,5 @@ models/
 output/
 
 # Render log for the narration
-site/audio/render.log
+docs/audio/render.log
 .research/web/

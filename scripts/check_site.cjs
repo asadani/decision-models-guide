@@ -1,4 +1,4 @@
-// Structural and visual checks for site/index.html.
+// Structural and visual checks for docs/index.html.
 //
 //   set NODE_PATH to a folder containing playwright, and PREVIEW_CHROMIUM to a
 //   Chromium executable. Optional: SHOTS_DIR for screenshots (default: none).
@@ -20,7 +20,7 @@ const { pathToFileURL } = require('node:url');
       const page = await browser.newPage({ viewport: { width: vp.width, height: vp.height } });
       const errors = [];
       page.on('pageerror', e => errors.push(String(e)));
-      await page.goto(pathToFileURL(path.join(root, 'site/index.html')).href);
+      await page.goto(pathToFileURL(path.join(root, 'docs/index.html')).href);
       await page.waitForLoadState('load');
       await page.waitForTimeout(1500);
 
@@ -34,6 +34,7 @@ const { pathToFileURL } = require('node:url');
           broken: imgs.filter(i => !i.complete || i.naturalWidth === 0).map(i => i.getAttribute('src')),
           noAlt: imgs.filter(i => !(i.getAttribute('alt') || '').trim()).length,
           navHome: !!(nav && nav.querySelector('a[href]')),
+          kofi: document.querySelectorAll('a[href="https://ko-fi.com/s/9e3a539eb0"]').length,
           tables: document.querySelectorAll('main table').length,
           wrapped: document.querySelectorAll('.table-scroll table').length,
           footnoteRefs: document.querySelectorAll('a.footnote-ref').length,
@@ -52,6 +53,7 @@ const { pathToFileURL } = require('node:url');
       const cover = await page.evaluate(() => { const i = document.querySelector('.mast-cover'); return i ? { ok: i.complete && i.naturalWidth > 0, alt: !!(i.alt || '').trim() } : null; });
       check(cover && cover.ok && cover.alt, `${vp.name}: cover image loads and has alt text`);
       check(info.navHome, `${vp.name}: site header has a link home`);
+      check(info.kofi >= 3, `${vp.name}: Ko-fi link in header, masthead and footer (${info.kofi})`);
       check(info.tables === info.wrapped && info.tables > 0, `${vp.name}: ${info.tables} tables, all in scroll regions`);
       check(info.footnoteRefs > 50 && info.footnoteLists >= 12, `${vp.name}: ${info.footnoteRefs} footnote refs in ${info.footnoteLists} lists`);
       check(!info.overflowX, `${vp.name}: no horizontal page overflow`);

@@ -4,8 +4,8 @@ A short book on Jev and other decision models: what they return, how to read the
 
 ## Read or listen
 
-- **Reading edition with narration:** open [`site/index.html`](site/index.html) in a browser. Fonts load over the network; everything else is local. The narration (100 minutes, a synthetic voice) is in `site/audio/`.
-- **PDF:** `make pdf` writes `output/decision-models.pdf` (Letter). `make paperback` writes the 6x9 interior.
+- **Reading edition with narration:** https://tech.anujsadani.in/decision-models-guide/ (source: [`docs/index.html`](docs/index.html), which also opens from disk; fonts load over the network). The narration is 100 minutes in a synthetic voice, in `docs/audio/`.
+- **Typeset PDF:** sold on [Ko-fi](https://ko-fi.com/s/9e3a539eb0). It is not published in this repo or on the site. `make pdf` builds it (`output/decision-models.pdf`, Letter, with the cover); `make paperback` builds the 6x9 interior.
 
 ## What is in it
 
@@ -41,8 +41,8 @@ The narration and the reading edition:
 
 ```text
 python scripts/make_narration.py      # book -> narration/*.txt
-python scripts/render_audio.py        # narration -> site/audio/*.mp3 via narrate-your-writing (Kokoro-82M, resumable) + manifest
-python scripts/build_html.py          # -> site/index.html with the player
+python scripts/render_audio.py        # narration -> docs/audio/*.mp3 via narrate-your-writing (Kokoro-82M, resumable) + manifest
+python scripts/build_html.py          # -> docs/index.html with the player (GitHub Pages serves docs/)
 node scripts/check_site.cjs           # structure and layout checks (Playwright)
 ```
 
@@ -58,9 +58,9 @@ assets/diagrams TikZ sources and rendered PNGs (original figures)
 assets/cover   front cover (PNG, 1024x1536) and the prompt it was generated from; the screen PDF opens with it
 examples/       the offline lab (Chapter 8) and the optional live call (Chapter 4)
 narration/      spoken-form scripts, one per audio track (derived from book/)
-site/           the reading edition and its audio
+docs/           the reading edition and its audio (served by GitHub Pages)
 .research/      source ledger, claim ledger, captured sources, page-image checks
-tutorial/       the earlier tutorial draft, kept for reference
+tutorial/       the earlier tutorial draft (Markdown only), kept for reference
 archive/        the supplied PDFs and notes (jev.txt, links.txt, other-model.txt); not in git
 ```
 

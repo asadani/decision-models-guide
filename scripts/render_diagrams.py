@@ -30,7 +30,6 @@ def render(tex: Path) -> Path:
             raise SystemExit(f"pdflatex failed for {tex.name}")
         with pymupdf.open(pdf) as doc:
             doc[0].get_pixmap(dpi=DPI, alpha=False).save(png)
-        (OUT / (tex.stem + ".pdf")).write_bytes(pdf.read_bytes())
     return png
 
 
